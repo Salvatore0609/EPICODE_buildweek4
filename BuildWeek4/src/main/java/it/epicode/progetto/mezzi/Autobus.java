@@ -1,4 +1,5 @@
 package it.epicode.progetto.mezzi;
+import it.epicode.progetto.periodo_di_servizio.Stato;
 import it.epicode.progetto.tratta.Tratta;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -17,12 +18,8 @@ public class Autobus extends Mezzo{
     public Autobus() {
     }
 
-    public Autobus(Long id, Tratta tratta, int numeroTicketVidimati, int volteTrattaPercorsa) {
-        super(id, tratta, numeroTicketVidimati, volteTrattaPercorsa);
-    }
-
-    public Autobus(Long id, Tratta tratta, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza) {
-        super(id, tratta, numeroTicketVidimati, volteTrattaPercorsa);
+    public Autobus(Long id, Tratta tratta, Stato stato, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza) {
+        super(id, tratta, stato, numeroTicketVidimati, volteTrattaPercorsa);
         this.capienza = capienza;
     }
 
@@ -32,5 +29,12 @@ public class Autobus extends Mezzo{
 
     public void setCapienza(int capienza) {
         this.capienza = capienza;
+    }
+
+    @Override
+    public String toString() {
+        return "Autobus{" +
+                "capienza=" + capienza +
+                '}';
     }
 }

@@ -29,7 +29,6 @@ public class PeriodoDiServizio {
     private LocalDate fineAttivita;
 
     @ManyToOne
-    @JoinColumn(name = "mezzo_id")
     private Mezzo mezzo;
 
 

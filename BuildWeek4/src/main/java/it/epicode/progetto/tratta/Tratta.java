@@ -27,6 +27,5 @@ public class Tratta {
     @Column(nullable = false)
     private LocalDateTime orarioDiArrivo;
 
-
     private int tempoEffettivoDiPercorrenza;
 }
