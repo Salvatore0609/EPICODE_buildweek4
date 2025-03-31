@@ -31,11 +31,15 @@ public class Utente {
     @Column(nullable = false)
     private Ruolo ruolo;
 
-    public Utente(String username, String nome, String cognome, String password, Ruolo ruolo) {
+    @Column
+    private boolean attivo = true;
+
+    public Utente(String username, String nome, String cognome, String password, Ruolo ruolo, boolean attivo) {
         this.username = username;
         this.nome = nome;
         this.cognome = cognome;
         this.password = password;
         this.ruolo = ruolo;
+        this.attivo = attivo;
     }
 }

@@ -14,7 +14,8 @@ public class UtentiDao {
         return em.merge(u);
     }
     public void delete(Utente u) {
-        em.remove(u);
+        //imposto l'utente come inattivo
+        u.setAttivo(false);
     }
     public Utente findById(Long id) {
         return em.find(Utente.class, id);

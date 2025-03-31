@@ -1,5 +1,7 @@
 package it.epicode.progetto.utenti;
 
+import it.epicode.progetto.tessere.Tessera;
+import it.epicode.progetto.tessere.TessereDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -36,35 +38,32 @@ public class GestioneUtenti {
             int ruoloUtente = scanner.nextInt();
             scanner.nextLine();
 
-            Ruolo ruolo;
-            if (ruoloUtente == 1) {
-                ruolo = Ruolo.ADMIN;
-            } else {
-                ruolo = Ruolo.USER;
-            }
+            Ruolo ruolo = (ruoloUtente == 1) ? Ruolo.ADMIN : Ruolo.USER;
 
-            nuovoUtente = new Utente();
-            nuovoUtente.setNome(nomeUtente);
-            nuovoUtente.setCognome(cognomeUtente);
-            nuovoUtente.setUsername(username);
-            nuovoUtente.setPassword(passwordUtente);
-            nuovoUtente.setRuolo(ruolo);
-
-            UtentiDao uDao = new UtentiDao(em);
+            // Creazione utente
+            nuovoUtente = new Utente(username, nomeUtente, cognomeUtente, passwordUtente, ruolo, true);
 
             System.out.println("Vuoi creare una tessera per questo utente? (S/N)");
             String risposta = scanner.nextLine();
+
+            em.getTransaction().begin();
+
+            // Salvataggio dell'utente
+            UtentiDao uDao = new UtentiDao(em);
+            uDao.insert(nuovoUtente);
+
+            // Se richiesto, creazione e associazione tessera
             if (risposta.equalsIgnoreCase("S")) {
-                nuovoUtente = new Tessera(username, nomeUtente, cognomeUtente, passwordUtente, ruolo, LocalDate.now());
-                em.getTransaction().begin();
-                uDao.update(nuovoUtente);
-                em.getTransaction().commit();
-            } else {
-                nuovoUtente = new Utente(username, nomeUtente, cognomeUtente, passwordUtente, ruolo);
-                em.getTransaction().begin();
-                uDao.insert(nuovoUtente);
-                em.getTransaction().commit();
+                Tessera nuovaTessera = new Tessera(nuovoUtente, LocalDate.now());
+
+                TessereDao tDao = new TessereDao(em);
+                tDao.insert(nuovaTessera);
+                System.out.println("Tessera creata con successo!");
             }
+
+            em.getTransaction().commit();
+            System.out.println("Utente creato con successo!");
+
         } catch (Exception e) {
             throw new RuntimeException("Errore nella creazione dell'utente", e);
         } finally {
@@ -73,7 +72,6 @@ public class GestioneUtenti {
         }
         return nuovoUtente;
     }
-
     public static Utente aggiorna(Utente u) {
         EntityManagerFactory emf = null;
         EntityManager em = null;
@@ -261,7 +259,32 @@ public class GestioneUtenti {
             if (em != null) em.close();
             if (emf != null) emf.close();
         }
-
         return utenteDaAggiornare;
+    }
+
+    public static void elimina(Utente utente) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
+        EntityManager em = emf.createEntityManager();
+        UtentiDao uDao = new UtentiDao(em);
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Inserisci l'ID dell'utente da eliminare:");
+            Long id = scanner.nextLong();
+            scanner.nextLine();
+            utente = uDao.findById(id);
+            if (utente != null) {
+                em.getTransaction().begin();
+                uDao.delete(utente);
+                em.getTransaction().commit();
+                System.out.println("Utente eliminato con successo!");
+            } else {
+                System.out.println("Utente non trovato.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Errore nell'eliminazione dell'utente", e);
+        } finally {
+            if (em != null) em.close();
+            if (emf != null) emf.close();
+        }
     }
 }
