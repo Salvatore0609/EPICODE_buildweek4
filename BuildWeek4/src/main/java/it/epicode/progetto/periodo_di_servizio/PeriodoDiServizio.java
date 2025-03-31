@@ -14,9 +14,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "periodi_di_servizio")
 public class PeriodoDiServizio {
-
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -31,7 +28,7 @@ public class PeriodoDiServizio {
     @Column(nullable = false)
     private LocalDate fineAttivita;
 
-
+    @ManyToOne
     @JoinColumn(name = "mezzo_id")
     private Mezzo mezzo;
 

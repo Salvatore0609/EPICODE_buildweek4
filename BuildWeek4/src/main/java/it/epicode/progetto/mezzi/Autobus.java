@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "autobus")
-
 public class Autobus extends Mezzo{
     private int capienza = 20;
 

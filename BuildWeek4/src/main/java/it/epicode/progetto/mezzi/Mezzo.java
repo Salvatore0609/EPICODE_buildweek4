@@ -11,18 +11,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "mezzi")
-
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Mezzo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "tratta_id")
     private Tratta tratta;
-
 
     private int numeroTicketVidimati;
 
