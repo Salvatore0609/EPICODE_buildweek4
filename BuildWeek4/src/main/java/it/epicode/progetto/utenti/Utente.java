@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "utenti")
 public class Utente {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idUtente;
 
     @Column(nullable = false)
     private String username;
