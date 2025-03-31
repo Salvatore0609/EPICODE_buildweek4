@@ -1,13 +1,12 @@
 package it.epicode.progetto.utenti;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -17,16 +16,16 @@ import lombok.NoArgsConstructor;
 @Table(name = "tessere")
 public class Tessera extends Utente {
 
-    @Id
-    private Long idTessera;
-
     @Column(nullable = false)
-    private int dataEmissione;
+    private LocalDate dataEmissione;
 
-    public Tessera(String username, String nome, String cognome, String password, Ruolo ruolo, Long idTessera, int dataEmissione) {
+    @Column
+    private LocalDate dataScadenza;
+
+    public Tessera(String username, String nome, String cognome, String password, Ruolo ruolo, LocalDate dataEmissione) {
         super(username, nome, cognome, password, ruolo);
-        this.idTessera = idTessera;
         this.dataEmissione = dataEmissione;
+        this.dataScadenza = dataEmissione.plusYears(1);
     }
 
 }

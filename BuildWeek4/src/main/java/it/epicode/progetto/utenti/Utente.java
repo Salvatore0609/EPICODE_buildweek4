@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "utenti")
-public abstract class Utente {
+public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;

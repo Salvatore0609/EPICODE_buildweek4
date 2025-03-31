@@ -1,10 +1,16 @@
 package it.epicode.progetto;
 
+import it.epicode.progetto.utenti.GestioneUtenti;
+
+import java.util.Scanner;
+
 public class coseACaso {
     public static void main(String[] args) {
-        System.out.println("ciao");
-        System.out.println("ciao2");
-        System.out.println("ciao3");
-        System.out.println("prova ciao4 merge");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Seleziona 1 per creare un utente");
+        int scelta = scanner.nextInt();
+        if (scelta == 1) {
+            GestioneUtenti.crea();
+        }
     }
 }
