@@ -1,6 +1,7 @@
 package it.epicode.progetto.utenti;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -31,6 +32,21 @@ public class UtentiDao {
                 .setParameter("nome", nome)
                 .setParameter("cognome", cognome)
                 .getSingleResult();
+    }
+    //ricerca per username e password
+    public Utente findByUsernameAndPassword(String username, String password) {
+        try {
+            return em.createQuery("""
+                SELECT u FROM Utente u
+                WHERE u.username = :username
+                AND u.password = :password
+            """, Utente.class)
+                    .setParameter("username", username)
+                    .setParameter("password", password)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
 }

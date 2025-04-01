@@ -15,7 +15,7 @@ public class Tessera {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idTessera;
 
     @Column(nullable = false)
     private LocalDate dataEmissione;
