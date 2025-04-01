@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 public class Autobus extends Mezzo{
-    private int capienza = 20;
+    private int capienza;
 
     public Autobus(int capienza) {
         this.capienza = capienza;
@@ -37,6 +37,6 @@ public class Autobus extends Mezzo{
 
     @Override
     public String toString() {
-        return "Autobus con numero identificativo " + getId() + " con capienza di " + getCapienza();
+        return "Autobus con numero identificativo " + getId() + " con capienza di " + getCapienza() + " attualmente " + getPeriodoDiServizio().getStato() + " ha un numero di ticket vidimati di " + getNumeroTicketVidimati();
     }
 }

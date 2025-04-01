@@ -28,7 +28,9 @@ public class MezzoDAO {
     }
 
     public void update (Mezzo e) {
+
         em.merge(e);
+
         }
 
         //Crea query tramite quale si possono trovare tutti i mezzi con stato in manutenzione e in servizio attraverso una stringa
