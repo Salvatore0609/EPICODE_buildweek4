@@ -9,10 +9,11 @@ import jakarta.persistence.*;
 public abstract class Mezzo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "mezzo_id")
     private Tratta tratta;
 
     private int numeroBigliettiVidimati;
@@ -20,7 +21,6 @@ public abstract class Mezzo {
     private int volteTrattaPercorsa;
 
     private int capienza;
-
 
     @Enumerated(EnumType.STRING)
     private Stato stato;
@@ -93,6 +93,10 @@ public abstract class Mezzo {
 
     public void setStato(Stato stato) {
         this.stato = stato;
+    }
+
+    public String getClasse() {
+        return "";
     }
 }
 

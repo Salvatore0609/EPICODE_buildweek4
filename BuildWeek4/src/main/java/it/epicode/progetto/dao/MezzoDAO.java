@@ -106,6 +106,26 @@ public class MezzoDAO {
             System.out.println("Mezzo: " + mezzo.getId() + ", Biglietti Vidimati: " + mezzo.getNumeroBigliettiVidimati());
         });
     }
+    //Metodo per stampare posti liberi su un mezzo (i posti liberi non sono altro che (capienza - numeroBigliettiVidimati)
+
+    public void findPostiLiberi(Long id) {
+        Mezzo mezzo = findById(id);
+        if (mezzo != null) {
+            int postiLiberi = mezzo.getCapienza() - mezzo.getNumeroBigliettiVidimati();
+            System.out.println("Il mezzo " + mezzo.getId() + " ha " + postiLiberi + " posti liberi.");
+        }
+    }
+// Stampa lista di tutti i mezzi con posti liberi
+
+    public void findAllPostiLiberi() {
+        TypedQuery<Mezzo> query = em.createQuery("SELECT m FROM Mezzo m", Mezzo.class);
+        query.getResultList().forEach(mezzo -> {
+            int postiLiberi = mezzo.getCapienza() - mezzo.getNumeroBigliettiVidimati();
+           if (postiLiberi >= 1 && mezzo.getClasse().equals("Autobus"))  { System.out.println ("L'" + mezzo.getClasse().toLowerCase()  + " numero " + mezzo.getId() + " ha " + postiLiberi + " posti liberi."); } else if (postiLiberi >= 1 && mezzo.getClasse().equals("Tram")) {
+               System.out.println("Il " + mezzo.getClasse().toLowerCase() + " numero " + mezzo.getId() + " ha " + postiLiberi + " posti liberi.");
+           } ;
+        });
+    }
 
 }
 
