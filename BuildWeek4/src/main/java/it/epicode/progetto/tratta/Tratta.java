@@ -31,5 +31,10 @@ public class Tratta {
 
     private int tempoEffettivoDiPercorrenza;
 
+    @OneToMany
+    @JoinColumn(name = "tratta_id")
+    private List<Mezzo> mezzi;
+
+
 
 }

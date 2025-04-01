@@ -34,8 +34,6 @@ public class Tram extends Mezzo{
 
      @Override
      public String toString() {
-          return "Tram{" +
-                  "capienza=" + capienza +
-                  '}';
+          return "Tram con numero identificativo " + getId() + " con capienza di " + getCapienza() + " attualmente " + " ha un numero di ticket vidimati di " + getNumeroTicketVidimati();
      }
 }
