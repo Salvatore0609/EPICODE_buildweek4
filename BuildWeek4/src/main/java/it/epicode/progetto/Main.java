@@ -26,11 +26,14 @@ public class Main {
         TrattaDAO trattaDAO = new TrattaDAO(em);
         PeriodoDiServizioDAO periodoDiServizioDAO = new PeriodoDiServizioDAO(em);
 
+
+        PeriodoDiServizio servizioTram1 = new PeriodoDiServizio(null, Stato.IN_MANUTENZIONE, LocalDate.of(2025,3,25), LocalDate.of(2025,3,31), null);
+        PeriodoDiServizio servizioAutobus1 = new PeriodoDiServizio(null, Stato.IN_SERVIZIO, LocalDate.of(2025,3,25), LocalDate.of(2025,3,31), null);
         Tratta milanoRoma = new Tratta(null, "Milano", "Roma", LocalDateTime.of(2025,3,31,10,30,00), LocalDateTime.of(2025,3,31,15,30,00), 360);
-        Mezzo autobus1 = new Autobus(null, milanoRoma, Stato.IN_SERVIZIO, 5, 2, 20);
-        Mezzo tram1 = new Tram(null, milanoRoma, Stato.IN_MANUTENZIONE, 5, 2, 50);
-        PeriodoDiServizio servizioAutobus1 = new PeriodoDiServizio(null, Stato.IN_SERVIZIO, LocalDate.of(2025,3,25), LocalDate.of(2025,3,31), autobus1);
-        PeriodoDiServizio servizioTram1 = new PeriodoDiServizio(null, Stato.IN_MANUTENZIONE, LocalDate.of(2025,3,25), LocalDate.of(2025,3,31), tram1);
+        Mezzo autobus1 = new Autobus(null, milanoRoma, 5, 2, 20, servizioAutobus1);
+        Mezzo tram1 = new Tram(null, milanoRoma, 5, 2, 50, servizioTram1);
+
+
 
 
         trattaDAO.insert(milanoRoma);

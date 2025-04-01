@@ -1,4 +1,5 @@
 package it.epicode.progetto.mezzi;
+import it.epicode.progetto.periodo_di_servizio.PeriodoDiServizio;
 import it.epicode.progetto.periodo_di_servizio.Stato;
 import it.epicode.progetto.tratta.Tratta;
 import jakarta.persistence.*;
@@ -22,12 +23,13 @@ public abstract class Mezzo {
     @ManyToOne
     private Tratta tratta;
 
-    @Enumerated(EnumType.STRING)
-    private Stato stato;
-
     private int numeroTicketVidimati;
 
     private int volteTrattaPercorsa;
+
+
+    @OneToMany(mappedBy = "mezzo")
+    private PeriodoDiServizio periodoDiServizio;
 
 }
 

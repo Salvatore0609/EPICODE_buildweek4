@@ -29,6 +29,7 @@ public class PeriodoDiServizio {
     private LocalDate fineAttivita;
 
     @ManyToOne
+    @Column(nullable = true)
     private Mezzo mezzo;
 
 
