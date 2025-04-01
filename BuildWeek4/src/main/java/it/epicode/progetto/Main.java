@@ -14,6 +14,7 @@ import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -38,8 +39,11 @@ public class Main {
         periodoDiServizioDAO.insert(servizioAutobus1);
         periodoDiServizioDAO.insert(servizioTram1);
 
-
         em.getTransaction().commit();
+
+
+
+
 
         em.close();
         emf.close();
