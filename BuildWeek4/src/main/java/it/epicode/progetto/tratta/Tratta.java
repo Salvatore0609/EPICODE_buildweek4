@@ -1,4 +1,5 @@
 package it.epicode.progetto.tratta;
+import it.epicode.progetto.periodo_di_servizio.PeriodoDiServizio;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,4 +29,5 @@ public class Tratta {
     private LocalDateTime orarioDiArrivo;
 
     private int tempoEffettivoDiPercorrenza;
+
 }

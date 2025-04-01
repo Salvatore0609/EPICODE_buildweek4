@@ -1,7 +1,11 @@
 package it.epicode.progetto.dao;
 import it.epicode.progetto.mezzi.Mezzo;
+import it.epicode.progetto.periodo_di_servizio.Stato;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -29,16 +33,9 @@ public class MezzoDAO {
         em.merge(e);
         }
 
-
-
-
-
-
-
-
-
-
     }
+
+
 
 
 
