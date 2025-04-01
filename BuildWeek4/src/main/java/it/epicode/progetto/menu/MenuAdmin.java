@@ -1,5 +1,7 @@
 package it.epicode.progetto.menu;
 
+import it.epicode.progetto.utility.ClearTerminal;
+
 import java.util.Scanner;
 
 public class MenuAdmin {
@@ -15,6 +17,7 @@ public class MenuAdmin {
         int scelta = scanner.nextInt();
         switch (scelta) {
             case 1:
+                ClearTerminal.clearConsole();
                 MenuGestioneUtenti.menuUtenti();
                 break;
             case 2:
