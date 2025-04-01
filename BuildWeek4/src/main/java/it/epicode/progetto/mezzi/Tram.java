@@ -1,5 +1,4 @@
 package it.epicode.progetto.mezzi;
-import it.epicode.progetto.periodo_di_servizio.PeriodoDiServizio;
 import it.epicode.progetto.periodo_di_servizio.Stato;
 import it.epicode.progetto.tratta.Tratta;
 import jakarta.persistence.Entity;
@@ -20,8 +19,8 @@ public class Tram extends Mezzo{
      public Tram() {
      }
 
-     public Tram(Long id, Tratta tratta, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza, PeriodoDiServizio periodoDiServizio) {
-          super(id, tratta, numeroTicketVidimati, volteTrattaPercorsa, periodoDiServizio);
+     public Tram(Long id, Tratta tratta, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza, Stato stato) {
+          super(id, tratta, numeroTicketVidimati, volteTrattaPercorsa, stato);
           this.capienza = capienza;
      }
 

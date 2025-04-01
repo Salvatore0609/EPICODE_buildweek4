@@ -1,11 +1,12 @@
 package it.epicode.progetto.mezzi;
-import it.epicode.progetto.periodo_di_servizio.PeriodoDiServizio;
 import it.epicode.progetto.periodo_di_servizio.Stato;
 import it.epicode.progetto.tratta.Tratta;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 @Entity
@@ -28,8 +29,23 @@ public abstract class Mezzo {
     private int volteTrattaPercorsa;
 
 
-    @OneToOne
-    private PeriodoDiServizio periodoDiServizio;
+    @Enumerated(EnumType.STRING)
+    private Stato stato;
+
+    public Stato getStatoEnum() {
+        return Stato.valueOf(String.valueOf(stato));
+    }
+
+
+    public void setStatoEnum(Stato statoEnum) {
+        this.stato = Stato.valueOf(statoEnum.name());
+    }
+
+
+
+
+
+
 
 }
 

@@ -1,9 +1,11 @@
 package it.epicode.progetto.tratta;
+import it.epicode.progetto.mezzi.Mezzo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -28,4 +30,6 @@ public class Tratta {
     private LocalDateTime orarioDiArrivo;
 
     private int tempoEffettivoDiPercorrenza;
+
+
 }
