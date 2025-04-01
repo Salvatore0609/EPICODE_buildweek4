@@ -15,8 +15,8 @@ public class Autobus extends Mezzo{
     public Autobus() {
     }
 
-    public Autobus(Long id, Tratta tratta, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza, Stato stato) {
-        super(id, tratta, numeroTicketVidimati, volteTrattaPercorsa, stato);
+    public Autobus(Long id, String nome, Tratta tratta, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza, Stato stato) {
+        super(id, nome, tratta, numeroTicketVidimati, volteTrattaPercorsa, stato);
         this.capienza = capienza;
     }
 

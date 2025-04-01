@@ -2,9 +2,9 @@ package it.epicode.progetto.dao;
 import it.epicode.progetto.mezzi.Mezzo;
 import it.epicode.progetto.periodo_di_servizio.Stato;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
 import lombok.AllArgsConstructor;
 
+import javax.naming.Name;
 import java.util.List;
 
 
@@ -17,12 +17,9 @@ public class MezzoDAO {
         System.out.println("Il mezzo è stato inserito con successo");
     }
 
-
     public Mezzo findById(Long id) {
         return em.find(Mezzo.class, id);
-
     }
-
 
     public void delete(Long id) {
         Mezzo mezzo = findById(id);
@@ -33,43 +30,26 @@ public class MezzoDAO {
     }
 
     public void update(Mezzo e) {
-
         em.merge(e);
-
     }
 
-    //crea query tramite la quale posso cambiare numero di biglietti vidimati di un mezzo
+    public List<Mezzo> findMezziByNome(String nome) {
+        return em.createQuery("SELECT m FROM Mezzo m WHERE m.nome = :nome", Mezzo.class)
+                .setParameter("nome", nome)
+                .getResultList();
+    }
 
-    public void updateBigliettiVidimati(Long id, Integer bigliettiVidimati) {
-        Mezzo mezzo = findById(id);
-        if (mezzo != null) {
-            mezzo.setNumeroTicketVidimati(bigliettiVidimati);
-            em.merge(mezzo);
+    public void updateStato(String nome, Stato stato) {
+        List<Mezzo> mezzi = findMezziByNome(nome);
+        if (!mezzi.isEmpty()) {
+            mezzi.forEach(m -> m.setStatoEnum(stato));
         }
     }
 
-
-
-
-
-
-    // metodo per stampare mezzi trovati tramite stato passato come enum
-    public void findMezzoByStatoEnum(Stato stato) {                       //FUNZIONA
-        String query = "SELECT m FROM Mezzo m WHERE m.stato = :stato";
-        em.createQuery(query, Mezzo.class)
+    public List<Mezzo> findMezzoByStato(Stato stato) {
+        return em.createQuery("SELECT m FROM Mezzo m WHERE m.stato = :stato", Mezzo.class)
                 .setParameter("stato", stato)
-                .getResultList()
-                .forEach(System.out::println);
-    }
-
-    //update di stato
-
-    public void updateStato(Long id, Stato stato) {                          // FUNZIONA
-        Mezzo mezzo = findById(id);
-        if (mezzo != null) {
-            mezzo.setStatoEnum(stato);
-            em.merge(mezzo);
-        }
+                .getResultList();
     }
 
 }

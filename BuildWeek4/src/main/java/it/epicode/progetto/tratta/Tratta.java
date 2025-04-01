@@ -1,10 +1,11 @@
 package it.epicode.progetto.tratta;
-import it.epicode.progetto.periodo_di_servizio.PeriodoDiServizio;
+import it.epicode.progetto.mezzi.Mezzo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -27,6 +28,10 @@ public class Tratta {
 
     @Column(nullable = false)
     private LocalDateTime orarioDiArrivo;
+
+    @OneToMany
+    @JoinColumn(name = "tratta_id")
+    private List<Mezzo> mezzi;
 
     private int tempoEffettivoDiPercorrenza;
 

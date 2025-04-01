@@ -19,8 +19,8 @@ public class Tram extends Mezzo{
      public Tram() {
      }
 
-     public Tram(Long id, Tratta tratta, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza, Stato stato) {
-          super(id, tratta, numeroTicketVidimati, volteTrattaPercorsa, stato);
+     public Tram(Long id,String nome, Tratta tratta, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza, Stato stato) {
+          super(id, nome, tratta, numeroTicketVidimati, volteTrattaPercorsa, stato);
           this.capienza = capienza;
      }
 

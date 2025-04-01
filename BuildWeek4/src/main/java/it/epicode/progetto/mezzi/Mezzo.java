@@ -21,6 +21,8 @@ public abstract class Mezzo {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    private String name;
+
     @ManyToOne
     private Tratta tratta;
 
