@@ -3,6 +3,8 @@ import it.epicode.progetto.tratta.Tratta;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 
 @AllArgsConstructor
 public class TrattaDAO {
@@ -33,4 +35,13 @@ public class TrattaDAO {
     public void update (Tratta e) {
         em.merge(e);
     }
+
+
+
+
+    public List<Tratta> findAll() {                                             //STAMPA TUTTE LE TRATTE
+        return em.createQuery("SELECT t FROM Tratta t", Tratta.class).getResultList();
+    }
 }
+
+

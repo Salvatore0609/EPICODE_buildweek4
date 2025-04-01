@@ -11,46 +11,13 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.List;
-
+import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
-        EntityManager em = emf.createEntityManager();
-
-        MezzoDAO mezzoDAO = new MezzoDAO(em);
-        TrattaDAO trattaDAO = new TrattaDAO(em);
-
-        Tratta milanoRoma = new Tratta(null, "Milano", "Roma", LocalDateTime.now(), LocalDateTime.now(), 360, null);
-        Mezzo autobus1 = new Autobus(null, milanoRoma, 5, 2, 20, Stato.IN_SERVIZIO);
-        Mezzo tram1 = new Tram(null, milanoRoma, 5, 2, 50, Stato.IN_MANUTENZIONE);
-
-        em.getTransaction().begin();
-        trattaDAO.insert(milanoRoma);
-        mezzoDAO.insert(autobus1);
-        mezzoDAO.insert(tram1);
 
 
-
-
-      mezzoDAO.updateStato(2L, Stato.IN_SERVIZIO);
-      mezzoDAO.findMezzoByStatoEnum(Stato.IN_SERVIZIO);
-      Long idTram1 = tram1.getId();
-        System.out.println(tram1);
-
-
-
-
-
-
-
-
-
-        em.getTransaction().commit();
-
-        em.close();
-        emf.close();
     }
 }
 
