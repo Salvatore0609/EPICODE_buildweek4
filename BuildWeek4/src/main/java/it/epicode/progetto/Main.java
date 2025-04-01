@@ -22,19 +22,26 @@ public class Main {
         MezzoDAO mezzoDAO = new MezzoDAO(em);
         TrattaDAO trattaDAO = new TrattaDAO(em);
 
-        Tratta milanoRoma = new Tratta(null, "Milano", "Roma", LocalDateTime.now(), LocalDateTime.now(), 360);
+        Tratta milanoRoma = new Tratta(null, "Milano", "Roma", LocalDateTime.now(), LocalDateTime.now(), 360, null);
         Mezzo autobus1 = new Autobus(null, milanoRoma, 5, 2, 20, Stato.IN_SERVIZIO);
         Mezzo tram1 = new Tram(null, milanoRoma, 5, 2, 50, Stato.IN_MANUTENZIONE);
 
-
         em.getTransaction().begin();
-//        trattaDAO.insert(milanoRoma);
-//        mezzoDAO.insert(autobus1);
-//        mezzoDAO.insert(tram1);
+        trattaDAO.insert(milanoRoma);
+        mezzoDAO.insert(autobus1);
+        mezzoDAO.insert(tram1);
 
 
-       Long idTram1 = mezzoDAO.findIdByMezzo(tram1);
-       mezzoDAO.updateStato(idTram1, Stato.IN_SERVIZIO);
+
+
+      mezzoDAO.updateStato(2L, Stato.IN_SERVIZIO);
+      mezzoDAO.findMezzoByStatoEnum(Stato.IN_SERVIZIO);
+      Long idTram1 = tram1.getId();
+        System.out.println(tram1);
+
+
+
+
 
 
 
