@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "abbonamenti")
 public class Abbonamento extends ElementoBiglietteria {
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column
     private DurataAbbonamento durataAbbonamento;
 

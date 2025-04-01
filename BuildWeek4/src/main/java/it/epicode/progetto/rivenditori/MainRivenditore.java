@@ -10,7 +10,7 @@ import jakarta.persistence.Persistence;
 public class MainRivenditore {
     public static void main(String[] args) {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("bw4_t6");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
     EntityManager em = emf.createEntityManager();
 
     RivenditoreDAO rivenditoreDAO = new RivenditoreDAO(em);

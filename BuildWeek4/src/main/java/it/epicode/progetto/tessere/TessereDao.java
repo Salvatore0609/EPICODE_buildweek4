@@ -1,5 +1,6 @@
 package it.epicode.progetto.tessere;
 
+import it.epicode.progetto.biglietteria.abbonamento.Abbonamento;
 import it.epicode.progetto.utenti.Utente;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -29,6 +30,15 @@ public class TessereDao {
         }
     }
 
+    public void findAbbonamentoByTessera (Long idTessera) {
 
+            Abbonamento result =  em.createQuery("SELECT a FROM Abbonamento a WHERE a.tessera.id = :idTessera", Abbonamento.class)
+                    .setParameter("idTessera", idTessera)
+                    .getSingleResult();
+        System.out.println("L'abbonamento valido è: " +
+                "Durata: " + result.getDurataAbbonamento() +
+                ", Scadenza: " + result.getScadenzaAbbonamento() +
+                ", Tessera ID: " + result.getTessera().getIdTessera());
+    }
 
 }

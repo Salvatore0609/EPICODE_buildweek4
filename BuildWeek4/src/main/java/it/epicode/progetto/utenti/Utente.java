@@ -1,11 +1,13 @@
 package it.epicode.progetto.utenti;
 
+import it.epicode.progetto.biglietteria.biglietto.Biglietto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+import java.util.List;
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -34,6 +36,9 @@ public class Utente {
 
     @Column
     private boolean attivo = true;
+
+    @OneToMany(mappedBy = "utente")
+    private List<Biglietto> biglietti;
 
     public Utente(String username, String nome, String cognome, String password, Ruolo ruolo, boolean attivo) {
         this.username = username;

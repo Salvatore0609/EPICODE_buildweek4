@@ -7,6 +7,10 @@ import it.epicode.progetto.biglietteria.biglietto.Biglietto;
 import it.epicode.progetto.rivenditori.Rivenditore;
 import it.epicode.progetto.rivenditori.RivenditoreDAO;
 import it.epicode.progetto.rivenditori.distributoriautomatici.DistributoriAutomatici;
+import it.epicode.progetto.tessere.Tessera;
+import it.epicode.progetto.tessere.TessereDao;
+import it.epicode.progetto.utenti.Utente;
+import it.epicode.progetto.utenti.UtentiDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -20,20 +24,22 @@ import java.util.List;
 
 public class MainBiglietteria {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("bw4_t6");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
         EntityManager em = emf.createEntityManager();
 
         ElementoBiglietteriaDAO elementodao = new ElementoBiglietteriaDAO(em);
         RivenditoreDAO rivenditoreDAO = new RivenditoreDAO(em);
+        TessereDao tdao = new TessereDao(em);
+
 
         List<Rivenditore> rivenditoriAutorizzati = em.createQuery("select r from RivenditoriAutorizzati r", Rivenditore.class).getResultList();
         List<Rivenditore> distributoriAutomatici = em.createQuery("select d from DistributoriAutomatici d", Rivenditore.class).getResultList();
 
 
         Biglietto b1 = Biglietto.builder()
-                        .dataDiEmissione(LocalDate.now())
-                        .rivenditore(rivenditoriAutorizzati.get(0))
-                        .build();
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(rivenditoriAutorizzati.get(0))
+                .build();
 
         Biglietto b2 = Biglietto.builder()
                 .dataDiEmissione(LocalDate.now())
@@ -55,12 +61,24 @@ public class MainBiglietteria {
                 .rivenditore(distributoriAutomatici.get(0))
                 .build();
 
-        Abbonamento a1 = Abbonamento.builder()
+        /*long utenteBiglietteria = 1L;
+        UtentiDao udao = new UtentiDao(em);
+        Utente utenteDaCercare = udao.findById(utenteBiglietteria);
+        Abbonamento a1 = null;
+
+        if (utenteDaCercare != null) {
+            tdao = new TessereDao(em);
+            Tessera tesseraDaCercare = tdao.findByUtente(utenteDaCercare);
+            if (tesseraDaCercare != null) {
+                a1 = Abbonamento.builder()
                         .dataDiEmissione(LocalDate.now())
                         .rivenditore(rivenditoriAutorizzati.get(0))
-                .durataAbbonamento(DurataAbbonamento.SETTIMANALE)
-                .scadenzaAbbonamento(LocalDate.of(2025, 8 , 4))
+                        .durataAbbonamento(DurataAbbonamento.SETTIMANALE)
+                        .scadenzaAbbonamento(LocalDate.of(2025, 8, 4))
+                        .tessera(tesseraDaCercare)
                         .build();
+            }
+        }*/
 
 
         em.getTransaction().begin();
@@ -69,14 +87,15 @@ public class MainBiglietteria {
         elementodao.insert(b3);
         elementodao.insert(b4);
         elementodao.insert(b5);
+        //elementodao.insert(a1);
         rivenditoreDAO.aggiornaBigliettiAbbonamentiEmessi();
+        tdao.findAbbonamentoByTessera(1L);
         em.getTransaction().commit();
 
         rivenditoreDAO.ottieniBigliettiAbbonamentiEmessi(rivenditoriAutorizzati.get(0).getNome(), LocalDate.now(), LocalDate.now());
 
         em.close();
         emf.close();
-
 
 
     }
