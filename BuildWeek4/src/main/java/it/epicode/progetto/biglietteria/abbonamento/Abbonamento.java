@@ -1,10 +1,8 @@
 package it.epicode.progetto.biglietteria.abbonamento;
 
 import it.epicode.progetto.biglietteria.ElementoBiglietteria;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import it.epicode.progetto.tessere.Tessera;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,4 +24,8 @@ public class Abbonamento extends ElementoBiglietteria {
 
     @Column
     private LocalDate scadenzaAbbonamento;
+
+    @ManyToOne
+    @JoinColumn(name = "idTessera", nullable = false)
+    private Tessera tessera;
 }

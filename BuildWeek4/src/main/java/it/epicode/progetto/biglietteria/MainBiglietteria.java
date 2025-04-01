@@ -2,6 +2,7 @@ package it.epicode.progetto.biglietteria;
 
 
 import it.epicode.progetto.biglietteria.abbonamento.Abbonamento;
+import it.epicode.progetto.biglietteria.abbonamento.DurataAbbonamento;
 import it.epicode.progetto.biglietteria.biglietto.Biglietto;
 import it.epicode.progetto.rivenditori.Rivenditore;
 import it.epicode.progetto.rivenditori.RivenditoreDAO;
@@ -54,7 +55,12 @@ public class MainBiglietteria {
                 .rivenditore(distributoriAutomatici.get(0))
                 .build();
 
-
+        Abbonamento a1 = Abbonamento.builder()
+                        .dataDiEmissione(LocalDate.now())
+                        .rivenditore(rivenditoriAutorizzati.get(0))
+                .durataAbbonamento(DurataAbbonamento.SETTIMANALE)
+                .scadenzaAbbonamento(LocalDate.of(2025, 8 , 4))
+                        .build();
 
 
         em.getTransaction().begin();

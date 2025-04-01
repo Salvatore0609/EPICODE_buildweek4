@@ -1,10 +1,12 @@
 package it.epicode.progetto.tessere;
 
+import it.epicode.progetto.biglietteria.abbonamento.Abbonamento;
 import it.epicode.progetto.utenti.Utente;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -26,6 +28,10 @@ public class Tessera {
     @ManyToOne
     @JoinColumn(name = "idutente", nullable = false)
     private Utente utente;
+
+    @OneToMany(mappedBy = "tessera")
+    private List<Abbonamento> listaAbbonamenti;
+
 
     public Tessera(Utente utente, LocalDate dataEmissione) {
         this.utente = utente;
