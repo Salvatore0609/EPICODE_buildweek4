@@ -1,4 +1,6 @@
 package it.epicode.progetto.mezzi;
+import it.epicode.progetto.dao.PeriodoDiServizioDAO;
+import it.epicode.progetto.periodo_di_servizio.PeriodoDiServizio;
 import it.epicode.progetto.periodo_di_servizio.Stato;
 import it.epicode.progetto.tratta.Tratta;
 import jakarta.persistence.Entity;
@@ -18,8 +20,8 @@ public class Autobus extends Mezzo{
     public Autobus() {
     }
 
-    public Autobus(Long id, Tratta tratta, Stato stato, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza) {
-        super(id, tratta, stato, numeroTicketVidimati, volteTrattaPercorsa);
+    public Autobus(Long id, Tratta tratta, int numeroTicketVidimati, int volteTrattaPercorsa, int capienza, PeriodoDiServizio periodoDiServizio) {
+        super(id, tratta, numeroTicketVidimati, volteTrattaPercorsa, periodoDiServizio);
         this.capienza = capienza;
     }
 
