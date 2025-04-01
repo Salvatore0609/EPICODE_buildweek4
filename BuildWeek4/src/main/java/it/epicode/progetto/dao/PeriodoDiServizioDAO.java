@@ -15,6 +15,7 @@ public class PeriodoDiServizioDAO {
 
     public void insert (PeriodoDiServizio e) {
         em.persist(e);
+        System.out.println("Il periodo di servizio é stato inserito con successo");
     }
 
 
@@ -27,6 +28,7 @@ public class PeriodoDiServizioDAO {
         PeriodoDiServizio mezzo = findById(id);
         if(mezzo != null) {
             em.remove(mezzo);
+            System.out.println("Il periodo di servizio é stato eliminato con successo");
         }
     }
 

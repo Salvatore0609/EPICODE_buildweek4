@@ -14,12 +14,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "periodi_di_servizio")
 public class PeriodoDiServizio {
-    @Id
+
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Stato stato;
+    @Id
+    @Column(nullable = false)
+    private String stato;
 
 
     @Column(nullable = false)

@@ -28,7 +28,7 @@ public abstract class Mezzo {
     private int volteTrattaPercorsa;
 
 
-    @OneToOne(mappedBy = "mezzo")
+    @OneToOne
     private PeriodoDiServizio periodoDiServizio;
 
 }
