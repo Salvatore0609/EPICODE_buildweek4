@@ -16,7 +16,7 @@ public class Login {
         EntityManagerFactory emf = null;
         EntityManager em = null;
 
-        try (Scanner scanner = new Scanner(System.in)) {
+        Scanner scanner = new Scanner(System.in);
             emf = jakarta.persistence.Persistence.createEntityManagerFactory("epicode");
             em = emf.createEntityManager();
 
@@ -48,11 +48,5 @@ public class Login {
                     MenuUtente.menuUtente();
                 }
             }
-        } catch (Exception e) {
-            System.out.println("Errore durante il login: Utente o password errati");
-        } finally {
-            if (em != null) em.close();
-            if (emf != null) emf.close();
-        }
     }
 }

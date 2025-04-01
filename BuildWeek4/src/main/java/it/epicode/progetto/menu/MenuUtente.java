@@ -1,5 +1,8 @@
 package it.epicode.progetto.menu;
 
+import it.epicode.progetto.login.Main;
+import it.epicode.progetto.utility.ClearTerminal;
+
 import java.util.Scanner;
 
 public class MenuUtente {
@@ -13,8 +16,14 @@ public class MenuUtente {
         System.out.println("5. Visualizza gli abbonamenti attivi");
         System.out.println("6. Visualizza lo storico dei tuoi biglietti");
         System.out.println("7. Visualizza lo storico degli abbonamenti");
+        System.out.println("0. Esci");
+        System.out.println();
         int scelta = scanner.nextInt();
         switch (scelta) {
+            case 0:
+                ClearTerminal.clearConsole();
+                Main.main(null);
+                break;
             case 1:
 
                 break;

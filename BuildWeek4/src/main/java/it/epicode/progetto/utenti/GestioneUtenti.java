@@ -8,6 +8,7 @@ import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
 import java.util.Scanner;
+import static it.epicode.progetto.utility.Input.scanner;
 
 public class GestioneUtenti {
 
@@ -16,7 +17,7 @@ public class GestioneUtenti {
         EntityManager em = null;
         Utente nuovoUtente = null;
 
-        try (Scanner scanner = new Scanner(System.in)) {
+        try  {
             emf = Persistence.createEntityManagerFactory("epicode");
             em = emf.createEntityManager();
 
@@ -77,7 +78,7 @@ public class GestioneUtenti {
         EntityManager em = null;
         Utente utenteDaAggiornare = null;
 
-        try (Scanner scanner = new Scanner(System.in)) {
+        try {
             emf = Persistence.createEntityManagerFactory("epicode");
             em = emf.createEntityManager();
 
@@ -133,15 +134,19 @@ public class GestioneUtenti {
                             System.out.println("Inserisci il nuovo ruolo (1 per ADMIN, 2 per USER): ");
                             int nuovoRuolo = scanner.nextInt();
                             scanner.nextLine();
-                            utenteDaAggiornare.setRuolo(Ruolo.values()[nuovoRuolo]);
+                            if (nuovoRuolo == 1) {
+                                utenteDaAggiornare.setRuolo(Ruolo.ADMIN);
+                            } else if (nuovoRuolo == 2) {
+                                utenteDaAggiornare.setRuolo(Ruolo.USER);
+                            } else {
+                                System.out.println("Ruolo non valido. Nessuna modifica apportata.");
+                            }
                         }
                         em.getTransaction().begin();
                         uDao.update(utenteDaAggiornare);
                         em.getTransaction().commit();
-                        System.out.println("Utente aggiornato con successo!");
                     }
                     break;
-
                 case 2:
                     System.out.println("Inserisci l'ID dell'utente:");
                     Long id = scanner.nextLong();
@@ -187,12 +192,17 @@ public class GestioneUtenti {
                             System.out.println("Inserisci il nuovo ruolo (1 per ADMIN, 2 per USER): ");
                             int nuovoRuolo = scanner.nextInt();
                             scanner.nextLine();
-                            utenteDaAggiornare.setRuolo(Ruolo.values()[nuovoRuolo]);
+                            if (nuovoRuolo == 1) {
+                                utenteDaAggiornare.setRuolo(Ruolo.ADMIN);
+                            } else if (nuovoRuolo == 2) {
+                                utenteDaAggiornare.setRuolo(Ruolo.USER);
+                            } else {
+                                System.out.println("Ruolo non valido. Nessuna modifica apportata.");
+                            }
                         }
                         em.getTransaction().begin();
                         uDao.update(utenteDaAggiornare);
                         em.getTransaction().commit();
-                        System.out.println("Utente aggiornato con successo!");
                     }
                     break;
                 case 3:
@@ -241,7 +251,13 @@ public class GestioneUtenti {
                             System.out.println("Inserisci il nuovo ruolo (1 per ADMIN, 2 per USER): ");
                             int nuovoRuolo = scanner.nextInt();
                             scanner.nextLine();
-                            utenteDaAggiornare.setRuolo(Ruolo.values()[nuovoRuolo]);
+                            if (nuovoRuolo == 1) {
+                                utenteDaAggiornare.setRuolo(Ruolo.ADMIN);
+                            } else if (nuovoRuolo == 2) {
+                                utenteDaAggiornare.setRuolo(Ruolo.USER);
+                            } else {
+                                System.out.println("Ruolo non valido. Nessuna modifica apportata.");
+                            }
                         }
                         em.getTransaction().begin();
                         uDao.update(utenteDaAggiornare);

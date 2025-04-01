@@ -11,15 +11,16 @@ public class Main {
         System.out.println("***** MENU PRINCIPALE ******");
         System.out.println("****************************");
         System.out.println();
-        System.out.println("Seleziona 1 per creare un utente");
-        System.out.println("Seleziona 2 per fare il login");
-        System.out.println("Seleziona 3 per acquistare un biglietto");
-        System.out.println("Seleziona 0 per uscire");
+        System.out.println("1. Login");
+        System.out.println("2. Registra un nuovo utente");
+        System.out.println("3. Acquista un biglietto");
+        System.out.println("0. Esci");
+        System.out.println();
         int scelta = scanner.nextInt();
         scanner.nextLine();
-        if (scelta == 1) {
+        if (scelta == 2) {
             GestioneUtenti.crea();
-        } else if (scelta == 2) {
+        } else if (scelta == 1) {
             Login login = new Login();
             login.login();
         } else if (scelta == 0) {

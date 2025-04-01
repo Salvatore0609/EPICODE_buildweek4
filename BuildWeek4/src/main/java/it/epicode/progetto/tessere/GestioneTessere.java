@@ -8,14 +8,14 @@ import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
 import java.util.Scanner;
-
+import static it.epicode.progetto.utility.Input.scanner;
 public class GestioneTessere {
     public static Tessera crea() {
         EntityManagerFactory emf = null;
         EntityManager em = null;
         Tessera nuovaTessera = null;
 
-        try (Scanner scanner = new Scanner(System.in)) {
+        try  {
             emf = Persistence.createEntityManagerFactory("epicode");
             em = emf.createEntityManager();
 

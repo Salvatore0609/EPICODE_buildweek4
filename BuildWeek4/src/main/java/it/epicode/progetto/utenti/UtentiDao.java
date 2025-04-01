@@ -11,8 +11,13 @@ public class UtentiDao {
     public void insert(Utente u) {
         em.persist(u);
     }
-    public Utente update(Utente u) {
-        return em.merge(u);
+    public void update(Utente u) {
+        try {
+            em.merge(u);
+            System.out.println("Utente aggiornato con successo!");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     public void delete(Utente u) {
         //imposto l'utente come inattivo
