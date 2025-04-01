@@ -27,6 +27,12 @@ public class GestioneTessere {
             TessereDao tDao = new TessereDao(em);
 
             if (utente != null) {
+                // Verifica se l'utente ha già una tessera
+                Tessera tesseraEsistente = tDao.findByUtente(utente);
+                if (tesseraEsistente != null) {
+                    System.out.println("L'utente ha già una tessera associata attiva.");
+                    return tesseraEsistente;
+                }
                 nuovaTessera = new Tessera(utente, LocalDate.now());
 
                 em.getTransaction().begin();
