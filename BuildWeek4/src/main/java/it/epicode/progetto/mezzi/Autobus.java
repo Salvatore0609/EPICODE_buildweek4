@@ -4,6 +4,8 @@ import it.epicode.progetto.periodo_di_servizio.PeriodoDiServizio;
 import it.epicode.progetto.periodo_di_servizio.Stato;
 import it.epicode.progetto.tratta.Tratta;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,8 +37,6 @@ public class Autobus extends Mezzo{
 
     @Override
     public String toString() {
-        return "Autobus{" +
-                "capienza=" + capienza +
-                '}';
+        return "Autobus con numero identificativo " + getId() + " con capienza di " + getCapienza();
     }
 }

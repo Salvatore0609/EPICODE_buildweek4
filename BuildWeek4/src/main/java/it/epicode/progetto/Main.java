@@ -26,11 +26,11 @@ public class Main {
         PeriodoDiServizioDAO periodoDiServizioDAO = new PeriodoDiServizioDAO(em);
 
 
-        PeriodoDiServizio servizioTram1 = new PeriodoDiServizio(null, Stato.IN_MANUTENZIONE, LocalDate.of(2025,3,25), LocalDate.of(2025,3,31), null);
-        PeriodoDiServizio servizioAutobus1 = new PeriodoDiServizio(null, Stato.IN_SERVIZIO, LocalDate.of(2025,3,25), LocalDate.of(2025,3,31), null);
+        PeriodoDiServizio inManutenzione = new PeriodoDiServizio(null, "In manutenzione", LocalDate.of(2025,3,25), LocalDate.of(2025,3,31), null);
+        PeriodoDiServizio inServizio = new PeriodoDiServizio(null, "In servizio", LocalDate.of(2025,3,25), LocalDate.of(2025,3,31), null);
         Tratta milanoRoma = new Tratta(null, "Milano", "Roma", LocalDateTime.of(2025,3,31,10,30,00), LocalDateTime.of(2025,3,31,15,30,00), 360);
-        Mezzo autobus1 = new Autobus(null, milanoRoma, 5, 2, 20, servizioAutobus1);
-        Mezzo tram1 = new Tram(null, milanoRoma, 5, 2, 50, servizioTram1);
+        Mezzo autobus1 = new Autobus(null, milanoRoma, 5, 2, 20, inManutenzione);
+        Mezzo tram1 = new Tram(null, milanoRoma, 5, 2, 50, inServizio);
 
 
 
@@ -38,8 +38,12 @@ public class Main {
         trattaDAO.insert(milanoRoma);
         mezzoDAO.insert(autobus1);
         mezzoDAO.insert(tram1);
-        periodoDiServizioDAO.insert(servizioAutobus1);
-        periodoDiServizioDAO.insert(servizioTram1);
+        periodoDiServizioDAO.insert(inManutenzione);
+        periodoDiServizioDAO.insert(inServizio);
+
+
+        System.out.println("I mezzi attualmente in manutenzione sono: ");
+        mezzoDAO.findByStato("In manutenzione");
 
 
         em.getTransaction().commit();

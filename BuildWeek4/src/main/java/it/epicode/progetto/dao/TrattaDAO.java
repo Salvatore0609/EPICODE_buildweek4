@@ -13,6 +13,7 @@ public class TrattaDAO {
 
     public void insert (Tratta e) {
         em.persist(e);
+        System.out.println("La tratta é stata inserita con successo");
     }
 
 
@@ -25,6 +26,7 @@ public class TrattaDAO {
         Tratta mezzo = findById(id);
         if(mezzo != null) {
             em.remove(mezzo);
+            System.out.println("La tratta é stata eliminata con successo");
         }
     }
 
