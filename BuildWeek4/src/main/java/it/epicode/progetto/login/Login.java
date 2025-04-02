@@ -46,7 +46,7 @@ public class Login {
                 if (utente.getRuolo() == Ruolo.ADMIN) {
                     MenuAdmin.menuAdmin();
                 } else {
-                    MenuUtente.menuUtente();
+                    MenuUtente.menuUtente(utente.getIdUtente());
                 }
             }
     }

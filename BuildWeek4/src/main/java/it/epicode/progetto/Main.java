@@ -30,7 +30,8 @@ public class Main {
                 Login login = new Login();
                 login.login();
             }else if (scelta == 3) {
-                GestioneElementoBiglietteria.creaBiglietto();
+                Long myUser = null;
+                GestioneElementoBiglietteria.creaBiglietto(myUser);
             } else if (scelta == 0) {
                 System.out.println("Arrivederci!");
                 return;

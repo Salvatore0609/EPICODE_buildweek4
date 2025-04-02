@@ -1,7 +1,9 @@
 package it.epicode.progetto.biglietteria.biglietto;
 import it.epicode.progetto.dao.ElementoBiglietteriaDAO;
 import it.epicode.progetto.dao.RivenditoreDAO;
+import it.epicode.progetto.dao.UtentiDao;
 import it.epicode.progetto.rivenditori.Rivenditore;
+import it.epicode.progetto.utenti.Utente;
 import it.epicode.progetto.utility.ClearTerminal;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -13,7 +15,7 @@ import java.util.List;
 import static it.epicode.progetto.utility.Input.scanner;
 
 public class GestioneElementoBiglietteria {
-    public static void creaBiglietto() {
+    public static void creaBiglietto(Long myUser) {
 
         while (true) {
             EntityManagerFactory emf = null;
@@ -24,6 +26,7 @@ public class GestioneElementoBiglietteria {
 
                 RivenditoreDAO rDao = new RivenditoreDAO(em);
                 ElementoBiglietteriaDAO ebDao = new ElementoBiglietteriaDAO(em);
+                UtentiDao uDao = new UtentiDao(em);
 
                 ClearTerminal.clearConsole();
                 System.out.println("**********************");
@@ -50,10 +53,26 @@ public class GestioneElementoBiglietteria {
                 if (scelta == 0) {
                     return;
                 }
+
+                if (scelta < 1 || scelta > rivenditori.size()) {
+                    System.out.println("Scelta non valida. Seleziona un rivenditore o un distributore dalla lista.");
+                    Thread.sleep(1500);
+                    continue;
+                }
+
+                Utente myObjUser;
+                if (myUser != null) {
+                    myObjUser = uDao.findById(myUser);
+                } else {
+                    myObjUser = null;
+                }
+
+
                 Rivenditore rivenditore = rivenditori.get(scelta - 1);
                 Biglietto eb = Biglietto.builder()
                         .dataDiEmissione(LocalDate.now())
                         .rivenditore(rivenditore)
+                        .utente(myObjUser)
                         .build();
 
                 em.getTransaction().begin();
