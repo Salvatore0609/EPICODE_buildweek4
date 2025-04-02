@@ -52,7 +52,8 @@ public class MenuAdminGestioneTratte {
                 case 2:
                     System.out.println("Hai scelto di modificare una tratta.");
                     System.out.println("Quale tratta vuoi modificare?");
-                    System.out.println(trattaDAO.findAll());
+                    List<Tratta> tutteLeTratte = trattaDAO.findAll();
+                    tutteLeTratte.forEach(System.out::println);
                     Long idTrattaModifica = scanner.nextLong();
                     Tratta trattaModifica = trattaDAO.findById(idTrattaModifica);
                     System.out.println("Cosa vuoi modificare?");

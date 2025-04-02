@@ -51,7 +51,7 @@ public class MenuAdminVisualizzaTutto {
                     System.out.println("Hai scelto di visualizzare tutti i biglietti vidimati nel corso del tempo.");
                     mezzoDAO.findAllBigliettiVidimati();
                     break;
-                case 12:
+                case 4:
                     System.out.println("Hai scelto di visualizzare tutti i mezzi con posti liberi.");
                     mezzoDAO.findAllPostiLiberi();
                     break;

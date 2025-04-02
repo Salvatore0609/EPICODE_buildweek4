@@ -27,4 +27,6 @@ public class Biglietto extends ElementoBiglietteria {
     @JoinColumn(name = "utente_id", nullable = false)
     private Utente utente;
 
+
+
 }
