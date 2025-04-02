@@ -49,8 +49,6 @@ public class ProvaMainScelte {
 
 
         sceltaPresa = scanner.nextInt();
-        //voglio che lo switch case non si chiuda finchè non si sceglie lo 0
-
 
         switch (sceltaPresa) {
             case 1:
