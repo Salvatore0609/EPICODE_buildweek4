@@ -2,6 +2,9 @@ package it.epicode.progetto.menu;
 
 import it.epicode.progetto.Main;
 import it.epicode.progetto.ProvaMainScelte;
+import it.epicode.progetto.menuAdminDivisi.MenuAdminGestioneMezzi;
+import it.epicode.progetto.menuAdminDivisi.MenuAdminGestioneTratte;
+import it.epicode.progetto.menuAdminDivisi.MenuAdminVisualizzaTutto;
 import it.epicode.progetto.utility.ClearTerminal;
 
 import static it.epicode.progetto.utility.Input.scanner;
@@ -32,11 +35,11 @@ public class MenuAdmin {
                     break;
                 case 2:
                     ClearTerminal.clearConsole();
-                    ProvaMainScelte.main(null);
+                    MenuAdminGestioneMezzi.main(null);
                     break;
                 case 3:
                     ClearTerminal.clearConsole();
-                    // GestioneTratte.menuTratte();
+                    MenuAdminGestioneTratte.main(null);
                     break;
                 case 4:
                     ClearTerminal.clearConsole();
@@ -44,7 +47,7 @@ public class MenuAdmin {
                     break;
                 case 5:
                     ClearTerminal.clearConsole();
-                    // GestioneReport.menuReport();
+                    MenuAdminVisualizzaTutto.main(null);
                     break;
             }
         }
