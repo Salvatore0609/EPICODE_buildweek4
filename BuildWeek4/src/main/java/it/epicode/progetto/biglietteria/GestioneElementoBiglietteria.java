@@ -7,6 +7,7 @@ import it.epicode.progetto.dao.ElementoBiglietteriaDAO;
 import it.epicode.progetto.dao.RivenditoreDAO;
 import it.epicode.progetto.dao.TessereDao;
 import it.epicode.progetto.dao.UtentiDao;
+import it.epicode.progetto.menu.MenuUtente;
 import it.epicode.progetto.rivenditori.Rivenditore;
 import it.epicode.progetto.tessere.Tessera;
 import it.epicode.progetto.utenti.Utente;
@@ -100,7 +101,7 @@ public class GestioneElementoBiglietteria {
     }
 
     public static void creaAbbonamento(Long myUser) {
-        while (true) {
+
 
             EntityManagerFactory emf = null;
             EntityManager em = null;
@@ -133,7 +134,7 @@ public class GestioneElementoBiglietteria {
                     System.out.println();
                     int scelta = scanner.nextInt();
                     if (scelta == 0) {
-                        return;
+                        MenuUtente.menuUtente(myUser);
                     }
                 } else {
                     System.out.println("Elenco rivenditori autorizzati e distributori");
@@ -144,6 +145,7 @@ public class GestioneElementoBiglietteria {
                     for (Rivenditore r : rivenditori) {
                         System.out.println(index + ". " + r.getNome());
                         index++;
+                    }
 
                         System.out.println("0. Esci");
                         System.out.println();
@@ -155,11 +157,13 @@ public class GestioneElementoBiglietteria {
                         int scelta = scanner.nextInt();
                         scanner.nextLine();
 
+                    if (scelta == 0) {
+                        MenuUtente.menuUtente(myUser);
+                    }
 
                         if (scelta < 1 || scelta > rivenditori.size()) {
                             System.out.println("Scelta non valida. Seleziona un rivenditore o un distributore dalla lista.");
                             Thread.sleep(1500);
-                            continue;
                         }
 
                         System.out.println("Indica la durata dell'abbonamento: ");
@@ -205,9 +209,9 @@ public class GestioneElementoBiglietteria {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                        GestioneElementoBiglietteria.creaAbbonamento(myUser);
+                }
 
-                }
-                }
 
             } catch (Exception e) {
                 throw new RuntimeException("Errore nella creazione del biglietto", e);
@@ -216,5 +220,4 @@ public class GestioneElementoBiglietteria {
                 if (emf != null) emf.close();
             }
         }
-    }
 }
