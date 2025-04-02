@@ -3,6 +3,7 @@ package it.epicode.progetto;
 import it.epicode.progetto.dao.UtentiDao;
 import it.epicode.progetto.entities.GestioneElementoBiglietteria;
 import it.epicode.progetto.entities.Utente;
+import it.epicode.progetto.entities.Viaggio;
 import it.epicode.progetto.enums.Ruolo;
 import it.epicode.progetto.utils.CreateAdmin;
 import it.epicode.progetto.utils.Login;
@@ -28,6 +29,7 @@ public class Main {
             System.out.println("1. Login");
             System.out.println("2. Registra un nuovo utente");
             System.out.println("3. Acquista un biglietto");
+            System.out.println("4. Viaggia");
             System.out.println("0. Esci");
             System.out.println();
             int scelta = scanner.nextInt();
@@ -41,6 +43,9 @@ public class Main {
             }else if (scelta == 3) {
                 Long myUser = null;
                 GestioneElementoBiglietteria.creaBiglietto(myUser);
+            } else if (scelta == 4) {
+                Long myUser = null;
+                Viaggio.selezionaViaggio(myUser);
             } else if (scelta == 0) {
                 System.out.println("Arrivederci!");
                 return;

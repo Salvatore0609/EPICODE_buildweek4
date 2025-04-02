@@ -61,78 +61,102 @@ public class Viaggio {
             System.out.println("Hai scelto il mezzo: " + mezzoScelto);
             System.out.println();
 
-            //controllo se l'utente ha un abbonamento valido
-            UtentiDao uDao = new UtentiDao(em);
-            Utente utente = uDao.findById(myUser);
+            if (myUser  != null) {
+                //controllo se l'utente ha un abbonamento valido
+                UtentiDao uDao = new UtentiDao(em);
+                Utente utente = uDao.findById(myUser);
 
-            TessereDao tDao = new TessereDao(em);
-            Tessera tesseraExist = tDao.findByUtente(utente);
-            boolean ebAbbonamento = false;
+                TessereDao tDao = new TessereDao(em);
+                Tessera tesseraExist = tDao.findByUtente(utente);
+                boolean ebAbbonamento = false;
 
-            if (tesseraExist != null) {
-                ElementoBiglietteriaDAO ebDao = new ElementoBiglietteriaDAO(em);
-                Abbonamento abbonamento = ebDao.findAbbonamentoByTessera(tesseraExist);
-                if (abbonamento  != null) {
-                    System.out.println("Il tuo abbonamento è valido. Puoi salire sul mezzo.");
-                    System.out.println("BUON VIAGGIO!");
+                if (tesseraExist != null) {
+                    ElementoBiglietteriaDAO ebDao = new ElementoBiglietteriaDAO(em);
+                    Abbonamento abbonamento = ebDao.findAbbonamentoByTessera(tesseraExist);
+                    if (abbonamento  != null) {
+                        System.out.println("Il tuo abbonamento è valido. Puoi salire sul mezzo.");
+                        System.out.println("BUON VIAGGIO!");
+                        System.out.println();
+                        ebAbbonamento  = true;
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                if (!ebAbbonamento) {
+                    ElementoBiglietteriaDAO ebDao = new ElementoBiglietteriaDAO(em);
+                    List<ElementoBiglietteria> biglietti = ebDao.findBigliettiByUtente(utente.getIdUtente());
+
+                    if (biglietti.isEmpty()) {
+                        System.out.println("Non hai abbonamenti o biglietti disponibili. Acquista un abbonamento o un biglietto prima di viaggiare.");
+                        try {
+                            Thread.sleep(2000); // tempo per leggere il messaggio
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        ClearTerminal.clearConsole(); // se vuoi riportare al menu
+                        return;
+                    }
+
+                    int indexBiglietti = 1;
+                    for (ElementoBiglietteria biglietto : biglietti) {
+                        System.out.println(indexBiglietti + ". " + biglietto);
+                        indexBiglietti++;
+                    }
+
                     System.out.println();
-                    ebAbbonamento  = true;
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    System.out.println("Seleziona il biglietto desiderato (1-" + biglietti.size() + "):");
+                    int sceltaBiglietto = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if (sceltaBiglietto < 1 || sceltaBiglietto > biglietti.size()) {
+                        System.out.println("Scelta non valida. Riprova.");
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        ClearTerminal.clearConsole();
+                        return;
+                    }
+
+                    Biglietto bigliettoScelto = (Biglietto) biglietti.get(sceltaBiglietto - 1);
+                    System.out.println("Hai scelto il biglietto: " + bigliettoScelto);
+                    System.out.println();
+                    System.out.println("Salire sul mezzo? (S/N)");
+                    String conferma = scanner.nextLine();
+                    if (conferma.equalsIgnoreCase("S")) {
+                        System.out.println("BUON VIAGGIO!");
+                        System.out.println();
+                        ebDao.updateVidimato(bigliettoScelto.getIdBiglietto());
                     }
                 }
-            }
-
-            if (!ebAbbonamento) {
-                ElementoBiglietteriaDAO ebDao = new ElementoBiglietteriaDAO(em);
-                List<ElementoBiglietteria> biglietti = ebDao.findBigliettiByUtente(utente.getIdUtente());
-
-                if (biglietti.isEmpty()) {
-                    System.out.println("Non hai abbonamenti o biglietti disponibili. Acquista un abbonamento o un biglietto prima di viaggiare.");
-                    try {
-                        Thread.sleep(2000); // tempo per leggere il messaggio
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    ClearTerminal.clearConsole(); // se vuoi riportare al menu
-                    return;
-                }
-
-                int indexBiglietti = 1;
-                for (ElementoBiglietteria biglietto : biglietti) {
-                    System.out.println(indexBiglietti + ". " + biglietto);
-                    indexBiglietti++;
-                }
-
+            } else {
+                System.out.println("Inserisci l'identificativo del biglietto per viaggiare");
                 System.out.println();
-                System.out.println("Seleziona il biglietto desiderato (1-" + biglietti.size() + "):");
-                int sceltaBiglietto = scanner.nextInt();
+                Long idBiglietto = scanner.nextLong();
                 scanner.nextLine();
-
-                if (sceltaBiglietto < 1 || sceltaBiglietto > biglietti.size()) {
-                    System.out.println("Scelta non valida. Riprova.");
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                ElementoBiglietteriaDAO ebDao = new ElementoBiglietteriaDAO(em);
+                ElementoBiglietteria bigliettoGuest = ebDao.findById(idBiglietto);
+                if (bigliettoGuest != null) {
+                    System.out.println("Salire sul mezzo? (S/N)");
+                    String conferma = scanner.nextLine();
+                    if (conferma.equalsIgnoreCase("S")) {
+                        System.out.println("BUON VIAGGIO!");
+                        System.out.println();
+                        ebDao.updateVidimato(idBiglietto);
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    ClearTerminal.clearConsole();
-                    return;
-                }
-
-                Biglietto bigliettoScelto = (Biglietto) biglietti.get(sceltaBiglietto - 1);
-                System.out.println("Hai scelto il biglietto: " + bigliettoScelto);
-                System.out.println();
-                System.out.println("Salire sul mezzo? (S/N)");
-                String conferma = scanner.nextLine();
-                if (conferma.equalsIgnoreCase("S")) {
-                    System.out.println("BUON VIAGGIO!");
-                    System.out.println();
-                    ebDao.updateVidimato(bigliettoScelto.getIdBiglietto());
                 }
             }
+
         } catch (Exception e) {
             throw new RuntimeException("Errore nella visualizzazione dell'abbonamento", e);
         } finally {
