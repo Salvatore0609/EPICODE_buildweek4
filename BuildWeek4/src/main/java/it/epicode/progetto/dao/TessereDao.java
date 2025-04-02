@@ -1,13 +1,13 @@
-package it.epicode.progetto.tessere;
+package it.epicode.progetto.dao;
 
 import it.epicode.progetto.biglietteria.abbonamento.Abbonamento;
+import it.epicode.progetto.tessere.Tessera;
 import it.epicode.progetto.utenti.Utente;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @AllArgsConstructor
 public class TessereDao {

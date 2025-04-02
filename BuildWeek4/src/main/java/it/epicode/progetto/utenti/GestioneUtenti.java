@@ -1,7 +1,8 @@
 package it.epicode.progetto.utenti;
 
+import it.epicode.progetto.dao.UtentiDao;
 import it.epicode.progetto.tessere.Tessera;
-import it.epicode.progetto.tessere.TessereDao;
+import it.epicode.progetto.dao.TessereDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

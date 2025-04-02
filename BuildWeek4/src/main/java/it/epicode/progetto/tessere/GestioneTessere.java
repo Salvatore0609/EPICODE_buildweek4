@@ -1,5 +1,6 @@
 package it.epicode.progetto.tessere;
 
+import it.epicode.progetto.dao.TessereDao;
 import it.epicode.progetto.utenti.Utente;
 
 import jakarta.persistence.EntityManager;
@@ -7,7 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
-import java.util.Scanner;
+
 import static it.epicode.progetto.utility.Input.scanner;
 public class GestioneTessere {
     public static Tessera crea() {

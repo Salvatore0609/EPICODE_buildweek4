@@ -1,5 +1,6 @@
-package it.epicode.progetto.utenti;
+package it.epicode.progetto.dao;
 
+import it.epicode.progetto.utenti.Utente;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.AllArgsConstructor;

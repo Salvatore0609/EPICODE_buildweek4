@@ -1,5 +1,6 @@
-package it.epicode.progetto.biglietteria;
+package it.epicode.progetto.dao;
 
+import it.epicode.progetto.biglietteria.ElementoBiglietteria;
 import it.epicode.progetto.biglietteria.biglietteriaexceptions.BiglietteriaException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
