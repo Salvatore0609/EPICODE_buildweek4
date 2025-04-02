@@ -18,7 +18,7 @@ public class Tram extends Mezzo{
 
      @Override
      public String toString() {
-          return "Tram numero " + getId() + " attualmente " + getStatoEnum() + " partito da " + getTratta().getZonaDiPartenza() + " con destinazione " + getTratta().getCapolinea();
+          return "Tram numero " + getId() + " attualmente " + getStatoEnum();
      }
 
      @Override

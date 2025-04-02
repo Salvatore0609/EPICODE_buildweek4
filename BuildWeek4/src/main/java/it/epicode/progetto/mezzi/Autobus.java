@@ -17,8 +17,7 @@ public class Autobus extends Mezzo{
 
     @Override
     public String toString() {
-        return "Autobus numero " + getId() + " attualmente " + getStatoEnum() + " partito da " + getTratta().getZonaDiPartenza() + " con destinazione " + getTratta().getCapolinea();
-    }
+        return "Autobus numero " + getId() + " attualmente " + getStatoEnum(); }
 
     @Override
     public String getClasse() {
