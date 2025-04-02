@@ -17,7 +17,13 @@ public class Autobus extends Mezzo{
 
     @Override
     public String toString() {
-        return "Autobus con numero identificativo " + getId() + " con capienza di " + getCapienza() + " persone," + " attualmente " + getStatoEnum(); // + " ha un numero di ticket vidimati di " + getNumeroBigliettiVidimati() + ". La sua corsa partirà da " + getTratta().getZonaDiPartenza() + " alle " + getTratta().getOrarioDiPartenza().getHour() +":" + getTratta().getOrarioDiPartenza().getMinute() + " e arriverà a " + getTratta().getCapolinea() + " alle " + getTratta().getOrarioDiArrivo().getHour() + ":" + getTratta().getOrarioDiArrivo().getMinute() + ". Vi auguriamo buon viaggio!";
+        return "Autobus numero " + getId() + " attualmente " + getStatoEnum() + " partito da " + getTratta().getZonaDiPartenza() + " con destinazione " + getTratta().getCapolinea();
     }
+
+    @Override
+    public String getClasse() {
+        return "Autobus";
+    }
+
 
 }
