@@ -1,6 +1,5 @@
 package it.epicode.progetto.rivenditori;
 
-import it.epicode.progetto.Main;
 import it.epicode.progetto.dao.RivenditoreDAO;
 import it.epicode.progetto.rivenditori.distributoriautomatici.DistributoriAutomatici;
 import it.epicode.progetto.rivenditori.distributoriautomatici.Stato;
@@ -13,7 +12,7 @@ import jakarta.persistence.Persistence;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class MainRivenditore {
+public class MenùRivenditore {
     public static void main(String[] args) {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
@@ -26,10 +25,10 @@ public class MainRivenditore {
     Scanner scanner = new Scanner(System.in);
     int scelta;
         do {
-            System.out.println();
-            System.out.println("**************************");
+        System.out.println();
+        System.out.println("**************************");
         System.out.println("Benvenuto nel sistema di gestione dei rivenditori!");
-            System.out.println("**************************");
+        System.out.println("**************************");
         System.out.println("Seleziona una delle seguenti opzioni:");
         System.out.println("1. Inserisci un nuovo rivenditore");
         System.out.println("2. Elimina un rivenditore");
