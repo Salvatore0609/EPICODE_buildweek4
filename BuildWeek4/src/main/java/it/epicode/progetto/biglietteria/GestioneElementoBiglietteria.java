@@ -78,6 +78,7 @@ public class GestioneElementoBiglietteria {
 
                 em.getTransaction().begin();
                 ebDao.insert(eb);
+                rDao.aggiornaBigliettiAbbonamentiEmessi();
                 em.getTransaction().commit();
                 System.out.println("Biglietto acquistato con successo!");
                 System.out.println();
