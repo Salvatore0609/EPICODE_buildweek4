@@ -51,6 +51,22 @@ public class RivenditoreDAO {
         }
     }
 
+    public Rivenditore update(Rivenditore r) {
+        try {
+            if(r != null) {
+                return em.merge(r);
+            } else {
+                throw new RivenditoreException("Rivenditore non trovato");
+            }
+        } catch (PersistenceException ex) {
+            throw new RivenditoreException("Errore durante l'aggiornamento del rivenditore" + ex);
+        }
+    }
+
+    public List<Rivenditore> findAll() {
+        return em.createQuery("select r from Rivenditore r", Rivenditore.class).getResultList();
+    }
+
     public void aggiornaBigliettiAbbonamentiEmessi() {
         List<Rivenditore> rivenditori = em.createQuery("select r from Rivenditore r", Rivenditore.class).getResultList();
 
