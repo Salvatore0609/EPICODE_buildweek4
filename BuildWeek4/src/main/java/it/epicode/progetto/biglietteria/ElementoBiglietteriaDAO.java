@@ -22,7 +22,11 @@ public class ElementoBiglietteriaDAO {
     public ElementoBiglietteria delete(Long id) {
         try {
             ElementoBiglietteria elemento = em.find(ElementoBiglietteria.class, id);
-            if (elemento != null) em.remove(elemento);
+            if (elemento != null){
+                em.remove(elemento);
+            }else {
+                throw new BiglietteriaException("Elemento non trovato");
+            }
             return elemento;
         } catch (PersistenceException ex) {
             throw new BiglietteriaException("Errore durante la rimozione dell'elemento" + ex);
@@ -30,6 +34,15 @@ public class ElementoBiglietteriaDAO {
     }
 
     public ElementoBiglietteria findById(Long id) {
-        return em.find(ElementoBiglietteria.class, id);
+        try {
+            if (id != null) {
+                return em.find(ElementoBiglietteria.class, id);
+            } else {
+                throw new BiglietteriaException("Elemento non trovato");
+            }
+        } catch (PersistenceException ex) {
+            throw new BiglietteriaException("Errore durante la ricerca dell'elemento" + ex);
+
+        }
     }
 }

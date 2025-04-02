@@ -27,7 +27,11 @@ public class RivenditoreDAO {
     public Rivenditore delete(Long id) {
         try {
             Rivenditore rivenditore = em.find(Rivenditore.class, id);
-            if (rivenditore != null) em.remove(rivenditore);
+            if (rivenditore != null){
+                em.remove(rivenditore);
+            } else {
+                throw new RivenditoreException("Rivenditore non trovato");
+            }
             return rivenditore;
         } catch (PersistenceException ex) {
             throw new RivenditoreException("Errore durante la rimozione del rivenditore" + ex);
@@ -36,7 +40,7 @@ public class RivenditoreDAO {
 
     public Rivenditore findById(Long id) {
         try{
-            if(id == null) {
+            if(id != null) {
                 return em.find(Rivenditore.class, id);
             } else {
                 throw new RivenditoreException("Rivenditore non trovato");
