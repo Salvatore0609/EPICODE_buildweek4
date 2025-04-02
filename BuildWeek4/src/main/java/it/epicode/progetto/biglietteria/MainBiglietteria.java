@@ -4,7 +4,7 @@ package it.epicode.progetto.biglietteria;
 import it.epicode.progetto.biglietteria.biglietto.Biglietto;
 import it.epicode.progetto.dao.ElementoBiglietteriaDAO;
 import it.epicode.progetto.rivenditori.Rivenditore;
-import it.epicode.progetto.rivenditori.RivenditoreDAO;
+import it.epicode.progetto.dao.RivenditoreDAO;
 import it.epicode.progetto.dao.TessereDao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

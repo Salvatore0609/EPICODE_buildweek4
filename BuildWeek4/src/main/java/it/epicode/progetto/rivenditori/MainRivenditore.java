@@ -1,5 +1,6 @@
 package it.epicode.progetto.rivenditori;
 
+import it.epicode.progetto.dao.RivenditoreDAO;
 import it.epicode.progetto.rivenditori.distributoriautomatici.DistributoriAutomatici;
 import it.epicode.progetto.rivenditori.distributoriautomatici.Stato;
 import it.epicode.progetto.rivenditori.rivenditoriautorizzati.RivenditoriAutorizzati;

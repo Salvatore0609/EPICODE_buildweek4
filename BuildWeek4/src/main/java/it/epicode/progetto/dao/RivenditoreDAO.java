@@ -1,5 +1,6 @@
-package it.epicode.progetto.rivenditori;
+package it.epicode.progetto.dao;
 
+import it.epicode.progetto.rivenditori.Rivenditore;
 import it.epicode.progetto.rivenditori.distributoriautomatici.DistributoriAutomatici;
 import it.epicode.progetto.rivenditori.rivenditoreexception.RivenditoreException;
 import it.epicode.progetto.rivenditori.rivenditoriautorizzati.RivenditoriAutorizzati;
