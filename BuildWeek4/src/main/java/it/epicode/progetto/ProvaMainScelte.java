@@ -13,7 +13,7 @@ import jakarta.persistence.Persistence;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
-
+import static it.epicode.progetto.utility.Input.scanner;
 public class ProvaMainScelte {
     public static void main(String[] args) {
 
@@ -26,8 +26,6 @@ public class ProvaMainScelte {
 
 
     //Inizio costruzione di MEZZI/TRATTE lato ADMIN con SCANNER e SOUTS
-
-    Scanner scanner = new Scanner(System.in);
     int sceltaPresa;
     do {
         System.out.println("\nBenvenuti nel parco mezzi del Team 6! Qui hai la possibilità di creare dei nuovi veicoli, tratte e percorsi personalizzati.");
@@ -245,11 +243,6 @@ public class ProvaMainScelte {
 
         }
     } while (sceltaPresa != 0);
-
-    scanner.close();
-
-
-
 
         em.getTransaction().commit();
         em.close();
