@@ -53,7 +53,7 @@ public class MenuUtente {
                 break;
             case 5:
                 ClearTerminal.clearConsole();
-                Viaggio.selezionaViaggio();
+                Viaggio.selezionaViaggio(myUser);
                 break;
             case 6:
                 ClearTerminal.clearConsole();

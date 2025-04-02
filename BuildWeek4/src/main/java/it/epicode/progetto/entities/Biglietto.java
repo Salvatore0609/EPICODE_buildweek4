@@ -24,4 +24,10 @@ public class Biglietto extends ElementoBiglietteria {
     @ManyToOne
     @JoinColumn(name = "utente_id", nullable = true)
     private Utente utente;
+
+    @Override
+    public String toString() {
+        return "Biglietto con idBiglietto: " + this.getIdBiglietto() +
+                ", vidimato: " + this.isVidimato();
+    }
 }

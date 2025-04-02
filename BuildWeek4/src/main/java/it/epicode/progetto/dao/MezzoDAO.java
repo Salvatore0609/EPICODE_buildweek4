@@ -59,13 +59,12 @@ public class MezzoDAO {
     }
 
 // stampa tutti i mezzi per una determinata tratta
-    public void findMezzoByTratta(Tratta tratta) {              // STAMPA TUTTI I MEZZI DELLA TRATTA AGGIUNTA COME PARAMETRO
-        String query = "SELECT m FROM Mezzo m WHERE m.tratta = :tratta";
-        em.createQuery(query, Mezzo.class)
-                .setParameter("tratta", tratta)
-                .getResultList()
-                .forEach(System.out::println);
-    }
+public List<Mezzo> findMezzoByTratta(Tratta tratta) {
+    String query = "SELECT m FROM Mezzo m WHERE m.tratta = :tratta";
+    return em.createQuery(query, Mezzo.class)
+            .setParameter("tratta", tratta)
+            .getResultList();
+}
 
 
 
