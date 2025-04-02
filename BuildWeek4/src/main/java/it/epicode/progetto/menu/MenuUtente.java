@@ -1,6 +1,6 @@
 package it.epicode.progetto.menu;
 
-import it.epicode.progetto.login.Main;
+import it.epicode.progetto.Main;
 import it.epicode.progetto.utility.ClearTerminal;
 
 import java.util.Scanner;
@@ -9,6 +9,10 @@ public class MenuUtente {
     public static void menuUtente() {
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("*************************");
+        System.out.println("****** MENU UTENTE ******");
+        System.out.println("*************************");
+        System.out.println();
         System.out.println("1. Crea una tessera");
         System.out.println("2. Visualizza la scadenza della tessera");
         System.out.println("3. Acquista un biglietto");

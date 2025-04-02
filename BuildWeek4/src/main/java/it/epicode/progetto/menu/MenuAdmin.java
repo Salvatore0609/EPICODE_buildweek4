@@ -1,6 +1,6 @@
 package it.epicode.progetto.menu;
 
-import it.epicode.progetto.login.Main;
+import it.epicode.progetto.Main;
 import it.epicode.progetto.utility.ClearTerminal;
 
 import static it.epicode.progetto.utility.Input.scanner;
