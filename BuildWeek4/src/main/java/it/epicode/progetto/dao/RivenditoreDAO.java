@@ -2,6 +2,7 @@ package it.epicode.progetto.dao;
 
 import it.epicode.progetto.rivenditori.Rivenditore;
 import it.epicode.progetto.rivenditori.distributoriautomatici.DistributoriAutomatici;
+import it.epicode.progetto.rivenditori.distributoriautomatici.Stato;
 import it.epicode.progetto.rivenditori.rivenditoreexception.RivenditoreException;
 import it.epicode.progetto.rivenditori.rivenditoriautorizzati.RivenditoriAutorizzati;
 import jakarta.persistence.EntityManager;
@@ -64,7 +65,9 @@ public class RivenditoreDAO {
     }
 
     public List<Rivenditore> findAll() {
-        return em.createQuery("select r from Rivenditore r", Rivenditore.class).getResultList();
+        return em.createQuery("select r from Rivenditore r where type(r) = RivenditoriAutorizzati or (type(r) = DistributoriAutomatici and r.stato = :attivo)", Rivenditore.class)
+                .setParameter("attivo", Stato.ATTIVO)
+                .getResultList();
     }
 
     public void aggiornaBigliettiAbbonamentiEmessi() {
