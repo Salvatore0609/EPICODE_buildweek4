@@ -1,6 +1,7 @@
 package it.epicode.progetto.menu;
 
 import it.epicode.progetto.Main;
+import it.epicode.progetto.ProvaMainScelte;
 import it.epicode.progetto.utility.ClearTerminal;
 
 import static it.epicode.progetto.utility.Input.scanner;
@@ -28,6 +29,8 @@ public class MenuAdmin {
                     MenuGestioneUtenti.menuUtenti();
                     break;
                 case 2:
+                    ClearTerminal.clearConsole();
+                    ProvaMainScelte.main(null);
                     break;
                 case 3:
                     break;
