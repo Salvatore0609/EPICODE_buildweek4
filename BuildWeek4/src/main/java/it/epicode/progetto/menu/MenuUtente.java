@@ -1,7 +1,7 @@
 package it.epicode.progetto.menu;
 
 import it.epicode.progetto.Main;
-import it.epicode.progetto.biglietteria.biglietto.GestioneElementoBiglietteria;
+import it.epicode.progetto.biglietteria.GestioneElementoBiglietteria;
 import it.epicode.progetto.utility.ClearTerminal;
 
 import java.util.Scanner;

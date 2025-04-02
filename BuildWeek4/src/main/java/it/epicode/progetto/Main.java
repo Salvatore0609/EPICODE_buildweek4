@@ -1,11 +1,10 @@
 package it.epicode.progetto;
 
-import it.epicode.progetto.biglietteria.biglietto.GestioneElementoBiglietteria;
+import it.epicode.progetto.biglietteria.GestioneElementoBiglietteria;
 import it.epicode.progetto.login.Login;
 import it.epicode.progetto.utenti.GestioneUtenti;
 import it.epicode.progetto.utility.ClearTerminal;
 
-import java.util.Scanner;
 import static it.epicode.progetto.utility.Input.scanner;
 
 public class Main {

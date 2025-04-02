@@ -1,6 +1,7 @@
-package it.epicode.progetto.rivenditori;
+package it.epicode.progetto.menu;
 
 import it.epicode.progetto.dao.RivenditoreDAO;
+import it.epicode.progetto.rivenditori.Rivenditore;
 import it.epicode.progetto.rivenditori.distributoriautomatici.DistributoriAutomatici;
 import it.epicode.progetto.rivenditori.distributoriautomatici.Stato;
 import it.epicode.progetto.rivenditori.rivenditoriautorizzati.RivenditoriAutorizzati;
@@ -12,7 +13,7 @@ import jakarta.persistence.Persistence;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class MenùRivenditore {
+public class MenuRivenditore {
     public static void main(String[] args) {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
