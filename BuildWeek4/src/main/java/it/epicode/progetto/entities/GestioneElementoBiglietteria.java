@@ -135,7 +135,7 @@ public class GestioneElementoBiglietteria {
                 ebDao.insert(eb);
                 rDao.aggiornaBigliettiAbbonamentiEmessi();
                 em.getTransaction().commit();
-                System.out.println("Biglietto acquistato con successo!");
+                System.out.println("Biglietto acquistato con successo con identificativo " + eb.getIdBiglietto());
                 System.out.println();
                 try {
                     Thread.sleep(2000);
