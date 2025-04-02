@@ -20,7 +20,7 @@ public class Tram extends Mezzo{
      @Override
      public String toString() {
           if( getStatoEnum() == Stato.IN_SERVIZIO) {
-               return  "Tram numero " + getId() + " attualmente " + getStatoEnum() + " partito da " + getTratta().getZonaDiPartenza() + " con destinazione " + getTratta().getCapolinea();
+               return  "Tram numero " + getId() + " attualmente " + getStatoEnum();
           } else if (getStatoEnum() == Stato.FERMO){
                return "Tram numero " + getId() + " attualmente " + getStatoEnum() + " in attesa di ricevere una tratta da percorrere ";
           } else if (getStatoEnum() == Stato.IN_MANUTENZIONE) {

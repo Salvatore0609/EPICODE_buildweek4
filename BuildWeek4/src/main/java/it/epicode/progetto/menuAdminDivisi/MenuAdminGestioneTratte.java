@@ -41,7 +41,11 @@ public class MenuAdminGestioneTratte {
                     String partenza = scanner.next();
                     System.out.println("Inserisci il capolinea della tratta:");
                     String capolinea = scanner.next();
-                    Tratta tratta1 = new Tratta(null, partenza, capolinea, LocalDateTime.now(), LocalDateTime.now(), 1, 1, null);
+                    System.out.println("Inserisci il tempo previsto di percorrenza della tratta:");
+                    Integer tempoPrevistoPercorrenza = scanner.nextInt();
+                    System.out.println("Inserisci il tempo effettivo di percorrenza della tratta:");
+                    Integer tempoEffettivoPercorrenza = scanner.nextInt();
+                    Tratta tratta1 = new Tratta(null, partenza, capolinea, LocalDateTime.now().plusMinutes(tempoPrevistoPercorrenza), LocalDateTime.now().plusMinutes(tempoEffettivoPercorrenza), null, null);
                     trattaDAO.insert(tratta1);
                     System.out.println("Hai creato correttamente la tua tratta!");
                     break;

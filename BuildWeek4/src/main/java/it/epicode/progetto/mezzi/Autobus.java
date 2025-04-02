@@ -21,7 +21,7 @@ public class Autobus extends Mezzo{
     @Override
     public String toString() {
         if( getStatoEnum() == Stato.IN_SERVIZIO) {
-            return  "Autobus numero " + getId() + " attualmente " + getStatoEnum() + " partito da " + getTratta().getZonaDiPartenza() + " con destinazione " + getTratta().getCapolinea();
+            return  "Autobus numero " + getId() + " attualmente " + getStatoEnum();
         } else if (getStatoEnum() == Stato.FERMO){
             return "Autobus numero " + getId() + " attualmente " + getStatoEnum() + " in attesa di ricevere una tratta da percorrere ";
         } else if (getStatoEnum() == Stato.IN_MANUTENZIONE) {
