@@ -39,6 +39,8 @@ public class MenuUtente {
                 GestioneElementoBiglietteria.creaBiglietto(myUser);
                 break;
             case 4:
+                ClearTerminal.clearConsole();
+                GestioneElementoBiglietteria.creaAbbonamento(myUser);
                 break;
             case 5:
                 break;
