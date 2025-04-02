@@ -97,7 +97,6 @@ public class RivenditoreDAO {
     }
 
     public void ottieniBigliettiAbbonamentiEmessi(String nomeRivenditore, LocalDate dataInizio, LocalDate dataFine) {
-        em.getTransaction().begin();
 
         Rivenditore rivenditore = em.createQuery("select r from Rivenditore r where r.nome = :nome", Rivenditore.class)
                 .setParameter("nome", nomeRivenditore)
@@ -122,6 +121,5 @@ public class RivenditoreDAO {
             System.out.println("Il numero di biglietti emessi per " + rivenditore.getNome() + " nel periodo " + dataInizio + " e " + dataFine + " è: " + numeroBiglietti);
             System.out.println("Il numero di abbonamenti emessi per " + rivenditore.getNome() + " nel periodo " + dataInizio + " e " + dataFine + " è: " + numeroAbbonamenti);
         }
-        em.getTransaction().commit();
     }
 }
