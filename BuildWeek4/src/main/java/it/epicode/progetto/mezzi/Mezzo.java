@@ -3,6 +3,9 @@ import it.epicode.progetto.periodo_di_servizio.Stato;
 import it.epicode.progetto.tratta.Tratta;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "mezzi")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -25,6 +28,9 @@ public abstract class Mezzo {
     @Enumerated(EnumType.STRING)
     private Stato stato;
 
+    private LocalDate inizioAttività;
+    private LocalDate fineAttività;
+
     public Stato getStatoEnum() {
         return Stato.valueOf(String.valueOf(stato));
     }
@@ -34,17 +40,18 @@ public abstract class Mezzo {
         this.stato = Stato.valueOf(statoEnum.name());
     }
 
-
-    public Mezzo(Stato stato, int capienza, int volteTrattaPercorsa, int numeroBigliettiVidimati, Tratta tratta, Long id) {
-        this.stato = stato;
-        this.capienza = capienza;
-        this.volteTrattaPercorsa = volteTrattaPercorsa;
-        this.numeroBigliettiVidimati = numeroBigliettiVidimati;
-        this.tratta = tratta;
-        this.id = id;
+    public Mezzo() {
     }
 
-    public Mezzo() {
+    public Mezzo(Long id, Tratta tratta, int numeroBigliettiVidimati, int volteTrattaPercorsa, int capienza, Stato stato, LocalDate inizioAttività, LocalDate fineAttività) {
+        this.id = id;
+        this.tratta = tratta;
+        this.numeroBigliettiVidimati = numeroBigliettiVidimati;
+        this.volteTrattaPercorsa = volteTrattaPercorsa;
+        this.capienza = capienza;
+        this.stato = stato;
+        this.inizioAttività = inizioAttività;
+        this.fineAttività = fineAttività;
     }
 
     public Long getId() {
@@ -54,6 +61,7 @@ public abstract class Mezzo {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public Tratta getTratta() {
         return tratta;
@@ -93,6 +101,22 @@ public abstract class Mezzo {
 
     public void setStato(Stato stato) {
         this.stato = stato;
+    }
+
+    public LocalDate getInizioAttività() {
+        return inizioAttività;
+    }
+
+    public void setInizioAttività(LocalDate inizioAttività) {
+        this.inizioAttività = inizioAttività;
+    }
+
+    public LocalDate getFineAttività() {
+        return fineAttività;
+    }
+
+    public void setFineAttività(LocalDate fineAttività) {
+        this.fineAttività = fineAttività;
     }
 
     public String getClasse() {

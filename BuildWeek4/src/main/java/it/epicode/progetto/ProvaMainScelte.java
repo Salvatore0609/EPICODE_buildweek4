@@ -10,6 +10,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
@@ -59,14 +60,40 @@ public class ProvaMainScelte {
                     System.out.println("Hai scelto di creare un autobus. Inserisci i dettagli:");
                     System.out.println("Quante persone ci sono a bordo?");
                     Integer personeAboard = scanner.nextInt();
-                    Mezzo autobus = new Autobus(null, null, Stato.FERMO, personeAboard, 1, 20);
+                    System.out.println("Inserisci l'anno di inizio attività");
+                    Integer anno = scanner.nextInt();
+                    System.out.println("Inserisci il mese di inizio attività");
+                    Integer mese = scanner.nextInt();
+                    System.out.println("Inserisci il giorno di inizio attività");
+                    Integer giorno = scanner.nextInt();
+                    //
+                    System.out.println("Inserisci l'anno di fine attività");
+                    Integer anno1 = scanner.nextInt();
+                    System.out.println("Inserisci il mese di fine attività");
+                    Integer mese1 = scanner.nextInt();
+                    System.out.println("Inserisci il giorno di fine attività");
+                    Integer giorno1 = scanner.nextInt();
+                    Mezzo autobus = new Autobus(null, null, personeAboard, 1, 20, Stato.FERMO, LocalDate.of(anno, mese, giorno), LocalDate.of(anno1, mese1, giorno1));
                     mezzoDAO.insert(autobus);
                     System.out.println("Hai creato correttamente il tuo autobus!");
                 } else if (sceltaMezzo == 2) {
                     System.out.println("Hai scelto di creare un tram. Inserisci i dettagli:");
                     System.out.println("Quante persone ci sono a bordo?");
                     Integer personeAboardTram = scanner.nextInt();
-                    Mezzo tram = new Tram(null, null, Stato.FERMO, personeAboardTram, 1, 50);
+                    System.out.println("Inserisci l'anno di inizio attività");
+                    Integer anno2 = scanner.nextInt();
+                    System.out.println("Inserisci il mese di inizio attività");
+                    Integer mese2 = scanner.nextInt();
+                    System.out.println("Inserisci il giorno di inizio attività");
+                    Integer giorno2 = scanner.nextInt();
+                    //
+                    System.out.println("Inserisci l'anno di fine attività");
+                    Integer anno3 = scanner.nextInt();
+                    System.out.println("Inserisci il mese di fine attività");
+                    Integer mese3 = scanner.nextInt();
+                    System.out.println("Inserisci il giorno di fine attività");
+                    Integer giorno3 = scanner.nextInt();
+                    Mezzo tram = new Tram(null, null, personeAboardTram, 1, 20, Stato.FERMO, LocalDate.of(anno2, mese2, giorno2), LocalDate.of(anno3, mese3, giorno3));
                     mezzoDAO.insert(tram);
                     System.out.println("Hai creato correttamente il tuo tram!");
                 } else {
@@ -79,7 +106,11 @@ public class ProvaMainScelte {
                 String partenza = scanner.next();
                 System.out.println("Inserisci il capolinea della tratta:");
                 String capolinea = scanner.next();
-                Tratta tratta1 = new Tratta(null, partenza, capolinea, LocalDateTime.now(), LocalDateTime.now(), 1, 1, null);
+                System.out.println("Inserisci il tempo previsto di percorrenza della tratta:");
+                Integer tempoPrevistoPercorrenza = scanner.nextInt();
+                System.out.println("Inserisci il tempo effettivo di percorrenza della tratta:");
+                Integer tempoEffettivoPercorrenza = scanner.nextInt();
+                Tratta tratta1 = new Tratta(null, partenza, capolinea, LocalDateTime.now().plusMinutes(tempoPrevistoPercorrenza), LocalDateTime.now().plusMinutes(tempoEffettivoPercorrenza), null, null);
                 trattaDAO.insert(tratta1);
                 System.out.println("Hai creato correttamente la tua tratta!");
                 break;
