@@ -2,6 +2,7 @@ package it.epicode.progetto.dao;
 
 import it.epicode.progetto.rivenditori.Rivenditore;
 import it.epicode.progetto.rivenditori.distributoriautomatici.DistributoriAutomatici;
+import it.epicode.progetto.rivenditori.distributoriautomatici.Stato;
 import it.epicode.progetto.rivenditori.rivenditoreexception.RivenditoreException;
 import it.epicode.progetto.rivenditori.rivenditoriautorizzati.RivenditoriAutorizzati;
 import jakarta.persistence.EntityManager;
@@ -51,6 +52,24 @@ public class RivenditoreDAO {
         }
     }
 
+    public Rivenditore update(Rivenditore r) {
+        try {
+            if(r != null) {
+                return em.merge(r);
+            } else {
+                throw new RivenditoreException("Rivenditore non trovato");
+            }
+        } catch (PersistenceException ex) {
+            throw new RivenditoreException("Errore durante l'aggiornamento del rivenditore" + ex);
+        }
+    }
+
+    public List<Rivenditore> findAll() {
+        return em.createQuery("select r from Rivenditore r where type(r) = RivenditoriAutorizzati or (type(r) = DistributoriAutomatici and r.stato = :attivo)", Rivenditore.class)
+                .setParameter("attivo", Stato.ATTIVO)
+                .getResultList();
+    }
+
     public void aggiornaBigliettiAbbonamentiEmessi() {
         List<Rivenditore> rivenditori = em.createQuery("select r from Rivenditore r", Rivenditore.class).getResultList();
 
@@ -81,7 +100,6 @@ public class RivenditoreDAO {
     }
 
     public void ottieniBigliettiAbbonamentiEmessi(String nomeRivenditore, LocalDate dataInizio, LocalDate dataFine) {
-        em.getTransaction().begin();
 
         Rivenditore rivenditore = em.createQuery("select r from Rivenditore r where r.nome = :nome", Rivenditore.class)
                 .setParameter("nome", nomeRivenditore)
@@ -106,6 +124,5 @@ public class RivenditoreDAO {
             System.out.println("Il numero di biglietti emessi per " + rivenditore.getNome() + " nel periodo " + dataInizio + " e " + dataFine + " è: " + numeroBiglietti);
             System.out.println("Il numero di abbonamenti emessi per " + rivenditore.getNome() + " nel periodo " + dataInizio + " e " + dataFine + " è: " + numeroAbbonamenti);
         }
-        em.getTransaction().commit();
     }
 }

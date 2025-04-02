@@ -1,12 +1,13 @@
 package it.epicode.progetto.menu;
 
 import it.epicode.progetto.Main;
+import it.epicode.progetto.biglietteria.GestioneElementoBiglietteria;
 import it.epicode.progetto.utility.ClearTerminal;
 
 import java.util.Scanner;
 
 public class MenuUtente {
-    public static void menuUtente() {
+    public static void menuUtente(Long myUser) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("*************************");
@@ -34,8 +35,12 @@ public class MenuUtente {
             case 2:
                 break;
             case 3:
+                ClearTerminal.clearConsole();
+                GestioneElementoBiglietteria.creaBiglietto(myUser);
                 break;
             case 4:
+                ClearTerminal.clearConsole();
+                GestioneElementoBiglietteria.creaAbbonamento(myUser);
                 break;
             case 5:
                 break;

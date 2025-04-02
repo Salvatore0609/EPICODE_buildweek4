@@ -41,4 +41,22 @@ public class TessereDao {
                 ", Tessera ID: " + result.getTessera().getIdTessera());
     }
 
+    public boolean isAbbonamentoByTessera(Long idTessera) {
+        try {
+            Abbonamento result = em.createQuery(
+                            "SELECT a FROM Abbonamento a WHERE a.tessera.id = :idTessera", Abbonamento.class)
+                    .setParameter("idTessera", idTessera)
+                    .getSingleResult();
+
+            System.out.println("Esiste già un abbonamento valido per la tessera: " +
+                    "Durata: " + result.getDurataAbbonamento() +
+                    ", Scadenza: " + result.getScadenzaAbbonamento() +
+                    ", Tessera ID: " + result.getTessera().getIdTessera());
+
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
+
 }
