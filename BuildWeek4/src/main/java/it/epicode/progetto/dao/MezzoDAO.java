@@ -17,7 +17,9 @@ public class MezzoDAO {
 
     //PREDEFINITI
     public void insert(Mezzo e) {
+        em.getTransaction().begin();
         em.persist(e);
+        em.getTransaction().commit();
         System.out.println("Il mezzo è stato inserito con successo");
     }
     public Mezzo findById(Long id) {
@@ -26,12 +28,16 @@ public class MezzoDAO {
     public void delete(Long id) {
         Mezzo mezzo = findById(id);
         if (mezzo != null) {
+            em.getTransaction().begin();
             em.remove(mezzo);
+            em.getTransaction().commit();
             System.out.println("Il mezzo è stato eliminato con successo");
         }
     }
     public void update(Mezzo e) {
+        em.getTransaction().begin();
         em.merge(e);
+        em.getTransaction().commit();
     }
 
     // INIZIO METODI SPEFICIFI
@@ -46,7 +52,9 @@ public class MezzoDAO {
         Mezzo mezzo = findById(id);
         if (mezzo != null) {
             mezzo.setNumeroBigliettiVidimati(bigliettiVidimati);
+            em.getTransaction().begin();
             em.merge(mezzo);
+            em.getTransaction().commit();
         }
     }
 
@@ -56,7 +64,7 @@ public class MezzoDAO {
 
 
     // metodo per stampare mezzi trovati tramite stato passato come enum
-    public void findMezzoByStatoEnum(Stato stato) {                       // STAMPA TUTTI I MEZZI DELLO STATO AGGIUNTO COME PARAMETRO
+        public void findMezzoByStatoEnum(Stato stato) {              // STAMPA TUTTI I MEZZI DELLO STATO AGGIUNTO COME PARAMETRO
         String query = "SELECT m FROM Mezzo m WHERE m.stato = :stato";
         em.createQuery(query, Mezzo.class)
                 .setParameter("stato", stato)
@@ -70,7 +78,9 @@ public class MezzoDAO {
         Mezzo mezzo = findById(id);
         if (mezzo != null) {
             mezzo.setStatoEnum(stato);
+            em.getTransaction().begin();
             em.merge(mezzo);
+            em.getTransaction().commit();
         }
     }
 
@@ -78,7 +88,9 @@ public class MezzoDAO {
         Mezzo mezzo = findById(id);
         if (mezzo != null) {
             mezzo.setTratta(tratta);
+            em.getTransaction().begin();
             em.merge(mezzo);
+            em.getTransaction().commit();
         }
     }
 
@@ -86,7 +98,9 @@ public class MezzoDAO {
         Mezzo mezzo = findById(id);
         if (mezzo != null) {
             mezzo.setCapienza(capienza);
+            em.getTransaction().begin();
             em.merge(mezzo);
+            em.getTransaction().commit();
         }
     }
 
@@ -95,12 +109,14 @@ public class MezzoDAO {
         Mezzo mezzo = findById(id);
         if (mezzo != null) {
             mezzo.setVolteTrattaPercorsa(volteTrattaPercorsa);
+            em.getTransaction().begin();
             em.merge(mezzo);
+            em.getTransaction().commit();
         }
     }
 
 
-    public void findAllBigliettiVidimati() {                                        //STAMPA TUTTI I BIGLIETTI VIDIMATI NEL CORSO DEL TEMPO
+    public void findAllBigliettiVidimati() {          //STAMPA TUTTI I BIGLIETTI VIDIMATI NEL CORSO DEL TEMPO
         TypedQuery<Mezzo> query = em.createQuery("SELECT m FROM Mezzo m", Mezzo.class);
         query.getResultList().forEach(mezzo -> {
             System.out.println("Mezzo: " + mezzo.getId() + ", Biglietti Vidimati: " + mezzo.getNumeroBigliettiVidimati());

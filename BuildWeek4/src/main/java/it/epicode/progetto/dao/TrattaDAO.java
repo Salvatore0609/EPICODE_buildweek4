@@ -14,7 +14,9 @@ public class TrattaDAO {
 
 
     public void insert (Tratta e) {
+        em.getTransaction().begin();
         em.persist(e);
+        em.getTransaction().commit();
         System.out.println("La tratta é stata inserita con successo");
     }
 
@@ -27,13 +29,17 @@ public class TrattaDAO {
     public void delete (Long id) {
         Tratta mezzo = findById(id);
         if(mezzo != null) {
+            em.getTransaction().begin();
             em.remove(mezzo);
+            em.getTransaction().commit();
             System.out.println("La tratta é stata eliminata con successo");
         }
     }
 
     public void update (Tratta e) {
+        em.getTransaction().begin();
         em.merge(e);
+        em.getTransaction().commit();
     }
 
 
