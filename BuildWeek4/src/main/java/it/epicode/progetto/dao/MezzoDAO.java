@@ -1,7 +1,7 @@
 package it.epicode.progetto.dao;
-import it.epicode.progetto.mezzi.Mezzo;
-import it.epicode.progetto.periodo_di_servizio.Stato;
-import it.epicode.progetto.tratta.Tratta;
+import it.epicode.progetto.entities.Mezzo;
+import it.epicode.progetto.enums.Stato;
+import it.epicode.progetto.entities.Tratta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import lombok.AllArgsConstructor;

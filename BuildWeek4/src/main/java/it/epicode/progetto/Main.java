@@ -1,11 +1,21 @@
 package it.epicode.progetto;
 
-import it.epicode.progetto.biglietteria.GestioneElementoBiglietteria;
-import it.epicode.progetto.login.Login;
-import it.epicode.progetto.utenti.GestioneUtenti;
-import it.epicode.progetto.utility.ClearTerminal;
+import it.epicode.progetto.dao.UtentiDao;
+import it.epicode.progetto.entities.GestioneElementoBiglietteria;
+import it.epicode.progetto.entities.Utente;
+import it.epicode.progetto.enums.Ruolo;
+import it.epicode.progetto.utils.CreateAdmin;
+import it.epicode.progetto.utils.Login;
+import it.epicode.progetto.entities.GestioneUtenti;
+import it.epicode.progetto.utils.ClearTerminal;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
-import static it.epicode.progetto.utility.Input.scanner;
+import java.util.HashMap;
+import java.util.Map;
+
+import static it.epicode.progetto.utils.Input.scanner;
 
 public class Main {
     public static void main(String[] args) {

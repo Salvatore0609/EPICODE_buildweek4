@@ -1,10 +1,10 @@
 package it.epicode.progetto.menu;
 
-import it.epicode.progetto.tessere.GestioneTessere;
-import it.epicode.progetto.utenti.GestioneUtenti;
-import it.epicode.progetto.utility.ClearTerminal;
+import it.epicode.progetto.entities.GestioneTessere;
+import it.epicode.progetto.entities.GestioneUtenti;
+import it.epicode.progetto.utils.ClearTerminal;
 
-import static it.epicode.progetto.utility.Input.scanner;
+import static it.epicode.progetto.utils.Input.scanner;
 
 public class MenuGestioneUtenti {
     public static void menuUtenti() {
@@ -50,7 +50,7 @@ public class MenuGestioneUtenti {
                 }
                 ClearTerminal.clearConsole();
             } else if (scelta == 4) {
-                GestioneTessere.crea();
+                GestioneTessere.crea(null);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

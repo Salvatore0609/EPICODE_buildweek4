@@ -1,5 +1,5 @@
 package it.epicode.progetto.dao;
-import it.epicode.progetto.tratta.Tratta;
+import it.epicode.progetto.entities.Tratta;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 

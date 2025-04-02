@@ -1,10 +1,10 @@
 package it.epicode.progetto.dao;
 
-import it.epicode.progetto.rivenditori.Rivenditore;
-import it.epicode.progetto.rivenditori.distributoriautomatici.DistributoriAutomatici;
-import it.epicode.progetto.rivenditori.distributoriautomatici.Stato;
-import it.epicode.progetto.rivenditori.rivenditoreexception.RivenditoreException;
-import it.epicode.progetto.rivenditori.rivenditoriautorizzati.RivenditoriAutorizzati;
+import it.epicode.progetto.entities.Rivenditore;
+import it.epicode.progetto.entities.DistributoriAutomatici;
+import it.epicode.progetto.enums.StatoDistributori;
+import it.epicode.progetto.exceptions.RivenditoreException;
+import it.epicode.progetto.entities.RivenditoriAutorizzati;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceException;
 
@@ -66,7 +66,7 @@ public class RivenditoreDAO {
 
     public List<Rivenditore> findAll() {
         return em.createQuery("select r from Rivenditore r where type(r) = RivenditoriAutorizzati or (type(r) = DistributoriAutomatici and r.stato = :attivo)", Rivenditore.class)
-                .setParameter("attivo", Stato.ATTIVO)
+                .setParameter("attivo", StatoDistributori.ATTIVO)
                 .getResultList();
     }
 

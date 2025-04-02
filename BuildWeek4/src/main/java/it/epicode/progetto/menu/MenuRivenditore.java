@@ -1,18 +1,18 @@
 package it.epicode.progetto.menu;
 
 import it.epicode.progetto.dao.RivenditoreDAO;
-import it.epicode.progetto.rivenditori.Rivenditore;
-import it.epicode.progetto.rivenditori.distributoriautomatici.DistributoriAutomatici;
-import it.epicode.progetto.rivenditori.distributoriautomatici.Stato;
-import it.epicode.progetto.rivenditori.rivenditoriautorizzati.RivenditoriAutorizzati;
-import it.epicode.progetto.utility.ClearTerminal;
+import it.epicode.progetto.entities.Rivenditore;
+import it.epicode.progetto.entities.DistributoriAutomatici;
+import it.epicode.progetto.enums.StatoDistributori;
+import it.epicode.progetto.entities.RivenditoriAutorizzati;
+import it.epicode.progetto.utils.ClearTerminal;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
-import java.util.Scanner;
-import static it.epicode.progetto.utility.Input.scanner;
+
+import static it.epicode.progetto.utils.Input.scanner;
 
 public class MenuRivenditore {
     public static void main(String[] args) {
@@ -59,7 +59,7 @@ public class MenuRivenditore {
                         System.out.println("Inserisci lo stato del distributore automatico (1 per attivo, 2 per fuori servizio):");
                         int statoDistributore = scanner.nextInt();
                         scanner.nextLine();
-                        Stato stato = statoDistributore == 1 ? Stato.ATTIVO : Stato.FUORI_SERVIZIO;
+                        StatoDistributori stato = statoDistributore == 1 ? StatoDistributori.ATTIVO : StatoDistributori.FUORI_SERVIZIO;
                         DistributoriAutomatici d = DistributoriAutomatici.builder()
                                 .nome(nomeRivenditore)
                                 .stato(stato)
@@ -101,7 +101,7 @@ public class MenuRivenditore {
                             String nuovoNome = scanner.nextLine();
                             rivenditore.setNome(nuovoNome);
                             System.out.println("Inserisci il nuovo stato del distributore:");
-                            Stato nuovoStato = Stato.valueOf(scanner.nextLine());
+                            StatoDistributori nuovoStato = StatoDistributori.valueOf(scanner.nextLine());
                             ((DistributoriAutomatici) rivenditore).setStato(nuovoStato);
 
                             rivenditoreDAO.update(rivenditore);
@@ -120,7 +120,7 @@ public class MenuRivenditore {
                         if (r instanceof RivenditoriAutorizzati) {
                             System.out.println("Rivenditore Autorizzato" + "{ Nome: " + r.getNome() + "}");
                         } else if (r instanceof DistributoriAutomatici) {
-                            System.out.println("Distributore Automatico" + "{ Nome: " + r.getNome() + " Stato: " + ((DistributoriAutomatici) r).getStato() + "}");
+                            System.out.println("Distributore Automatico" + "{ Nome: " + r.getNome() + " StatoDistributori: " + ((DistributoriAutomatici) r).getStato() + "}");
                         }
                     }
                     break;
