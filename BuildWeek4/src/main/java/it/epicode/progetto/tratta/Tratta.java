@@ -17,31 +17,27 @@ public class Tratta {
     @Column(length = 100, nullable = false)
     private String capolinea;
 
-    @Column(nullable = false)
-    private LocalDateTime orarioDiPartenza;
-
-    @Column(nullable = false)
-    private LocalDateTime orarioDiArrivo;
-
-    private int tempoPrevistoDiPercorrenza;
-
-    private int tempoEffettivoDiPercorrenza;
+   /* @Column(nullable = false)*/
+    private LocalDateTime tempoPrevistoDiPercorrenza;
+   /* @Column(nullable = false)*/
+    private LocalDateTime tempoEffettivoDiPercorrenza;
+   /* @Column(nullable = true)*/
+    private Integer differenzaTempo;
 
     @OneToMany
     private List<Mezzo> mezzi;
 
-    public Tratta(Long id, String zonaDiPartenza, String capolinea, LocalDateTime orarioDiPartenza, LocalDateTime orarioDiArrivo, int tempoPrevistoDiPercorrenza, int tempoEffettivoDiPercorrenza, List<Mezzo> mezzi) {
+    public Tratta() {
+    }
+
+    public Tratta(Long id, String zonaDiPartenza, String capolinea, LocalDateTime tempoPrevistoDiPercorrenza, LocalDateTime tempoEffettivoDiPercorrenza, Integer differenzaTempo, List<Mezzo> mezzi) {
         this.id = id;
         this.zonaDiPartenza = zonaDiPartenza;
         this.capolinea = capolinea;
-        this.orarioDiPartenza = orarioDiPartenza;
-        this.orarioDiArrivo = orarioDiArrivo;
         this.tempoPrevistoDiPercorrenza = tempoPrevistoDiPercorrenza;
         this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
+        this.differenzaTempo = this.tempoPrevistoDiPercorrenza.getMinute() - this.tempoEffettivoDiPercorrenza.getMinute();
         this.mezzi = mezzi;
-    }
-
-    public Tratta() {
     }
 
     public Long getId() {
@@ -68,36 +64,28 @@ public class Tratta {
         this.capolinea = capolinea;
     }
 
-    public LocalDateTime getOrarioDiPartenza() {
-        return orarioDiPartenza;
-    }
-
-    public void setOrarioDiPartenza(LocalDateTime orarioDiPartenza) {
-        this.orarioDiPartenza = orarioDiPartenza;
-    }
-
-    public LocalDateTime getOrarioDiArrivo() {
-        return orarioDiArrivo;
-    }
-
-    public void setOrarioDiArrivo(LocalDateTime orarioDiArrivo) {
-        this.orarioDiArrivo = orarioDiArrivo;
-    }
-
-    public int getTempoPrevistoDiPercorrenza() {
+    public LocalDateTime getTempoPrevistoDiPercorrenza() {
         return tempoPrevistoDiPercorrenza;
     }
 
-    public void setTempoPrevistoDiPercorrenza(int tempoPrevistoDiPercorrenza) {
+    public void setTempoPrevistoDiPercorrenza(LocalDateTime tempoPrevistoDiPercorrenza) {
         this.tempoPrevistoDiPercorrenza = tempoPrevistoDiPercorrenza;
     }
 
-    public int getTempoEffettivoDiPercorrenza() {
+    public LocalDateTime getTempoEffettivoDiPercorrenza() {
         return tempoEffettivoDiPercorrenza;
     }
 
-    public void setTempoEffettivoDiPercorrenza(int tempoEffettivoDiPercorrenza) {
+    public void setTempoEffettivoDiPercorrenza(LocalDateTime tempoEffettivoDiPercorrenza) {
         this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
+    }
+
+    public Integer getDifferenzaTempo() {
+        return differenzaTempo;
+    }
+
+    public void setDifferenzaTempo(Integer differenzaTempo) {
+        this.differenzaTempo = differenzaTempo;
     }
 
     public List<Mezzo> getMezzi() {
@@ -110,6 +98,15 @@ public class Tratta {
 
     @Override
     public String toString() {
-        return "La tratta con id " + getId() + " parte da " + zonaDiPartenza + " e arriva a " + capolinea;
+        if (differenzaTempo > 0 ) {
+            return "La tratta numero " + getId() + " partirà da " + getZonaDiPartenza() + " e arriverà a " + getCapolinea() + " con un anticipo di " + differenzaTempo + " minuti.";
+        } else if (differenzaTempo < 0) {
+            differenzaTempo = differenzaTempo * -1;
+            return "La tratta numero " + getId() + " partirà da " + getZonaDiPartenza() + " e arriverà a " + getCapolinea() + " con un ritardo di " + differenzaTempo + " minuti.";
+        } else if  (differenzaTempo == 0) {
+            return "La tratta numero " + getId() + " partirà da " + getZonaDiPartenza() + " e arriverà a " + getCapolinea() + " in orario.";
+        } else {
+            return "Errore con la tratta " + getId();
+        }
     }
 }
