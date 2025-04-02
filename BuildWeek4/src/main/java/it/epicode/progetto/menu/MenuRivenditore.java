@@ -12,6 +12,7 @@ import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
 import java.util.Scanner;
+import static it.epicode.progetto.utility.Input.scanner;
 
 public class MenuRivenditore {
     public static void main(String[] args) {
@@ -21,9 +22,6 @@ public class MenuRivenditore {
 
     RivenditoreDAO rivenditoreDAO = new RivenditoreDAO(em);
 
-
-
-    Scanner scanner = new Scanner(System.in);
     int scelta;
         do {
         System.out.println();
@@ -142,8 +140,6 @@ public class MenuRivenditore {
                     break;
             }
         } while (scelta != 0);
-
-        scanner.close();
 
 
         em.close();
