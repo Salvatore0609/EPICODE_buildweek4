@@ -1,5 +1,6 @@
 package it.epicode.progetto;
 
+import it.epicode.progetto.biglietteria.biglietto.GestioneElementoBiglietteria;
 import it.epicode.progetto.login.Login;
 import it.epicode.progetto.utenti.GestioneUtenti;
 import it.epicode.progetto.utility.ClearTerminal;
@@ -28,6 +29,8 @@ public class Main {
             } else if (scelta == 1) {
                 Login login = new Login();
                 login.login();
+            }else if (scelta == 3) {
+                GestioneElementoBiglietteria.creaBiglietto();
             } else if (scelta == 0) {
                 System.out.println("Arrivederci!");
                 return;

@@ -24,7 +24,7 @@ public class Biglietto extends ElementoBiglietteria {
     private boolean vidimato = false;
 
     @ManyToOne
-    @JoinColumn(name = "utente_id", nullable = false)
+    @JoinColumn(name = "utente_id")
     private Utente utente;
 
 }
