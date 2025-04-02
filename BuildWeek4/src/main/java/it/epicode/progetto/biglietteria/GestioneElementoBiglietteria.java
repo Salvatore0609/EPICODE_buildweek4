@@ -68,7 +68,6 @@ public class GestioneElementoBiglietteria {
                     myObjUser = null;
                 }
 
-
                 Rivenditore rivenditore = rivenditori.get(scelta - 1);
                 Biglietto eb = Biglietto.builder()
                         .dataDiEmissione(LocalDate.now())
