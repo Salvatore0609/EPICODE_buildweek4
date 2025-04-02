@@ -15,7 +15,9 @@ public class MenuAdmin {
             System.out.println();
             System.out.println("1. Gestione Utenti");
             System.out.println("2. Gestione Mezzi");
-            System.out.println("3. Report");
+            System.out.println("3. Gestione Tratte");
+            System.out.println("4. Gestione Rivenditori Autorizzati e Distributori Automatici");
+            System.out.println("5. Report");
             System.out.println("0. Esci");
             System.out.println();
             int scelta = scanner.nextInt();
@@ -33,6 +35,16 @@ public class MenuAdmin {
                     ProvaMainScelte.main(null);
                     break;
                 case 3:
+                    ClearTerminal.clearConsole();
+                    // GestioneTratte.menuTratte();
+                    break;
+                case 4:
+                    ClearTerminal.clearConsole();
+                    MenuRivenditore.main(null);
+                    break;
+                case 5:
+                    ClearTerminal.clearConsole();
+                    // GestioneReport.menuReport();
                     break;
             }
         }

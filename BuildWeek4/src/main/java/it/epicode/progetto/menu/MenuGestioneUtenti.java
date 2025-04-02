@@ -25,7 +25,8 @@ public class MenuGestioneUtenti {
                 ClearTerminal.clearConsole();
                 return;
             } else if (scelta == 1) {
-                GestioneUtenti.crea();
+                boolean isAdmin = true;
+                GestioneUtenti.crea(isAdmin);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {

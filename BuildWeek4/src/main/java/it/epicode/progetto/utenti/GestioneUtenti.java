@@ -13,7 +13,7 @@ import static it.epicode.progetto.utility.Input.scanner;
 
 public class GestioneUtenti {
 
-    public static Utente crea() {
+    public static Utente crea(boolean isAdmin) {
         EntityManagerFactory emf = null;
         EntityManager em = null;
         Utente nuovoUtente = null;
@@ -34,15 +34,21 @@ public class GestioneUtenti {
             System.out.println("Inserisci una password:");
             String passwordUtente = scanner.nextLine();
 
-            System.out.println("Inserisci il ruolo dell'utente:");
-            System.out.println("1. ADMIN");
-            System.out.println("2. USER");
-            int ruoloUtente = scanner.nextInt();
-            scanner.nextLine();
-
-            Ruolo ruolo = (ruoloUtente == 1) ? Ruolo.ADMIN : Ruolo.USER;
+            //controllo se l'utente loggato ha il ruolo di admin
+            Ruolo ruolo;
+            if (isAdmin) {
+                System.out.println("Inserisci il ruolo dell'utente:");
+                System.out.println("1. ADMIN");
+                System.out.println("2. USER");
+                int ruoloUtente = scanner.nextInt();
+                scanner.nextLine();
+                ruolo = (ruoloUtente == 1) ? Ruolo.ADMIN : Ruolo.USER;
+            } else {
+                ruolo = Ruolo.USER;
+            }
 
             // Creazione utente
+            UtentiDao uDao = new UtentiDao(em);
             nuovoUtente = new Utente(username, nomeUtente, cognomeUtente, passwordUtente, ruolo, true);
 
             System.out.println("Vuoi creare una tessera per questo utente? (S/N)");
@@ -51,7 +57,6 @@ public class GestioneUtenti {
             em.getTransaction().begin();
 
             // Salvataggio dell'utente
-            UtentiDao uDao = new UtentiDao(em);
             uDao.insert(nuovoUtente);
 
             // Se richiesto, creazione e associazione tessera
