@@ -1,14 +1,12 @@
 package it.epicode.progetto.dao;
 
-import it.epicode.progetto.entities.Abbonamento;
-import it.epicode.progetto.entities.Biglietto;
-import it.epicode.progetto.entities.ElementoBiglietteria;
-import it.epicode.progetto.entities.Tessera;
+import it.epicode.progetto.entities.*;
 import it.epicode.progetto.exceptions.BiglietteriaException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class ElementoBiglietteriaDAO {
@@ -101,12 +99,29 @@ public class ElementoBiglietteriaDAO {
     }
 
 
+    //controllo se il biglietto è già stato vidimato
+    public boolean isVidimato(Long idBiglietto) {
+        try {
+            Biglietto result = em.createQuery(
+                            "SELECT b FROM Biglietto b WHERE b.id = :idBiglietto", Biglietto.class)
+                    .setParameter("idBiglietto", idBiglietto)
+                    .getSingleResult();
+
+            return result.isVidimato();
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
+
     //faccio update di vidimato true su biglietto in base a id biglietto
-    public void updateVidimato(Long idBiglietto) {
+    public void updateVidimato(Long idBiglietto, Mezzo mezzo) {
         try {
             Biglietto biglietto = em.find(Biglietto.class, idBiglietto);
             if (biglietto != null) {
                 biglietto.setVidimato(true);
+                biglietto.setDataVidimato(LocalDate.now());
+                biglietto.setMezzo(mezzo);
+
                 em.getTransaction().begin();
                 em.merge(biglietto);
                 em.getTransaction().commit();

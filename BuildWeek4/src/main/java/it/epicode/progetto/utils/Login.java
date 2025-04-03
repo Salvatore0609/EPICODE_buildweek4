@@ -33,7 +33,7 @@ public class Login {
 		if (utente == null) {
 			System.out.println("Utente non trovato. Crea un nuovo utente!");
 		} else if (utentepwd == null) {
-			System.out.println("Password errata.");
+			System.err.println("Password errata.");
 		} else {
 			ClearTerminal.clearConsole();
 			System.out.println("Login effettuato con successo");
