@@ -16,16 +16,15 @@ import java.time.LocalDate;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "elementi_biglietteria")
 public abstract class ElementoBiglietteria {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long idBiglietto;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long idBiglietto;
 
-    @Column(nullable = false)
-    private LocalDate dataDiEmissione;
+	@Column(nullable = false)
+	private LocalDate dataDiEmissione;
 
-    @ManyToOne
-    @JoinColumn(name = "rivenditore_id")
-    private Rivenditore rivenditore;
-
+	@ManyToOne
+	@JoinColumn(name = "rivenditore_id")
+	private Rivenditore rivenditore;
 
 }

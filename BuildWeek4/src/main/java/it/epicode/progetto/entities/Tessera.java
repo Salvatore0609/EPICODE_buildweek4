@@ -14,30 +14,27 @@ import java.util.List;
 @Table(name = "tessere")
 public class Tessera {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTessera;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idTessera;
 
-    @Column(nullable = false)
-    private LocalDate dataEmissione;
+	@Column(nullable = false)
+	private LocalDate dataEmissione;
 
-    @Column
-    private LocalDate dataScadenza;
+	@Column
+	private LocalDate dataScadenza;
 
-    @ManyToOne
-    @JoinColumn(name = "idutente", nullable = false)
-    private Utente utente;
+	@ManyToOne
+	@JoinColumn(name = "idutente", nullable = false)
+	private Utente utente;
 
-    @OneToMany(mappedBy = "tessera")
-    private List<Abbonamento> listaAbbonamenti;
+	@OneToMany(mappedBy = "tessera")
+	private List<Abbonamento> listaAbbonamenti;
 
-
-    public Tessera(Utente utente, LocalDate dataEmissione) {
-        this.utente = utente;
-        this.dataEmissione = dataEmissione;
-        this.dataScadenza = dataEmissione.plusYears(1);
-    }
-
+	public Tessera(Utente utente, LocalDate dataEmissione) {
+		this.utente = utente;
+		this.dataEmissione = dataEmissione;
+		this.dataScadenza = dataEmissione.plusYears(1);
+	}
 
 }
-

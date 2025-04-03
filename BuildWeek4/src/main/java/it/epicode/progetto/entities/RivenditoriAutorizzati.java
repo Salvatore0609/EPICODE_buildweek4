@@ -14,9 +14,9 @@ import lombok.experimental.SuperBuilder;
 
 @Entity
 public class RivenditoriAutorizzati extends Rivenditore {
-    @Column(nullable = false)
-    private long bigliettiEmessi;
+	@Column(nullable = false)
+	private long bigliettiEmessi;
 
-    @Column(nullable = false)
-    private long abbonamentiEmessi;
+	@Column(nullable = false)
+	private long abbonamentiEmessi;
 }

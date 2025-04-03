@@ -30,7 +30,8 @@ public class Tratta {
     public Tratta() {
     }
 
-    public Tratta(Long id, String zonaDiPartenza, String capolinea, LocalDateTime tempoPrevistoDiPercorrenza, LocalDateTime tempoEffettivoDiPercorrenza, Integer differenzaTempo, List<Mezzo> mezzi) {
+	public Tratta(Long id, String zonaDiPartenza, String capolinea, LocalDateTime tempoPrevistoDiPercorrenza,
+			LocalDateTime tempoEffettivoDiPercorrenza, Integer differenzaTempo, List<Mezzo> mezzi) {
         this.id = id;
         this.zonaDiPartenza = zonaDiPartenza;
         this.capolinea = capolinea;

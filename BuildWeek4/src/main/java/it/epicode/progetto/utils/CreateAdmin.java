@@ -10,17 +10,16 @@ import jakarta.persistence.Persistence;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class CreateAdmin {
-    public static void main(String[] args) {
-        Map<String, Object> overrideProperties = new HashMap<>();
-        overrideProperties.put("hibernate.hbm2ddl.auto", "create");
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode", overrideProperties);
-        EntityManager em = emf.createEntityManager();
-        Utente admin = new Utente("admin", "Admin", "Team6", "admin", Ruolo.ADMIN, true);
-        UtentiDao uDAO = new UtentiDao(em);
-        em.getTransaction().begin();
-        uDAO.insert(admin);
-        em.getTransaction().commit();
-    }
+	public static void main(String[] args) {
+		Map<String, Object> overrideProperties = new HashMap<>();
+		overrideProperties.put("hibernate.hbm2ddl.auto", "create");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode", overrideProperties);
+		EntityManager em = emf.createEntityManager();
+		Utente admin = new Utente("admin", "Admin", "Team6", "admin", Ruolo.ADMIN, true);
+		UtentiDao uDAO = new UtentiDao(em);
+		em.getTransaction().begin();
+		uDAO.insert(admin);
+		em.getTransaction().commit();
+	}
 }

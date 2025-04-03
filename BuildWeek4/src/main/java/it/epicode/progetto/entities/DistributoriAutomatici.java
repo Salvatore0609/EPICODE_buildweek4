@@ -17,14 +17,14 @@ import lombok.experimental.SuperBuilder;
 
 @Entity
 public class DistributoriAutomatici extends Rivenditore {
-    @Enumerated(EnumType.STRING)
-    @Column
-    private StatoDistributori stato;
+	@Enumerated(EnumType.STRING)
+	@Column
+	private StatoDistributori stato;
 
-    @Column(nullable = false)
-    private long bigliettiEmessi;
+	@Column(nullable = false)
+	private long bigliettiEmessi;
 
-    @Column(nullable = false)
-    private long abbonamentiEmessi;
+	@Column(nullable = false)
+	private long abbonamentiEmessi;
 
 }

@@ -33,7 +33,8 @@ public class TessereDao {
     public void findAbbonamentoByTessera (Long idTessera) {
         try {
 
-            Abbonamento result =  em.createQuery("SELECT a FROM Abbonamento a WHERE a.tessera.id = :idTessera", Abbonamento.class)
+			Abbonamento result = em.createQuery(
+					"SELECT a FROM Abbonamento a WHERE a.tessera.id = :idTessera", Abbonamento.class)
                     .setParameter("idTessera", idTessera)
                     .getSingleResult();
         System.out.println("Il tuo abbonamento è valido con durata " +

@@ -18,34 +18,34 @@ import java.util.Map;
 import static it.epicode.progetto.utils.Input.scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        while (true) {
-            ClearTerminal.clearConsole();
-            System.out.println("****************************");
-            System.out.println("***** MENU PRINCIPALE ******");
-            System.out.println("****************************");
-            System.out.println();
-            System.out.println("1. Login");
-            System.out.println("2. Registra un nuovo utente");
-            System.out.println("3. Acquista un biglietto");
-            System.out.println("0. Esci");
-            System.out.println();
-            int scelta = scanner.nextInt();
-            scanner.nextLine();
-            if (scelta == 2) {
-                boolean isAdmin = false;
-                GestioneUtenti.crea(isAdmin);
-            } else if (scelta == 1) {
-                Login login = new Login();
-                login.login();
-            }else if (scelta == 3) {
-                Long myUser = null;
-                GestioneElementoBiglietteria.creaBiglietto(myUser);
-            } else if (scelta == 0) {
-                System.out.println("Arrivederci!");
-                return;
-            }
-        }
+	public static void main(String[] args) {
+		while (true) {
+			ClearTerminal.clearConsole();
+			System.out.println("****************************");
+			System.out.println("***** MENU PRINCIPALE ******");
+			System.out.println("****************************");
+			System.out.println();
+			System.out.println("1. Login");
+			System.out.println("2. Registra un nuovo utente");
+			System.out.println("3. Acquista un biglietto");
+			System.out.println("0. Esci");
+			System.out.println();
+			int scelta = scanner.nextInt();
+			scanner.nextLine();
+			if (scelta == 2) {
+				boolean isAdmin = false;
+				GestioneUtenti.crea(isAdmin);
+			} else if (scelta == 1) {
+				Login login = new Login();
+				login.login();
+			} else if (scelta == 3) {
+				Long myUser = null;
+				GestioneElementoBiglietteria.creaBiglietto(myUser);
+			} else if (scelta == 0) {
+				System.out.println("Arrivederci!");
+				return;
+			}
+		}
 
-    }
+	}
 }

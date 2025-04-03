@@ -43,7 +43,7 @@ public class ElementoBiglietteriaDAO {
                 ", Tessera ID: " + result.getTessera().getIdTessera());
     }
 
-    public ElementoBiglietteria findById(Long id) {
+	public ElementoBiglietteria findById(Long id) {
         try {
             if (id != null) {
                 return em.find(ElementoBiglietteria.class, id);
