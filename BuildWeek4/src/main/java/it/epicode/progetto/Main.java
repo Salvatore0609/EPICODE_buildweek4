@@ -48,7 +48,7 @@ public class Main {
                 Viaggio.selezionaViaggio(myUser);
             } else if (scelta == 0) {
                 System.out.println("Arrivederci!");
-                return;
+                System.exit(0);
             }
         }
 
