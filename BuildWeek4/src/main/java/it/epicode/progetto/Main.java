@@ -4,8 +4,6 @@ import it.epicode.progetto.dao.UtentiDao;
 import it.epicode.progetto.entities.GestioneElementoBiglietteria;
 import it.epicode.progetto.entities.Utente;
 import it.epicode.progetto.entities.Viaggio;
-import it.epicode.progetto.enums.Ruolo;
-import it.epicode.progetto.utils.CreateAdmin;
 import it.epicode.progetto.utils.CreateDatabase;
 import it.epicode.progetto.utils.Login;
 import it.epicode.progetto.entities.GestioneUtenti;
@@ -14,9 +12,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import java.util.HashMap;
 import java.util.InputMismatchException;
-import java.util.Map;
 
 import static it.epicode.progetto.utils.Input.scanner;
 

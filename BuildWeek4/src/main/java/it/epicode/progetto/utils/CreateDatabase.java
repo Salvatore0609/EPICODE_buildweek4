@@ -46,11 +46,6 @@ public class CreateDatabase {
         }
 
         // CREA UTENTI NORMALI
-        List<Utente> user = utentiDao.findAll();
-        List<Utente> utentiNonAdmin = user.stream()
-                .filter(u -> !u.getUsername().equals("admin"))
-                .collect(Collectors.toList());
-
         utentiDao.insert(new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, false));
         utentiDao.insert(new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, false));
         utentiDao.insert(new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, false));
