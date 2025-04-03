@@ -31,7 +31,8 @@ public class Tratta {
     public Tratta() {
     }
 
-    public Tratta(Long id, String zonaDiPartenza, String capolinea, LocalDateTime tempoPrevistoDiPercorrenza, LocalDateTime tempoEffettivoDiPercorrenza, Integer differenzaTempo, List<Mezzo> mezzi) {
+	public Tratta(Long id, String zonaDiPartenza, String capolinea, LocalDateTime tempoPrevistoDiPercorrenza,
+			LocalDateTime tempoEffettivoDiPercorrenza, Integer differenzaTempo, List<Mezzo> mezzi) {
         this.id = id;
         this.zonaDiPartenza = zonaDiPartenza;
         this.capolinea = capolinea;
@@ -108,8 +109,7 @@ public class Tratta {
         if (differenzaTempo > 0 ) {
             return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_GREEN + "ANTICIPO" + ANSI_RESET + ": " + differenzaTempo + " minuti).";
         } else if (differenzaTempo < 0) {
-            differenzaTempo = differenzaTempo * -1;
-            return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_RED + "RITARDO" + ANSI_RESET + ": " + differenzaTempo + " minuti).";
+            return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_RED + "RITARDO" + ANSI_RESET + ": " + (differenzaTempo * -1) + " minuti).";
         } else if  (differenzaTempo == 0) {
             return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_YELLOW + "IN ORARIO" + ANSI_RESET + ").";
         } else {

@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-
 import java.util.List;
 
 @Data
@@ -17,13 +16,13 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Rivenditore {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long idRivenditore;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private Long idRivenditore;
 
-    @Column(length = 50, nullable = false)
-    private String nome;
+	@Column(length = 50, nullable = false)
+	private String nome;
 
-    @OneToMany(mappedBy = "rivenditore")
-    private List<ElementoBiglietteria> elementiEmessi;
+	@OneToMany(mappedBy = "rivenditore")
+	private List<ElementoBiglietteria> elementiEmessi;
 }
