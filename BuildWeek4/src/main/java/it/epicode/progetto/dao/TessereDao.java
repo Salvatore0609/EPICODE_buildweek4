@@ -51,19 +51,20 @@ public class TessereDao {
     public boolean isAbbonamentoByTessera(Long idTessera) {
         try {
             Abbonamento result = em.createQuery(
-                            "SELECT a FROM Abbonamento a WHERE a.tessera.id = :idTessera", Abbonamento.class)
+                            "SELECT a FROM Abbonamento a WHERE a.tessera.id = :idTessera AND a.scadenzaAbbonamento >= :oggi", Abbonamento.class)
                     .setParameter("idTessera", idTessera)
+                    .setParameter("oggi", LocalDate.now())
                     .getSingleResult();
 
             System.out.println("Esiste già un abbonamento valido per la tessera con identificativo " + result.getTessera().getIdTessera() +
                     ", durata " + result.getDurataAbbonamento().toString().toLowerCase() +
                     " e scadenza il " + result.getScadenzaAbbonamento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ".");
 
-
             return true;
         } catch (NoResultException e) {
             return false;
         }
     }
+
 
 }

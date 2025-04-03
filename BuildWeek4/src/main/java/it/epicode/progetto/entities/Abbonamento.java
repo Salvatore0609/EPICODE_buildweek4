@@ -17,14 +17,24 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "abbonamenti")
 public class Abbonamento extends ElementoBiglietteria {
-	@Enumerated(EnumType.STRING)
-	@Column
-	private DurataAbbonamento durataAbbonamento;
+    @Enumerated(EnumType.STRING)
+    @Column
+    private DurataAbbonamento durataAbbonamento;
 
-	@Column
-	private LocalDate scadenzaAbbonamento;
+    @Column
+    private LocalDate scadenzaAbbonamento;
 
-	@ManyToOne
-	@JoinColumn(name = "idTessera", nullable = false)
-	private Tessera tessera;
+    @ManyToOne
+    @JoinColumn(name = "idTessera", nullable = false)
+    private Tessera tessera;
+
+    @Override
+    public String toString() {
+        return "Abbonamento " +
+                "[Durata: " + durataAbbonamento.toString().toLowerCase() +
+                ", Scadenza: " + scadenzaAbbonamento.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                ", Tessera ID: " + (tessera != null ? tessera.getIdTessera() : "N/D") +
+                "]";
+    }
+
 }
