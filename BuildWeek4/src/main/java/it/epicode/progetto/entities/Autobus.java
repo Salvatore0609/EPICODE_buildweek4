@@ -25,7 +25,7 @@ public class Autobus extends Mezzo {
 					+ " in attesa di ricevere una tratta da percorrere.";
 		} else if (getStatoEnum() == Stato.IN_MANUTENZIONE) {
 			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ") + " dal " + getInizioAttività().format(DateTimeFormatter.ofPattern("dd/MM/yy"))
-					+ " al " + getFineAttività().format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+					+ " al " + getFineAttività().format(DateTimeFormatter.ofPattern("dd/MM/yy")) + ".";
 		} else {
 			return "Errore con l'autobus linea " + getId();
 		}
