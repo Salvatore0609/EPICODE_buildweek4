@@ -122,14 +122,14 @@ public class MezzoDAO {
 		List<Mezzo> mezzi = findAll();
 		int bigliettiVidimati = 0;
 		for (Mezzo mezzo : mezzi) {
-			long bigliettiVidimatiPerMezzo = em.createQuery("select count(b) from Biglietto b where b.mezzo.id = :idMezzo and b.dataDiEmissione between :dataInizio and :dataFine", Long.class)
+			long bigliettiVidimatiPerMezzo = em.createQuery("select count(b) from Biglietto b where b.mezzo.id = :idMezzo and b.dataVidimato between :dataInizio and :dataFine", Long.class)
 					.setParameter("idMezzo", mezzo.getId())
 					.setParameter("dataInizio", dataInizio)
 					.setParameter("dataFine", dataFine)
 					.getSingleResult();
-			bigliettiVidimati += bigliettiVidimatiPerMezzo;
+			bigliettiVidimati += (int) bigliettiVidimatiPerMezzo;
 		}
-		System.out.println("Biglietti vidimati nel corso del tempo: " + bigliettiVidimati);
+		System.out.println("Biglietti vidimati tra " + dataInizio + " e " + dataFine + " : " + bigliettiVidimati);
 	}
 
 	public void ottieniBigliettiVidimatiPerUnMezzo(long idMezzo) {
@@ -139,7 +139,7 @@ public class MezzoDAO {
 					.setParameter("idMezzo", idMezzo)
 					.getSingleResult();
 
-			System.out.println("Il mezzo " + mezzo + " ha vidimato " + numeroBiglietti + " biglietti.");
+			System.out.println("Il mezzo " + mezzo.getId() + " ha vidimato " + numeroBiglietti + " biglietti.");
 		}
 
 	}

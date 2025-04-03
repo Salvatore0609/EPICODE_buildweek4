@@ -50,7 +50,7 @@ public class MenuAdminVisualizzaTutto {
 				case 3 :
 					System.out.println("Vuoi visualizzare i biglietti di un particolare mezzo o tutti i biglietti vidimati in un periodo di tempo?");
 					System.out.println("1. Visualizza i biglietti di un particolare mezzo.");
-					System.out.println("2. Visualizza tutti i biglietti vidimati nel corso del tempo.");
+					System.out.println("2. Visualizza tutti i biglietti vidimati in un periodo di tempo.");
 					int sceltaPresa2 = scanner.nextInt();
 					if(sceltaPresa2 == 1) {
 						System.out.println("Inserisci l'id del mezzo:");
