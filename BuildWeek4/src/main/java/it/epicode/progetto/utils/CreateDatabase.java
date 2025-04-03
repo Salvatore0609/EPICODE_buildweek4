@@ -194,15 +194,15 @@ public class CreateDatabase {
         em.getTransaction().commit();
         //
         // CREA MEZZI DI TRASPORTO
-        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
-        Autobus autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
-        Autobus autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
-        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
-        Autobus autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 13));
-        Tram tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
-        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
-        Tram tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
-        Tram tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 13));
+        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Tram tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Tram tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Tram tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
         mezzoDao.insert(autobus);
         mezzoDao.insert(autobus1);
         mezzoDao.insert(autobus2);

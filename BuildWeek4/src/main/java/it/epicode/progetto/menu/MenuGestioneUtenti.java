@@ -17,6 +17,8 @@ public class MenuGestioneUtenti {
 			System.out.println("2. Aggiorna un utente");
 			System.out.println("3. Elimina un utente");
 			System.out.println("4. Crea una tessera");
+			System.out.println("5. Visualizza tutti gli utenti attivi");
+			System.out.println("6. Visualizza tutti gli utenti inattivi");
 			System.out.println("0. Esci");
 			System.out.println();
 			int scelta = scanner.nextInt();
@@ -51,6 +53,22 @@ public class MenuGestioneUtenti {
 				ClearTerminal.clearConsole();
 			} else if (scelta == 4) {
 				GestioneTessere.crea(null);
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				ClearTerminal.clearConsole();
+			} else if (scelta == 5) {
+				GestioneUtenti.visualizzaUtentiAttivi();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				ClearTerminal.clearConsole();
+			} else if (scelta == 6) {
+				GestioneUtenti.visualizzaUtentiInattivi();
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
