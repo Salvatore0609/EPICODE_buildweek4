@@ -17,16 +17,16 @@ public class Autobus extends Mezzo {
 
 	@Override
 	public String toString() {
-		if (getStatoEnum() == Stato.IN_SERVIZIO) {
-			return "Autobus numero " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ");
+		if (getStatoEnum() == Stato.IN_SERVIZIO && getTratta() != null) {
+			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ").toLowerCase() + " sulla tratta " + getTratta();
 		} else if (getStatoEnum() == Stato.FERMO) {
-			return "Autobus numero " + getId() + " attualmente " + getStatoEnum().toString()
-					+ " in attesa di ricevere una tratta da percorrere ";
+			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString()
+					+ " in attesa di ricevere una tratta da percorrere.";
 		} else if (getStatoEnum() == Stato.IN_MANUTENZIONE) {
-			return "Autobus numero " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ") + " dal " + getInizioAttività()
+			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ") + " dal " + getInizioAttività()
 					+ " al " + getFineAttività();
 		} else {
-			return "Errore con l'autobus numero " + getId();
+			return "Errore con l'autobus linea " + getId();
 		}
 	}
 

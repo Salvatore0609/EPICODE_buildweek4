@@ -27,6 +27,7 @@ public class Tratta {
     @Column(name = "mezzi")
     private List<Mezzo> mezzi;
 
+
     public Tratta() {
     }
 
@@ -96,6 +97,7 @@ public class Tratta {
     public void setMezzi(List<Mezzo> mezzi) {
         this.mezzi = mezzi;
     }
+
 
     @Override
     public String toString() {

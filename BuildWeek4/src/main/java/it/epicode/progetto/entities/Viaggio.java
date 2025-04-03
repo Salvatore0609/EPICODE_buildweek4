@@ -132,6 +132,8 @@ public class Viaggio {
                         System.out.println("BUON VIAGGIO!");
                         System.out.println();
                         ebDao.updateVidimato(bigliettoScelto.getIdBiglietto());
+                        mezzoScelto.setNumeroBigliettiVidimati(mezzoScelto.getNumeroBigliettiVidimati() + 1);
+                        mezzoDAO.updateBigliettiVidimati(mezzoScelto.getId(), mezzoScelto.getNumeroBigliettiVidimati());
                     }
                 }
             } else {
@@ -160,6 +162,8 @@ public class Viaggio {
                         System.out.println("BUON VIAGGIO!");
                         System.out.println();
                         ebDao.updateVidimato(idBiglietto);
+                        mezzoScelto.setNumeroBigliettiVidimati(mezzoScelto.getNumeroBigliettiVidimati() + 1);
+                        mezzoDAO.updateBigliettiVidimati(mezzoScelto.getId(), mezzoScelto.getNumeroBigliettiVidimati());
                         try {
                             Thread.sleep(2000);
                         } catch (InterruptedException e) {
