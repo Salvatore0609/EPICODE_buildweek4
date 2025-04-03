@@ -45,7 +45,6 @@ public class CreateDatabase {
             return;
         }
 
-        // CREA UTENTI NORMALI
         utentiDao.insert(new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, false));
         utentiDao.insert(new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, false));
         utentiDao.insert(new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, false));
