@@ -5,14 +5,13 @@ import it.epicode.progetto.entities.Rivenditore;
 import it.epicode.progetto.entities.DistributoriAutomatici;
 import it.epicode.progetto.enums.StatoDistributori;
 import it.epicode.progetto.entities.RivenditoriAutorizzati;
-import it.epicode.progetto.exceptions.RivenditoreException;
 import it.epicode.progetto.utils.ClearTerminal;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
-import java.util.Scanner;
+
 
 import static it.epicode.progetto.utils.Input.scanner;
 
