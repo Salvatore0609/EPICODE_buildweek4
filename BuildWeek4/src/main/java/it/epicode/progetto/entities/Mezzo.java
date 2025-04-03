@@ -127,4 +127,12 @@ public abstract class Mezzo {
 	public String getClasse() {
 		return "";
 	}
+
+	public List<Biglietto> getBiglietti() {
+		return biglietti;
+	}
+
+	public void setBiglietti(List<Biglietto> biglietti) {
+		this.biglietti = biglietti;
+	}
 }

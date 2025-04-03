@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import lombok.AllArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -117,12 +118,30 @@ public class MezzoDAO {
 		}
 	}
 
-	public void findAllBigliettiVidimati() { // STAMPA TUTTI I BIGLIETTI VIDIMATI NEL CORSO DEL TEMPO
-		TypedQuery<Mezzo> query = em.createQuery("SELECT m FROM Mezzo m", Mezzo.class);
-		query.getResultList().forEach(mezzo -> {
-			System.out
-					.println("Mezzo: " + mezzo.getId() + ", Biglietti Vidimati: " + mezzo.getNumeroBigliettiVidimati());
-		});
+	public void findAllBigliettiVidimati(LocalDate dataInizio, LocalDate dataFine) { // STAMPA TUTTI I BIGLIETTI VIDIMATI NEL CORSO DEL TEMPO
+		List<Mezzo> mezzi = findAll();
+		int bigliettiVidimati = 0;
+		for (Mezzo mezzo : mezzi) {
+			long bigliettiVidimatiPerMezzo = em.createQuery("select count(b) from Biglietto b where b.mezzo.id = :idMezzo and b.dataDiEmissione between :dataInizio and :dataFine", Long.class)
+					.setParameter("idMezzo", mezzo.getId())
+					.setParameter("dataInizio", dataInizio)
+					.setParameter("dataFine", dataFine)
+					.getSingleResult();
+			bigliettiVidimati += bigliettiVidimatiPerMezzo;
+		}
+		System.out.println("Biglietti vidimati nel corso del tempo: " + bigliettiVidimati);
+	}
+
+	public void ottieniBigliettiVidimatiPerUnMezzo(long idMezzo) {
+		Mezzo mezzo = findById(idMezzo);
+		if (mezzo != null) {
+			long numeroBiglietti = em.createQuery("select count(b) from Biglietto b where b.mezzo.id = :idMezzo", Long.class)
+					.setParameter("idMezzo", idMezzo)
+					.getSingleResult();
+
+			System.out.println("Il mezzo " + mezzo + " ha vidimato " + numeroBiglietti + " biglietti.");
+		}
+
 	}
 	// Metodo per stampare posti liberi su un mezzo (i posti liberi non sono altro
 	// che (capienza - numeroBigliettiVidimati)

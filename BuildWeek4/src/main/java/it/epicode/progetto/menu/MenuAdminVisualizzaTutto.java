@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class MenuAdminVisualizzaTutto {
@@ -47,8 +48,21 @@ public class MenuAdminVisualizzaTutto {
 					}
 					break;
 				case 3 :
-					System.out.println("Hai scelto di visualizzare tutti i biglietti vidimati nel corso del tempo.");
-					mezzoDAO.findAllBigliettiVidimati();
+					System.out.println("Vuoi visualizzare i biglietti di un particolare mezzo o tutti i biglietti vidimati in un periodo di tempo?");
+					System.out.println("1. Visualizza i biglietti di un particolare mezzo.");
+					System.out.println("2. Visualizza tutti i biglietti vidimati nel corso del tempo.");
+					int sceltaPresa2 = scanner.nextInt();
+					if(sceltaPresa2 == 1) {
+						System.out.println("Inserisci l'id del mezzo:");
+						long idMezzo = scanner.nextLong();
+						mezzoDAO.ottieniBigliettiVidimatiPerUnMezzo(idMezzo);
+					} else if(sceltaPresa2 == 2) {
+						System.out.println("Inserisci la data di inizio:");
+						LocalDate dataInizio = LocalDate.parse(scanner.next());
+						System.out.println("Inserisci la data di fine:");
+						LocalDate dataFine = LocalDate.parse(scanner.next());
+						mezzoDAO.findAllBigliettiVidimati(dataInizio, dataFine);
+					}
 					break;
 				case 4 :
 					System.out.println("Hai scelto di visualizzare tutti i mezzi con posti liberi.");
