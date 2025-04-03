@@ -238,61 +238,27 @@ public class CreateDatabase {
         trattaDao.insert(tratta10);
         System.out.println("Tratte create.");
         // Associa mezzi alle tratte
-        List<Mezzo> mezzi = mezzoDao.findAll();
-        if (mezzi.size() >= 10) {
-            //
-            List<Mezzo> mezziTratta1 = new ArrayList<>();
-            mezziTratta1.add(mezzi.get(0));
-            tratta1.setMezzi(mezziTratta1);
-            //
-            List<Mezzo> mezziTratta2 = new ArrayList<>();
-            mezziTratta2.add(mezzi.get(1));
-            tratta2.setMezzi(mezziTratta2);
-            //
-            List<Mezzo> mezziTratta3 = new ArrayList<>();
-            mezziTratta3.add(mezzi.get(2));
-            tratta3.setMezzi(mezziTratta3);
-            //
-            List<Mezzo> mezziTratta4 = new ArrayList<>();
-            mezziTratta4.add(mezzi.get(3));
-            tratta4.setMezzi(mezziTratta4);
-            //
-            List<Mezzo> mezziTratta5 = new ArrayList<>();
-            mezziTratta5.add(mezzi.get(4));
-            tratta5.setMezzi(mezziTratta5);
-            //
-            List<Mezzo> mezziTratta6 = new ArrayList<>();
-            mezziTratta6.add(mezzi.get(5));
-            tratta6.setMezzi(mezziTratta6);
-            //
-            List<Mezzo> mezziTratta7 = new ArrayList<>();
-            mezziTratta7.add(mezzi.get(6));
-            tratta7.setMezzi(mezziTratta7);
-            //
-            List<Mezzo> mezziTratta8 = new ArrayList<>();
-            mezziTratta8.add(mezzi.get(7));
-            tratta8.setMezzi(mezziTratta8);
-            //
-            List<Mezzo> mezziTratta9 = new ArrayList<>();
-            mezziTratta9.add(mezzi.get(8));
-            tratta9.setMezzi(mezziTratta9);
-            //
-            List<Mezzo> mezziTratta10 = new ArrayList<>();
-            mezziTratta10.add(mezzi.get(9));
-            tratta10.setMezzi(mezziTratta10);
-            //
-            trattaDao.update(tratta1);
-            trattaDao.update(tratta2);
-            trattaDao.update(tratta3);
-            trattaDao.update(tratta4);
-            trattaDao.update(tratta5);
-            trattaDao.update(tratta6);
-            trattaDao.update(tratta7);
-            trattaDao.update(tratta8);
-            trattaDao.update(tratta9);
-            trattaDao.update(tratta10);
-            System.out.println("Mezzi associati alle tratte.");
-        }
+        autobus.setTratta(tratta1);
+        autobus1.setTratta(tratta2);
+        autobus2.setTratta(tratta3);
+        autobus3.setTratta(tratta4);
+        autobus4.setTratta(tratta5);
+        tram.setTratta(tratta6);
+        tram1.setTratta(tratta7);
+        tram2.setTratta(tratta8);
+        tram3.setTratta(tratta9);
+
+        mezzoDao.update(autobus);
+        mezzoDao.update(autobus1);
+        mezzoDao.update(autobus2);
+        mezzoDao.update(autobus3);
+        mezzoDao.update(autobus4);
+        mezzoDao.update(tram);
+        mezzoDao.update(tram1);
+        mezzoDao.update(tram2);
+        mezzoDao.update(tram3);
+
+        System.out.println("Tratte aggiunte ai mezzi");
 
         em.close();
         emf.close();
