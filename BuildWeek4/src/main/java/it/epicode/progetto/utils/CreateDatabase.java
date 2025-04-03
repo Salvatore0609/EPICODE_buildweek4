@@ -218,14 +218,14 @@ public class CreateDatabase {
         // CREA TRATTE
         Tratta tratta1 = new Tratta(null, "Milano", "Roma", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), null, null);
         Tratta tratta2 = new Tratta(null, "Sassari", "Cagliari", LocalDateTime.now().plusMinutes(400), LocalDateTime.now().plusMinutes(300), null, null);
-        Tratta tratta3 = new Tratta(null, "Roma", "Milano", LocalDateTime.now().plusMinutes(300), LocalDateTime.now().plusMinutes(280), null, null);
+        Tratta tratta3 = new Tratta(null, "Roma", "Milano", LocalDateTime.now().plusMinutes(300), LocalDateTime.now().plusMinutes(300), null, null);
         Tratta tratta4 = new Tratta(null, "Cagliari", "Sassari", LocalDateTime.now().plusMinutes(220), LocalDateTime.now().plusMinutes(280), null, null);
         Tratta tratta5 = new Tratta(null, "Torino", "Milano", LocalDateTime.now().plusMinutes(420), LocalDateTime.now().plusMinutes(380), null, null);
-        Tratta tratta6 = new Tratta(null, "Milano", "Torino", LocalDateTime.now().plusMinutes(120), LocalDateTime.now().plusMinutes(200), null, null);
+        Tratta tratta6 = new Tratta(null, "Milano", "Torino", LocalDateTime.now().plusMinutes(120), LocalDateTime.now().plusMinutes(120), null, null);
         Tratta tratta7 = new Tratta(null, "Napoli", "Roma", LocalDateTime.now().plusMinutes(550), LocalDateTime.now().plusMinutes(480), null, null);
         Tratta tratta8 = new Tratta(null, "Roma", "Napoli", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), null, null);
         Tratta tratta9 = new Tratta(null, "Firenze", "Milano", LocalDateTime.now().plusMinutes(180), LocalDateTime.now().plusMinutes(250), null, null);
-        Tratta tratta10 = new Tratta(null, "Milano", "Firenze", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), null, null);
+        Tratta tratta10 = new Tratta(null, "Milano", "Firenze", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(250), null, null);
         trattaDao.insert(tratta1);
         trattaDao.insert(tratta2);
         trattaDao.insert(tratta3);
