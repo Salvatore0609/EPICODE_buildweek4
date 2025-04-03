@@ -111,7 +111,6 @@ public class MenuAdminGestioneTratte {
 					break;
 			}
 		} while (sceltaPresa != 0);
-
 		em.close();
 		emf.close();
 

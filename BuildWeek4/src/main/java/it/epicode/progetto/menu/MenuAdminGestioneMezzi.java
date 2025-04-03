@@ -51,9 +51,9 @@ public class MenuAdminGestioneMezzi {
 			if (allMezzi.isEmpty()) {
 				System.out.println();
 			} else {
-				System.out.println("Tram" + " " + verde + allTramIS.size() + " In servizio" + giallo + " "
+				System.out.println("Tram \t    " + " " + verde + allTramIS.size() + " In servizio" + giallo + " "
 						+ allTramIM.size() + " In manutenzione" + " " + rosso + allTramF.size() + " Fermi" + reset);
-				System.out.println("Autobus" + " " + verde + allAutobusIS.size() + " In servizio" + giallo + " "
+				System.out.println("Autobus \t" + " " + verde + allAutobusIS.size() + " In servizio" + giallo + " "
 						+ allAutobusIM.size() + " In manutenzione" + " " + rosso + allAutobusF.size() + " Fermi"
 						+ reset);
 			}
