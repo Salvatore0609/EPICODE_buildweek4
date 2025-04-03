@@ -131,7 +131,7 @@ public class Viaggio {
                     if (conferma.equalsIgnoreCase("S")) {
                         System.out.println("BUON VIAGGIO!");
                         System.out.println();
-                        ebDao.updateVidimato(bigliettoScelto.getIdBiglietto());
+                        ebDao.updateVidimato(bigliettoScelto.getIdBiglietto(), mezzoScelto);
                         mezzoScelto.setNumeroBigliettiVidimati(mezzoScelto.getNumeroBigliettiVidimati() + 1);
                         mezzoDAO.updateBigliettiVidimati(mezzoScelto.getId(), mezzoScelto.getNumeroBigliettiVidimati());
                     }
@@ -161,7 +161,7 @@ public class Viaggio {
                     if (conferma.equalsIgnoreCase("S")) {
                         System.out.println("BUON VIAGGIO!");
                         System.out.println();
-                        ebDao.updateVidimato(idBiglietto);
+                        ebDao.updateVidimato(idBiglietto, mezzoScelto);
                         mezzoScelto.setNumeroBigliettiVidimati(mezzoScelto.getNumeroBigliettiVidimati() + 1);
                         mezzoDAO.updateBigliettiVidimati(mezzoScelto.getId(), mezzoScelto.getNumeroBigliettiVidimati());
                         try {
