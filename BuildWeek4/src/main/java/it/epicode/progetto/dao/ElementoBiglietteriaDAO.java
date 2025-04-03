@@ -84,6 +84,23 @@ public class ElementoBiglietteriaDAO {
         }
     }
 
+    // Tutti i biglietti in base all'utente
+    public List<ElementoBiglietteria> findAllBiglietibyUtente(Long idUtente) {
+        return em.createQuery(
+                        "SELECT b FROM Biglietto b WHERE b.utente.id = :idUtente", ElementoBiglietteria.class)
+                .setParameter("idUtente", idUtente)
+                .getResultList();
+    }
+
+    //Tutti gli abbonamenti in base all'utente
+    public List<ElementoBiglietteria> findAllAbbonamentibyUtente(Long idUtente) {
+        return em.createQuery(
+                        "SELECT a FROM Abbonamento a WHERE a.tessera.utente.id = :idUtente", ElementoBiglietteria.class)
+                .setParameter("idUtente", idUtente)
+                .getResultList();
+    }
+
+
     //faccio update di vidimato true su biglietto in base a id biglietto
     public void updateVidimato(Long idBiglietto) {
         try {
@@ -103,7 +120,4 @@ public class ElementoBiglietteriaDAO {
             throw new BiglietteriaException("Errore durante l'aggiornamento del biglietto: " + ex.getMessage());
         }
     }
-
-
-
 }

@@ -27,4 +27,14 @@ public class Abbonamento extends ElementoBiglietteria {
     @ManyToOne
     @JoinColumn(name = "idTessera", nullable = false)
     private Tessera tessera;
+
+    @Override
+    public String toString() {
+        return "Abbonamento " +
+                "[Durata: " + durataAbbonamento.toString().toLowerCase() +
+                ", Scadenza: " + scadenzaAbbonamento.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                ", Tessera ID: " + (tessera != null ? tessera.getIdTessera() : "N/D") +
+                "]";
+    }
+
 }

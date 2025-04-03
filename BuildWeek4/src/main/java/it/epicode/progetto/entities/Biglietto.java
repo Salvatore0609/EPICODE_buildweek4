@@ -27,7 +27,7 @@ public class Biglietto extends ElementoBiglietteria {
 
     @Override
     public String toString() {
-        return "Biglietto con idBiglietto: " + this.getIdBiglietto() +
+        return "Biglietto con identificativo: " + this.getIdBiglietto() +
                 ", vidimato: " + this.isVidimato();
     }
 }

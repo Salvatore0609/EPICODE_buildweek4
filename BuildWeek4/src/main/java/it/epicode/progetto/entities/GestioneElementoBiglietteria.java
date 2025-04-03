@@ -18,6 +18,68 @@ import static it.epicode.progetto.utils.Input.scanner;
 
 public class GestioneElementoBiglietteria {
 
+    public static void visualizzaBigliettiUtente(Long myUser) {
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+        try {
+            emf = Persistence.createEntityManagerFactory("epicode");
+            em = emf.createEntityManager();
+            ElementoBiglietteriaDAO ebDao = new ElementoBiglietteriaDAO(em);
+            System.out.println("************************");
+            System.out.println("*** I tuoi biglietti ***");
+            System.out.println("************************");
+            System.out.println();
+            List<ElementoBiglietteria> biglietti = ebDao.findAllBiglietibyUtente(myUser);
+            int index = 1;
+            for (ElementoBiglietteria biglietto : biglietti) {
+                System.out.println(index  + ". " + biglietto);
+                index++;
+            }
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Errore nella visualizzazione dei biglietti", e);
+        } finally {
+            if (em != null) em.close();
+            if (emf != null) emf.close();
+        }
+
+    }
+
+    public static void visualizzaAbbonamentiUtente(Long myUser) {
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
+        try {
+            emf = Persistence.createEntityManagerFactory("epicode");
+            em = emf.createEntityManager();
+            ElementoBiglietteriaDAO ebDao = new ElementoBiglietteriaDAO(em);
+            System.out.println("************************");
+            System.out.println("*** I tuoi abbonamenti ***");
+            System.out.println("************************");
+            System.out.println();
+            List<ElementoBiglietteria> abbonamenti = ebDao.findAllAbbonamentibyUtente(myUser);
+            int index = 1;
+            for (ElementoBiglietteria abbonamento : abbonamenti) {
+                System.out.println(index  + ". " + abbonamento);
+                index++;
+            }
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Errore nella visualizzazione dei biglietti", e);
+        } finally {
+            if (em != null) em.close();
+            if (emf != null) emf.close();
+        }
+
+    }
+
     public static void visualizzaScadenzaTessera(Long myUser) {
         EntityManagerFactory emf = null;
         EntityManager em = null;

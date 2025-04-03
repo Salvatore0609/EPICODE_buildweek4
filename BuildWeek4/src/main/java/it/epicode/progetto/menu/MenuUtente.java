@@ -60,8 +60,12 @@ public class MenuUtente {
                 GestioneElementoBiglietteria.visualizzaAbbonamento(myUser);
                 break;
             case 7:
+                ClearTerminal.clearConsole();
+                GestioneElementoBiglietteria.visualizzaBigliettiUtente(myUser);
                 break;
             case 8:
+                ClearTerminal.clearConsole();
+                GestioneElementoBiglietteria.visualizzaAbbonamentiUtente(myUser);
                 break;
         }
     } }
