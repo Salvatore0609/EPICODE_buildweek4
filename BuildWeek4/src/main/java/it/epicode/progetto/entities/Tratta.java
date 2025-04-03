@@ -1,5 +1,7 @@
 package it.epicode.progetto.entities;
 import jakarta.persistence.*;
+
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class Tratta {
    /* @Column(nullable = false)*/
     private LocalDateTime tempoEffettivoDiPercorrenza;
    /* @Column(nullable = true)*/
-    private Integer differenzaTempo;
+    private Long differenzaTempo;
 
     @OneToMany
     @Column(name = "mezzi")
@@ -32,13 +34,13 @@ public class Tratta {
     }
 
 	public Tratta(Long id, String zonaDiPartenza, String capolinea, LocalDateTime tempoPrevistoDiPercorrenza,
-			LocalDateTime tempoEffettivoDiPercorrenza, Integer differenzaTempo, List<Mezzo> mezzi) {
+			LocalDateTime tempoEffettivoDiPercorrenza, Long differenzaTempo ,List<Mezzo> mezzi) {
         this.id = id;
         this.zonaDiPartenza = zonaDiPartenza;
         this.capolinea = capolinea;
         this.tempoPrevistoDiPercorrenza = tempoPrevistoDiPercorrenza;
         this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
-        this.differenzaTempo = this.tempoPrevistoDiPercorrenza.getMinute() - this.tempoEffettivoDiPercorrenza.getMinute();
+        this.differenzaTempo = (Duration.between(this.tempoEffettivoDiPercorrenza, this.tempoPrevistoDiPercorrenza)).toMinutes();
         this.mezzi = mezzi;
     }
 
@@ -82,11 +84,11 @@ public class Tratta {
         this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
     }
 
-    public Integer getDifferenzaTempo() {
+    public Long getDifferenzaTempo() {
         return differenzaTempo;
     }
 
-    public void setDifferenzaTempo(Integer differenzaTempo) {
+    public void setDifferenzaTempo(Long differenzaTempo) {
         this.differenzaTempo = differenzaTempo;
     }
 

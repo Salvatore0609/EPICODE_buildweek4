@@ -216,16 +216,16 @@ public class CreateDatabase {
 
 
         // CREA TRATTE
-        Tratta tratta1 = new Tratta(null, "Milano", "Roma", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-        Tratta tratta2 = new Tratta(null, "Sassari", "Cagliari", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
-        Tratta tratta3 = new Tratta(null, "Roma", "Milano", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
-        Tratta tratta4 = new Tratta(null, "Cagliari", "Sassari", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-        Tratta tratta5 = new Tratta(null, "Torino", "Milano", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-        Tratta tratta6 = new Tratta(null, "Milano", "Torino", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
-        Tratta tratta7 = new Tratta(null, "Napoli", "Roma", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
-        Tratta tratta8 = new Tratta(null, "Roma", "Napoli", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-        Tratta tratta9 = new Tratta(null, "Firenze", "Milano", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-        Tratta tratta10 = new Tratta(null, "Milano", "Firenze", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
+        Tratta tratta1 = new Tratta(null, "Milano", "Roma", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), null, null);
+        Tratta tratta2 = new Tratta(null, "Sassari", "Cagliari", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), null, null);
+        Tratta tratta3 = new Tratta(null, "Roma", "Milano", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), null, null);
+        Tratta tratta4 = new Tratta(null, "Cagliari", "Sassari", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), null, null);
+        Tratta tratta5 = new Tratta(null, "Torino", "Milano", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), null, null);
+        Tratta tratta6 = new Tratta(null, "Milano", "Torino", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), null, null);
+        Tratta tratta7 = new Tratta(null, "Napoli", "Roma", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), null, null);
+        Tratta tratta8 = new Tratta(null, "Roma", "Napoli", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), null, null);
+        Tratta tratta9 = new Tratta(null, "Firenze", "Milano", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), null, null);
+        Tratta tratta10 = new Tratta(null, "Milano", "Firenze", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), null, null);
         trattaDao.insert(tratta1);
         trattaDao.insert(tratta2);
         trattaDao.insert(tratta3);
