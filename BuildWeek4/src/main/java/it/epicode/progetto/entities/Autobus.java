@@ -18,8 +18,16 @@ public class Autobus extends Mezzo {
 
 	@Override
 	public String toString() {
-		if (getStatoEnum() == Stato.IN_SERVIZIO && getTratta() != null) {
-			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ").toLowerCase() + " sulla tratta " + getTratta();
+		final String ANSI_RESET = "\u001B[0m";
+		final String ANSI_RED = "\u001B[31m";
+		final String ANSI_GREEN = "\u001B[32m";
+		if (getStatoEnum() == Stato.IN_SERVIZIO && getTratta() != null && getNumeroBigliettiVidimati() >= getCapienza()) {
+			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ").toLowerCase()
+					+ " sulla tratta " + getTratta() + ANSI_RED + " PIENO🚫" + ANSI_RESET;
+		}
+		else if (getStatoEnum() == Stato.IN_SERVIZIO && getTratta() != null && getNumeroBigliettiVidimati() < getCapienza()) {
+			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ").toLowerCase()
+					+ " sulla tratta " + getTratta() + ANSI_GREEN + " DISPONIBILE✅" + ANSI_RESET + " Posti liberi: " + (getCapienza()  - getNumeroBigliettiVidimati());
 		} else if (getStatoEnum() == Stato.FERMO) {
 			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString()
 					+ " in attesa di ricevere una tratta da percorrere.";

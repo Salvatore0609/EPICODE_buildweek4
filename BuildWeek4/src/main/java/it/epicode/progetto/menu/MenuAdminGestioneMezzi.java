@@ -161,123 +161,124 @@ public class MenuAdminGestioneMezzi {
 						int scelta = scanner.nextInt();
 						scanner.nextLine();
 						Mezzo mezzoScelto = tuttiIMezzi.get(scelta - 1);
-					System.out.println("Cosa vuoi modificare?");
-					System.out.println("1. Stato");
-					System.out.println("2. Tratta");
-					System.out.println("3. Capienza");
-					System.out.println("4. Persone a bordo");
-					Integer sceltaModificaMezzo = scanner.nextInt();
-					if (sceltaModificaMezzo == 1) {
-						System.out.println("Inserisci il nuovo stato:");
-						System.out.println("1. Fermo");
-						System.out.println("2. In servizio");
-						System.out.println("3. In manutenzione");
-						Integer sceltaStato = scanner.nextInt();
-						if (sceltaStato == 1) {
-							mezzoScelto.setStatoEnum(Stato.FERMO);
-							mezzoDAO.update(mezzoScelto);
-							System.out.println("Hai mandato correttamente il mezzo al deposito!");
-						} else if (sceltaStato == 2) {
-							if (mezzoScelto.getStatoEnum() == Stato.IN_MANUTENZIONE
-									|| mezzoScelto.getStatoEnum() == Stato.FERMO) {
-								System.out.println("Hai scelto di mettere il mezzo in servizio.");
-								if (trattaDAO.findAll().isEmpty()) {
-									System.out.println("Non ci sono tratte disponibili, devi crearne una.");
-									System.out.println("Inserisci la zona di partenza della tratta:");
-									String partenza = scanner.next();
-									System.out.println("Inserisci il capolinea della tratta:");
-									String capolinea = scanner.next();
-									System.out.println("Inserisci il tempo previsto di percorrenza della tratta:");
-									Integer tempoPrevistoPercorrenza = scanner.nextInt();
-									System.out.println("Inserisci il tempo effettivo di percorrenza della tratta:");
-									Integer tempoEffettivoPercorrenza = scanner.nextInt();
-									Tratta tratta1 = new Tratta(null, partenza, capolinea,
-											LocalDateTime.now().plusMinutes(tempoPrevistoPercorrenza),
-											LocalDateTime.now().plusMinutes(tempoEffettivoPercorrenza), null, null);
-									trattaDAO.insert(tratta1);
-									System.out.println("Hai creato correttamente la tua tratta!");
-									mezzoScelto.setStatoEnum(Stato.IN_SERVIZIO);
-									mezzoScelto.setTratta(tratta1);
-									mezzoDAO.update(mezzoScelto);
-									System.out.println("Hai messo correttamente in servizio il mezzo!");
-									System.out.println(mezzoScelto);
-								} else {
-									System.out.println("Devi scegliere una tratta da assegnare al mezzo.");
-									List<Tratta> tutteLeTratte = trattaDAO.findAll();
-									int index2 = 1;
-									for (Tratta destinazione : tutteLeTratte) {
+						System.out.println("Cosa vuoi modificare?");
+						System.out.println("1. Stato");
+						System.out.println("2. Tratta");
+						System.out.println("3. Capienza");
+						System.out.println("4. Persone a bordo");
+						Integer sceltaModificaMezzo = scanner.nextInt();
+						if (sceltaModificaMezzo == 1) {
+							System.out.println("Inserisci il nuovo stato:");
+							System.out.println("1. Fermo");
+							System.out.println("2. In servizio");
+							System.out.println("3. In manutenzione");
+							Integer sceltaStato = scanner.nextInt();
+							if (sceltaStato == 1) {
+								mezzoScelto.setStatoEnum(Stato.FERMO);
+								mezzoDAO.update(mezzoScelto);
+								System.out.println("Hai mandato correttamente il mezzo al deposito!");
+							} else if (sceltaStato == 2) {
+								if (mezzoScelto.getStatoEnum() == Stato.IN_MANUTENZIONE
+										|| mezzoScelto.getStatoEnum() == Stato.FERMO) {
+									System.out.println("Hai scelto di mettere il mezzo in servizio.");
+									if (trattaDAO.findAll().isEmpty()) {
+										System.out.println("Non ci sono tratte disponibili, devi crearne una.");
+										System.out.println("Inserisci la zona di partenza della tratta:");
+										String partenza = scanner.next();
+										System.out.println("Inserisci il capolinea della tratta:");
+										String capolinea = scanner.next();
+										System.out.println("Inserisci il tempo previsto di percorrenza della tratta:");
+										Integer tempoPrevistoPercorrenza = scanner.nextInt();
+										System.out.println("Inserisci il tempo effettivo di percorrenza della tratta:");
+										Integer tempoEffettivoPercorrenza = scanner.nextInt();
+										Tratta tratta1 = new Tratta(null, partenza, capolinea,
+												LocalDateTime.now().plusMinutes(tempoPrevistoPercorrenza),
+												LocalDateTime.now().plusMinutes(tempoEffettivoPercorrenza), null, null);
+										trattaDAO.insert(tratta1);
+										System.out.println("Hai creato correttamente la tua tratta!");
+										mezzoScelto.setStatoEnum(Stato.IN_SERVIZIO);
+										mezzoScelto.setTratta(tratta1);
+										mezzoDAO.update(mezzoScelto);
+										System.out.println("Hai messo correttamente in servizio il mezzo!");
+										System.out.println(mezzoScelto);
+									} else {
+										System.out.println("Devi scegliere una tratta da assegnare al mezzo.");
+										List<Tratta> tutteLeTratte = trattaDAO.findAll();
+										int index2 = 1;
+										for (Tratta destinazione : tutteLeTratte) {
 
-										System.out.println(index2 + ". " + destinazione);
-										index2++;
+											System.out.println(index2 + ". " + destinazione);
+											index2++;
+										}
+										int scelta2 = scanner.nextInt();
+										scanner.nextLine();
+										Tratta trattaScelta = tutteLeTratte.get(scelta2 - 1);
+										mezzoScelto.setTratta(trattaScelta);
+										mezzoScelto.setStatoEnum(Stato.IN_SERVIZIO);
+										mezzoDAO.update(mezzoScelto);
+										System.out.println("Hai mandato correttamente il mezzo in servizio!");
 									}
-									int scelta2 = scanner.nextInt();
-									scanner.nextLine();
-									Tratta trattaScelta = tutteLeTratte.get(scelta2 - 1);
-									mezzoScelto.setTratta(trattaScelta);
-									mezzoScelto.setStatoEnum(Stato.IN_SERVIZIO);
-									mezzoDAO.update(mezzoScelto);
-									System.out.println("Hai mandato correttamente il mezzo in servizio!");
-								}
 
-							} else if (mezzoScelto.getStatoEnum() == Stato.IN_SERVIZIO) {
-								System.out.println("Il mezzo è già in servizio! Vuoi cambiare la sua tratta?");
-								System.out.println("1. Si");
-								System.out.println("2. No");
-								Integer sceltaCambioTratta = scanner.nextInt();
-								if (sceltaCambioTratta == 1) {
-									System.out.println("Quale tratta vuoi assegnare al mezzo?");
-									List<Tratta> tutteLeTratte = trattaDAO.findAll();
-									int index3 = 1;
-									for (Tratta destinazione : tutteLeTratte) {
+								} else if (mezzoScelto.getStatoEnum() == Stato.IN_SERVIZIO) {
+									System.out.println("Il mezzo è già in servizio! Vuoi cambiare la sua tratta?");
+									System.out.println("1. Si");
+									System.out.println("2. No");
+									Integer sceltaCambioTratta = scanner.nextInt();
+									if (sceltaCambioTratta == 1) {
+										System.out.println("Quale tratta vuoi assegnare al mezzo?");
+										List<Tratta> tutteLeTratte = trattaDAO.findAll();
+										int index3 = 1;
+										for (Tratta destinazione : tutteLeTratte) {
 
-										System.out.println(index3 + ". " + destinazione);
-										index3++;
+											System.out.println(index3 + ". " + destinazione);
+											index3++;
+										}
+										int scelta3 = scanner.nextInt();
+										scanner.nextLine();
+										Tratta trattaScelta = tutteLeTratte.get(scelta3 - 1);
+										mezzoScelto.setTratta(trattaScelta);
+										mezzoDAO.update(mezzoScelto);
+										System.out.println("Hai cambiato correttamente la tratta del mezzo!");
+									} else if (sceltaCambioTratta == 2) {
+										System.out.println("Hai scelto di non cambiare la tratta del mezzo.");
+									} else {
+										System.out.println("Scelta non valida.");
 									}
-									int scelta3 = scanner.nextInt();
-									scanner.nextLine();
-									Tratta trattaScelta = tutteLeTratte.get(scelta3 - 1);
-									mezzoScelto.setTratta(trattaScelta);
-									mezzoDAO.update(mezzoScelto);
-									System.out.println("Hai cambiato correttamente la tratta del mezzo!");
-								} else if (sceltaCambioTratta == 2) {
-									System.out.println("Hai scelto di non cambiare la tratta del mezzo.");
-								} else {
-									System.out.println("Scelta non valida.");
-								}
 
+								}
+							} else if (sceltaStato == 3) {
+								mezzoScelto.setStatoEnum(Stato.IN_MANUTENZIONE);
+								mezzoDAO.update(mezzoScelto);
+								System.out.println("Hai modificato correttamente lo stato del mezzo!");
+							} else {
+								System.out.println("Scelta non valida.");
 							}
-						} else if (sceltaStato == 3) {
-							mezzoScelto.setStatoEnum(Stato.IN_MANUTENZIONE);
+						} else if (sceltaModificaMezzo == 2) {
+							System.out.println("Inserisci la nuova tratta:");
+							List<Tratta> tutteLeTratteDaModificare = trattaDAO.findAll();
+							tutteLeTratteDaModificare.forEach(System.out::println);
+							Long idTrattaDaModificare = scanner.nextLong();
+							Tratta trattaDaModificare = trattaDAO.findById(idTrattaDaModificare);
+							mezzoScelto.setTratta(trattaDaModificare);
+							mezzoScelto.setStatoEnum(Stato.IN_SERVIZIO);
 							mezzoDAO.update(mezzoScelto);
-							System.out.println("Hai modificato correttamente lo stato del mezzo!");
+							System.out.println("Hai modificato correttamente la tratta del mezzo!");
+						} else if (sceltaModificaMezzo == 3) {
+							System.out.println("Inserisci la nuova capienza:");
+							Integer nuovaCapienza = scanner.nextInt();
+							mezzoScelto.setCapienza(nuovaCapienza);
+							mezzoDAO.update(mezzoScelto);
+							System.out.println("Hai modificato correttamente la capienza del mezzo!");
+						} else if (sceltaModificaMezzo == 4) {
+							System.out.println("Inserisci il nuovo numero di persone a bordo:");
+							Integer nuovaPersoneAboard = scanner.nextInt();
+							mezzoScelto.setNumeroBigliettiVidimati(nuovaPersoneAboard);
+							mezzoDAO.update(mezzoScelto);
+							System.out.println("Hai modificato correttamente il numero di persone a bordo del mezzo!");
 						} else {
 							System.out.println("Scelta non valida.");
 						}
-					} else if (sceltaModificaMezzo == 2) {
-						System.out.println("Inserisci la nuova tratta:");
-						List<Tratta> tutteLeTratteDaModificare = trattaDAO.findAll();
-						tutteLeTratteDaModificare.forEach(System.out::println);
-						Long idTrattaDaModificare = scanner.nextLong();
-						Tratta trattaDaModificare = trattaDAO.findById(idTrattaDaModificare);
-						mezzoScelto.setTratta(trattaDaModificare);
-						mezzoScelto.setStatoEnum(Stato.IN_SERVIZIO);
-						mezzoDAO.update(mezzoScelto);
-						System.out.println("Hai modificato correttamente la tratta del mezzo!");
-					} else if (sceltaModificaMezzo == 3) {
-						System.out.println("Inserisci la nuova capienza:");
-						Integer nuovaCapienza = scanner.nextInt();
-						mezzoScelto.setCapienza(nuovaCapienza);
-						mezzoDAO.update(mezzoScelto);
-						System.out.println("Hai modificato correttamente la capienza del mezzo!");
-					} else if (sceltaModificaMezzo == 4) {
-						System.out.println("Inserisci il nuovo numero di persone a bordo:");
-						Integer nuovaPersoneAboard = scanner.nextInt();
-						mezzoScelto.setNumeroBigliettiVidimati(nuovaPersoneAboard);
-						mezzoDAO.update(mezzoScelto);
-						System.out.println("Hai modificato correttamente il numero di persone a bordo del mezzo!");
-					} else {
-						System.out.println("Scelta non valida.");
-					} } catch (Exception e) {
+					} catch (Exception e) {
 						System.out.println("Errore inaspettato.");
 					}
 					break;

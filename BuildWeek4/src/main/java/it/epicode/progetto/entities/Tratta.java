@@ -24,6 +24,7 @@ public class Tratta {
     private Integer differenzaTempo;
 
     @OneToMany
+    @Column(name = "mezzi")
     private List<Mezzo> mezzi;
 
     public Tratta() {
@@ -36,7 +37,7 @@ public class Tratta {
         this.capolinea = capolinea;
         this.tempoPrevistoDiPercorrenza = tempoPrevistoDiPercorrenza;
         this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
-        this.differenzaTempo = this.tempoPrevistoDiPercorrenza.getMinute() - this.tempoEffettivoDiPercorrenza.getMinute();
+        this.differenzaTempo = (this.tempoPrevistoDiPercorrenza.getMinute() - this.tempoEffettivoDiPercorrenza.getMinute());
         this.mezzi = mezzi;
     }
 

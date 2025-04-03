@@ -163,29 +163,38 @@ public class MenuAdminGestioneTratte {
 						int scelta = scanner.nextInt();
 						scanner.nextLine();
 						Tratta trattaScelta = tutteLeTratte.get(scelta - 1);
-						// prima di eliminare voglio verificare che la tratta da eliminare non sia associata ad alcun mezzo
-						if (!trattaScelta.getMezzi().isEmpty()) {
-							System.out.println(
-									"Ci sono ancora dei mezzi che stanno percorrendo questa tratta. Vuoi farli prima rientrare?");
-							System.out
-									.println("S/N (Attenzione: la tratta verrà eliminata definitivamente se scegli S)");
-							String sceltaRientro = scanner.next();
-							if (sceltaRientro.equalsIgnoreCase("S")) {
-								trattaScelta.getMezzi().forEach(mezzo -> {
-									mezzo.setTratta(null);
-									mezzo.setStatoEnum(Stato.FERMO);
-									mezzoDAO.update(mezzo);
-								});
-								trattaDAO.delete(trattaScelta.getId());
-							} else if (sceltaRientro.equalsIgnoreCase("N")) {
+						for (Mezzo mezzoRicerca : mezzoDAO.findAll()) {
+							if (mezzoRicerca.getTratta() != null
+									&& mezzoRicerca.getTratta().getId() == trattaScelta.getId()) {
 								System.out.println(
-										"Hai scelto di non far rientrare i mezzi, quindi la tratta resta attiva.");
+										"Ci sono ancora dei mezzi che stanno percorrendo questa tratta. Vuoi farli prima rientrare?");
+								System.out.println(
+										"S/N (Attenzione: la tratta verrà eliminata definitivamente se scegli S)");
+								String sceltaRientro = scanner.next();
+								if (sceltaRientro.equalsIgnoreCase("S")) {
+									for (Mezzo mezzo : mezzoDAO.findAll()) {
+										if (mezzo.getTratta() != null
+												&& mezzo.getTratta().getId() == trattaScelta.getId()) {
+											mezzo.setTratta(null);
+											mezzo.setStatoEnum(Stato.FERMO);
+											mezzoDAO.update(mezzo);
+											System.out.println("Tutti i mezzi associati a quella tratta sono stati rimandati al deposito!");
+										}
+									}
+
+									trattaDAO.delete(trattaScelta.getId());
+									System.out.println("Hai eliminato con successo la tratta!");
+								} else if (sceltaRientro.equalsIgnoreCase("N")) {
+									System.out.println(
+											"Hai scelto di non far rientrare i mezzi, quindi la tratta resta attiva.");
+								} else {
+									System.out.println("Scelta non valida.");
+								}
 							} else {
-								System.out.println("Scelta non valida.");
+								System.out.println("Ciao");
+								trattaDAO.delete(trattaScelta.getId());
+								System.out.println("Hai eliminato correttamente la tratta!");
 							}
-						} else {
-							trattaDAO.delete(trattaScelta.getId());
-							System.out.println("Hai eliminato correttamente la tratta!");
 						}
 					} catch (Exception e) {
 						System.out.println("Errore durante l'eliminazione della tratta: " + e.getMessage());
