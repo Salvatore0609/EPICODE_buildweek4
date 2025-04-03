@@ -1,7 +1,5 @@
 package it.epicode.progetto.entities;
 import jakarta.persistence.*;
-
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,24 +21,23 @@ public class Tratta {
    /* @Column(nullable = false)*/
     private LocalDateTime tempoEffettivoDiPercorrenza;
    /* @Column(nullable = true)*/
-    private Long differenzaTempo;
+    private Integer differenzaTempo;
 
     @OneToMany
     @Column(name = "mezzi")
     private List<Mezzo> mezzi;
 
-
     public Tratta() {
     }
 
 	public Tratta(Long id, String zonaDiPartenza, String capolinea, LocalDateTime tempoPrevistoDiPercorrenza,
-			LocalDateTime tempoEffettivoDiPercorrenza, Long differenzaTempo ,List<Mezzo> mezzi) {
+			LocalDateTime tempoEffettivoDiPercorrenza, Integer differenzaTempo, List<Mezzo> mezzi) {
         this.id = id;
         this.zonaDiPartenza = zonaDiPartenza;
         this.capolinea = capolinea;
         this.tempoPrevistoDiPercorrenza = tempoPrevistoDiPercorrenza;
         this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
-        this.differenzaTempo = (Duration.between(this.tempoEffettivoDiPercorrenza, this.tempoPrevistoDiPercorrenza)).toMinutes();
+        this.differenzaTempo = this.tempoPrevistoDiPercorrenza.getMinute() - this.tempoEffettivoDiPercorrenza.getMinute();
         this.mezzi = mezzi;
     }
 
@@ -84,11 +81,11 @@ public class Tratta {
         this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
     }
 
-    public Long getDifferenzaTempo() {
+    public Integer getDifferenzaTempo() {
         return differenzaTempo;
     }
 
-    public void setDifferenzaTempo(Long differenzaTempo) {
+    public void setDifferenzaTempo(Integer differenzaTempo) {
         this.differenzaTempo = differenzaTempo;
     }
 
@@ -100,7 +97,6 @@ public class Tratta {
         this.mezzi = mezzi;
     }
 
-
     @Override
     public String toString() {
          final String ANSI_RESET = "\u001B[0m";
@@ -111,6 +107,7 @@ public class Tratta {
         if (differenzaTempo > 0 ) {
             return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_GREEN + "ANTICIPO" + ANSI_RESET + ": " + differenzaTempo + " minuti).";
         } else if (differenzaTempo < 0) {
+
             return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_RED + "RITARDO" + ANSI_RESET + ": " + (differenzaTempo * -1) + " minuti).";
         } else if  (differenzaTempo == 0) {
             return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_YELLOW + "IN ORARIO" + ANSI_RESET + ").";

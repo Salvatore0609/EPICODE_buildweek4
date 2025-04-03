@@ -2,7 +2,9 @@ package it.epicode.progetto.entities;
 import it.epicode.progetto.enums.Stato;
 import jakarta.persistence.Entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Formatter;
 
 @Entity
 public class Tram extends Mezzo {
@@ -11,7 +13,7 @@ public class Tram extends Mezzo {
 	}
 
 	public Tram(Long id, Tratta tratta, int numeroBigliettiVidimati, int volteTrattaPercorsa, int capienza, Stato stato,
-			LocalDate inizioAttività, LocalDate fineAttività) {
+			LocalDateTime inizioAttività, LocalDateTime fineAttività) {
 		super(id, tratta, numeroBigliettiVidimati, volteTrattaPercorsa, capienza, stato, inizioAttività, fineAttività);
 	}
 
@@ -23,8 +25,8 @@ public class Tram extends Mezzo {
 			return "Tram linea " + getId() + " attualmente " + getStatoEnum().toString()
 					+ " in attesa di ricevere una tratta da percorrere. ";
 		} else if (getStatoEnum() == Stato.IN_MANUTENZIONE) {
-			return "Tram linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ") + " dal " + getInizioAttività()
-					+ " al " + getFineAttività() + ".";
+			return "Tram linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ") + " dal " + getInizioAttività().format(DateTimeFormatter.ofPattern("dd/MM/yy"))
+					+ " al " + getFineAttività().format(DateTimeFormatter.ofPattern("dd/MM/yy")) + ".";
 		} else {
 			return "Errore con il tram linea " + getId() + ".";
 		}
