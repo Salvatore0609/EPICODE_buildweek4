@@ -5,12 +5,14 @@ import it.epicode.progetto.entities.Rivenditore;
 import it.epicode.progetto.entities.DistributoriAutomatici;
 import it.epicode.progetto.enums.StatoDistributori;
 import it.epicode.progetto.entities.RivenditoriAutorizzati;
+import it.epicode.progetto.exceptions.RivenditoreException;
 import it.epicode.progetto.utils.ClearTerminal;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 import static it.epicode.progetto.utils.Input.scanner;
 
@@ -89,25 +91,60 @@ public class MenuRivenditore {
                     Rivenditore rivenditore = rivenditoreDAO.findById(idRivenditore2);
                     if (rivenditore != null) {
                         em.getTransaction().begin();
+                        boolean modificato = false;
+
                         if (rivenditore instanceof RivenditoriAutorizzati) {
+                            System.out.println("Vuoi cambiare il nome del rivenditore? (S/N)");
+                            String risposta = scanner.nextLine();
+                            if (risposta.equalsIgnoreCase("S")) {
                             System.out.println("Inserisci il nuovo nome del rivenditore:");
                             String nuovoNome = scanner.nextLine();
                             rivenditore.setNome(nuovoNome);
+                            modificato = true;
+                            }
 
-                            rivenditoreDAO.update(rivenditore);
-                            System.out.println("Rivenditore aggiornato con successo.");
                         } else if (rivenditore instanceof DistributoriAutomatici) {
-                            System.out.println("Inserisci il nuovo nome del distributore:");
-                            String nuovoNome = scanner.nextLine();
-                            rivenditore.setNome(nuovoNome);
-                            System.out.println("Inserisci il nuovo stato del distributore:");
-                            StatoDistributori nuovoStato = StatoDistributori.valueOf(scanner.nextLine());
-                            ((DistributoriAutomatici) rivenditore).setStato(nuovoStato);
+                            System.out.println("Vuoi cambiare il nome del distributore? (S/N)");
+                            String risposta = scanner.nextLine();
+                            if( risposta.equalsIgnoreCase("S")) {
+                                System.out.println("Inserisci il nuovo nome del distributore:");
+                                String nuovoNome = scanner.nextLine();
+                                rivenditore.setNome(nuovoNome);
+                                modificato = true;
+                            }
+                            System.out.println("Vuoi cambiare lo stato del distributore? (S/N)");
+                            String risposta2 = scanner.nextLine();
+                            if(risposta2.equalsIgnoreCase("S")) {
+                                System.out.println("Inserisci il nuovo stato del distributore (1 per attivo, 2 per fuori servizio:");
+                                int sceltaStato;
+                                try{
+                                    sceltaStato = Integer.parseInt(scanner.nextLine());
+                                    StatoDistributori nuovoStato =  null;
 
+                                    if(sceltaStato == 1) {
+                                        nuovoStato = StatoDistributori.ATTIVO;
+                                    } else if (sceltaStato == 2) {
+                                        nuovoStato = StatoDistributori.FUORI_SERVIZIO;
+                                    } else {
+                                        System.out.println("Scelta non valida. Lo stato non è stato modificato.");
+                                    }
+                                ((DistributoriAutomatici) rivenditore).setStato(nuovoStato);
+                                modificato = true;
+                                } catch (NumberFormatException e) {
+                                    System.out.println("Errore : devi inserire un numero valido 1 o 2.");
+                                    return;
+                                }
+                            }
+                        }
+                        if(modificato){
                             rivenditoreDAO.update(rivenditore);
                             em.getTransaction().commit();
-                            System.out.println("Distributore aggiornato con successo.");
+                            System.out.println("Rivenditore aggiornato con successo.");
+                        } else {
+                            em.getTransaction().rollback();
+                            System.out.println("Nessuna modifica effettuata.");
                         }
+
                     } else {
                         System.out.println("Rivenditore non trovato con l'ID specificato");
                     }
