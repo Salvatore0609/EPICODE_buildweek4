@@ -23,8 +23,8 @@ public class Main {
 
 
         UtentiDao uDao = new UtentiDao(em);
-        Utente utente = uDao.findByUsername("admin");
-        if (utente == null) {
+        Utente admin = uDao.findByUsername("admin");
+        if (admin == null) {
             CreateDatabase.main(null);
         }
         while (true) {

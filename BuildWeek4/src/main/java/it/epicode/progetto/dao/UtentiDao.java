@@ -28,8 +28,12 @@ public class UtentiDao {
 		return em.find(Utente.class, id);
 	}
 	public Utente findByUsername(String username) {
-		return em.createQuery("SELECT u FROM Utente u WHERE u.username = :username", Utente.class)
-				.setParameter("username", username).getSingleResult();
+		try {
+			return em.createQuery("SELECT u FROM Utente u WHERE u.username = :username", Utente.class)
+					.setParameter("username", username).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 	// ricerca per nome e cognome
 	public Utente findByNomeAndCognome(String nome, String cognome) {
