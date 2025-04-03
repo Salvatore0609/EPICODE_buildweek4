@@ -14,7 +14,6 @@ public class TrattaDAO {
 		em.getTransaction().begin();
 		em.persist(e);
 		em.getTransaction().commit();
-		System.out.println("La tratta é stata inserita con successo");
 	}
 
 	public Tratta findById(Long id) {
@@ -27,7 +26,6 @@ public class TrattaDAO {
 			em.getTransaction().begin();
 			em.remove(mezzo);
 			em.getTransaction().commit();
-			System.out.println("La tratta é stata eliminata con successo");
 		}
 	}
 

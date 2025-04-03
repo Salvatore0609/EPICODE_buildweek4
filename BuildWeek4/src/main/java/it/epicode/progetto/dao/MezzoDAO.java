@@ -17,7 +17,6 @@ public class MezzoDAO {
 		em.getTransaction().begin();
 		em.persist(e);
 		em.getTransaction().commit();
-		System.out.println("Il mezzo è stato inserito con successo");
 	}
 	public Mezzo findById(Long id) {
 		return em.find(Mezzo.class, id);
@@ -28,7 +27,6 @@ public class MezzoDAO {
 			em.getTransaction().begin();
 			em.remove(mezzo);
 			em.getTransaction().commit();
-			System.out.println("Il mezzo è stato eliminato con successo");
 		}
 	}
 	public void update(Mezzo e) {
