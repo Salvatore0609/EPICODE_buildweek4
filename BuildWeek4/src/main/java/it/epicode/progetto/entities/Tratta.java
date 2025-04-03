@@ -24,7 +24,6 @@ public class Tratta {
     private Integer differenzaTempo;
 
     @OneToMany
-    @Column(name = "mezzi")
     private List<Mezzo> mezzi;
 
     public Tratta() {

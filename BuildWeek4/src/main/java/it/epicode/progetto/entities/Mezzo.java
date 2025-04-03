@@ -15,7 +15,6 @@ public abstract class Mezzo {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "mezzo_id")
 	private Tratta tratta;
 
 	private int numeroBigliettiVidimati;
