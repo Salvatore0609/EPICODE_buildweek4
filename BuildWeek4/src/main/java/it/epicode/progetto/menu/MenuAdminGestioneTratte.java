@@ -163,6 +163,7 @@ public class MenuAdminGestioneTratte {
 						int scelta = scanner.nextInt();
 						scanner.nextLine();
 						Tratta trattaScelta = tutteLeTratte.get(scelta - 1);
+						// prima di eliminare voglio verificare che la tratta da eliminare non sia associata ad alcun mezzo
 						if (!trattaScelta.getMezzi().isEmpty()) {
 							System.out.println(
 									"Ci sono ancora dei mezzi che stanno percorrendo questa tratta. Vuoi farli prima rientrare?");
