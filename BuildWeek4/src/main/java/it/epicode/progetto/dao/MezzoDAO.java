@@ -70,12 +70,12 @@ public List<Mezzo> findMezzoByTratta(Tratta tratta) {
 
 
     // metodo per stampare mezzi trovati tramite stato passato come enum
-        public void findMezzoByStatoEnum(Stato stato) {              // STAMPA TUTTI I MEZZI DELLO STATO AGGIUNTO COME PARAMETRO
+        public List<Mezzo> findMezzoByStatoEnum(Stato stato) {              // STAMPA TUTTI I MEZZI DELLO STATO AGGIUNTO COME PARAMETRO
         String query = "SELECT m FROM Mezzo m WHERE m.stato = :stato";
-        em.createQuery(query, Mezzo.class)
+    return    em.createQuery(query, Mezzo.class)
                 .setParameter("stato", stato)
-                .getResultList()
-                .forEach(System.out::println);
+                .getResultList();
+
     }
 
     //update di stato

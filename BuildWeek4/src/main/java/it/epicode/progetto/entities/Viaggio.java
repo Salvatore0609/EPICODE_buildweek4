@@ -139,7 +139,19 @@ public class Viaggio {
                 System.out.println();
                 Long idBiglietto = scanner.nextLong();
                 scanner.nextLine();
+                //controllo se il biglietto è stato già vidimato
                 ElementoBiglietteriaDAO ebDao = new ElementoBiglietteriaDAO(em);
+                boolean bigliettoVidimato = ebDao.isVidimato(idBiglietto);
+                if(bigliettoVidimato) {
+                    System.out.println("Biglietto già vidimato. Non puoi viaggiare. Acquista uno nuovo o un abbonamento!");
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    ClearTerminal.clearConsole();
+                    return;
+                }
                 ElementoBiglietteria bigliettoGuest = ebDao.findById(idBiglietto);
                 if (bigliettoGuest != null) {
                     System.out.println("Salire sul mezzo? (S/N)");
