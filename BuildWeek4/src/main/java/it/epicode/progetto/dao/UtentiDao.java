@@ -5,6 +5,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.AllArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 public class UtentiDao {
     private EntityManager em;
@@ -27,10 +29,20 @@ public class UtentiDao {
     public Utente findById(Long id) {
         return em.find(Utente.class, id);
     }
+
+    public List<Utente> findAll(){
+        return em.createQuery("SELECT u FROM Utente u", Utente.class).getResultList();
+    }
+
+
     public Utente findByUsername(String username) {
-        return em.createQuery("SELECT u FROM Utente u WHERE u.username = :username", Utente.class)
-                .setParameter("username", username)
-                .getSingleResult();
+        try {
+            return em.createQuery("SELECT u FROM Utente u WHERE u.username = :username", Utente.class)
+                    .setParameter("username", username)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     //ricerca per nome e cognome
     public Utente findByNomeAndCognome(String nome, String cognome) {
