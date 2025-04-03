@@ -20,7 +20,6 @@ import static it.epicode.progetto.utils.Input.scanner;
 
 public class Main {
     public static void main(String[] args) {
-        CreateAdmin.main(null);
         while (true) {
             ClearTerminal.clearConsole();
             System.out.println("****************************");
