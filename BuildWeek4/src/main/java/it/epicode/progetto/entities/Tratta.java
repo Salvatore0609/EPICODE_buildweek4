@@ -107,8 +107,7 @@ public class Tratta {
         if (differenzaTempo > 0 ) {
             return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_GREEN + "ANTICIPO" + ANSI_RESET + ": " + differenzaTempo + " minuti).";
         } else if (differenzaTempo < 0) {
-            differenzaTempo = differenzaTempo * -1;
-            return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_RED + "RITARDO" + ANSI_RESET + ": " + differenzaTempo + " minuti).";
+            return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_RED + "RITARDO" + ANSI_RESET + ": " + (differenzaTempo * -1) + " minuti).";
         } else if  (differenzaTempo == 0) {
             return getZonaDiPartenza() + " -------> " + getCapolinea() +" in arrivo alle ore " + getTempoPrevistoDiPercorrenza().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm")) + " (" + ANSI_YELLOW + "IN ORARIO" + ANSI_RESET + ").";
         } else {
