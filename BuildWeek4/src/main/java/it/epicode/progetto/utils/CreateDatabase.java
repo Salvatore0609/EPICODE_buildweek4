@@ -50,93 +50,255 @@ public class CreateDatabase {
         List<Utente> utentiNonAdmin = user.stream()
                 .filter(u -> !u.getUsername().equals("admin"))
                 .collect(Collectors.toList());
-        if (utentiNonAdmin.isEmpty()) {
-            utentiDao.insert(new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, false));
-            utentiDao.insert(new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, false));
-            System.out.println("Utenti normali creati.");
-        }
+
+        utentiDao.insert(new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user4", "Anna", "Neri", "password4", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user5", "Giovanni", "Gialli", "password5", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user6", "Sara", "Azzurri", "password6", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user7", "Marco", "Arancioni", "password7", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user8", "Elena", "Viola", "password8", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user9", "Paolo", "Blu", "password9", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user10", "Laura", "Rosa", "password10", Ruolo.USER, false));
+        System.out.println("Utenti normali creati.");
+
         em.getTransaction().commit();
 
+        //
 
-        // CREA UTENTI CON ABBONAMENTO (se non ci sono)
         em.getTransaction().begin();
-        if (utentiDao.findAll().isEmpty()) {
-            // CREA RIVENDITORE
+        // CREA RIVENDITORE
+        RivenditoriAutorizzati r = RivenditoriAutorizzati.builder()
+                .nome("Tabaccheria piazza Roma")
+                .build();
+        RivenditoriAutorizzati r2 = RivenditoriAutorizzati.builder()
+                .nome("Tabaccheria piazza Milano")
+                .build();
+        RivenditoriAutorizzati r3 = RivenditoriAutorizzati.builder()
+                .nome("Tabaccheria piazza Torino")
+                .build();
+        RivenditoriAutorizzati r4 = RivenditoriAutorizzati.builder()
+                .nome("Tabaccheria piazza Firenze")
+                .build();
+        RivenditoriAutorizzati r5 = RivenditoriAutorizzati.builder()
+                .nome("Tabaccheria piazza Bologna")
+                .build();
+        //
+        DistributoriAutomatici d = DistributoriAutomatici.builder()
+                .nome("Distributore stazione centrale")
+                .stato(StatoDistributori.ATTIVO)
+                .build();
+        DistributoriAutomatici d2 = DistributoriAutomatici.builder()
+                .nome("Distributore stazione nord")
+                .stato(StatoDistributori.FUORI_SERVIZIO)
+                .build();
+        DistributoriAutomatici d3 = DistributoriAutomatici.builder()
+                .nome("Distributore stazione sud")
+                .stato(StatoDistributori.ATTIVO)
+                .build();
+        DistributoriAutomatici d4 = DistributoriAutomatici.builder()
+                .nome("Distributore stazione est")
+                .stato(StatoDistributori.FUORI_SERVIZIO)
+                .build();
+        DistributoriAutomatici d5 = DistributoriAutomatici.builder()
+                .nome("Distributore stazione ovest")
+                .stato(StatoDistributori.FUORI_SERVIZIO)
+                .build();
+        rivenditoreDAO.insert(r);
+        rivenditoreDAO.insert(r2);
+        rivenditoreDAO.insert(r3);
+        rivenditoreDAO.insert(r4);
+        rivenditoreDAO.insert(r5);
+        rivenditoreDAO.insert(d);
+        rivenditoreDAO.insert(d2);
+        rivenditoreDAO.insert(d3);
+        rivenditoreDAO.insert(d4);
+        rivenditoreDAO.insert(d5);
+        //
+        // CREA UTENTI CON ABBONAMENTO (se non ci sono)
+        //utente senza abbonamento
+        Utente abbonato = new Utente("userAbbonato0", "Salvatore", "Desole", "password1", Ruolo.USER, false);
+        Utente abbonato1 = new Utente("userAbbonato1", "Giovanni", "Bianchi", "password2", Ruolo.USER, false);
+        Utente abbonato2 = new Utente("userAbbonato2", "Maria", "Verdi", "password3", Ruolo.USER, false);
+        Utente abbonato3 = new Utente("userAbbonato3", "Luigi", "Rossi", "password4", Ruolo.USER, false);
+        Utente abbonato4 = new Utente("userAbbonato4", "Anna", "Neri", "password5", Ruolo.USER, false);
+        Utente abbonato5 = new Utente("userAbbonato5", "Paolo", "Gialli", "password6", Ruolo.USER, false);
+        utentiDao.insert(abbonato);
+        utentiDao.insert(abbonato1);
+        utentiDao.insert(abbonato2);
+        utentiDao.insert(abbonato3);
+        utentiDao.insert(abbonato4);
+        utentiDao.insert(abbonato5);
+        //
+        LocalDate dataEmissione = LocalDate.now();
+        Tessera tessera = new Tessera(abbonato, dataEmissione);
+        Tessera tessera1 = new Tessera(abbonato1, dataEmissione);
+        Tessera tessera2 = new Tessera(abbonato2, dataEmissione);
+        Tessera tessera3 = new Tessera(abbonato3, dataEmissione);
+        Tessera tessera4 = new Tessera(abbonato4, dataEmissione);
+        Tessera tessera5 = new Tessera(abbonato5, dataEmissione);
+        tesseraDao.insert(tessera);
+        tesseraDao.insert(tessera1);
+        tesseraDao.insert(tessera2);
+        tesseraDao.insert(tessera3);
+        tesseraDao.insert(tessera4);
+        tesseraDao.insert(tessera5);
+        //
+        //l'abbonamento per l'utente
+        Abbonamento eb = Abbonamento.builder()
+                .dataDiEmissione(LocalDate.now())
+                .durataAbbonamento(DurataAbbonamento.SETTIMANALE)
+                .scadenzaAbbonamento(LocalDate.now().plusWeeks(1))
+                .tessera(tessera)
+                .rivenditore(r)
+                .build();
+        Abbonamento eb1 = Abbonamento.builder()
+                .dataDiEmissione(LocalDate.now())
+                .durataAbbonamento(DurataAbbonamento.SETTIMANALE)
+                .scadenzaAbbonamento(LocalDate.now().plusWeeks(1))
+                .tessera(tessera1)
+                .rivenditore(r2)
+                .build();
+        Abbonamento eb2 = Abbonamento.builder()
+                .dataDiEmissione(LocalDate.now())
+                .durataAbbonamento(DurataAbbonamento.MENSILE)
+                .scadenzaAbbonamento(LocalDate.now().plusMonths(1))
+                .tessera(tessera2)
+                .rivenditore(r3)
+                .build();
+        Abbonamento eb3 = Abbonamento.builder()
+                .dataDiEmissione(LocalDate.now())
+                .durataAbbonamento(DurataAbbonamento.SETTIMANALE)
+                .scadenzaAbbonamento(LocalDate.now().plusWeeks(1))
+                .tessera(tessera3)
+                .rivenditore(r4)
+                .build();
+        Abbonamento eb4 = Abbonamento.builder()
+                .dataDiEmissione(LocalDate.now())
+                .durataAbbonamento(DurataAbbonamento.MENSILE)
+                .scadenzaAbbonamento(LocalDate.now().plusMonths(1))
+                .tessera(tessera4)
+                .rivenditore(r5)
+                .build();
+        Abbonamento eb5 = Abbonamento.builder()
+                .dataDiEmissione(LocalDate.now())
+                .durataAbbonamento(DurataAbbonamento.MENSILE)
+                .scadenzaAbbonamento(LocalDate.now().plusMonths(1))
+                .tessera(tessera5)
+                .rivenditore(r)
+                .build();
+        elementoBiglietteriaDAO.insert(eb);
+        elementoBiglietteriaDAO.insert(eb1);
+        elementoBiglietteriaDAO.insert(eb2);
+        elementoBiglietteriaDAO.insert(eb3);
+        elementoBiglietteriaDAO.insert(eb4);
+        elementoBiglietteriaDAO.insert(eb5);
 
-            RivenditoriAutorizzati r = RivenditoriAutorizzati.builder()
-                    .nome("Tabaccheria piazza Roma")
-                    .build();
-            DistributoriAutomatici d = DistributoriAutomatici.builder()
-                    .nome("Distributore stazione centrale")
-                    .stato(StatoDistributori.ATTIVO)
-                    .build();
-            rivenditoreDAO.insert(r);
-            rivenditoreDAO.insert(d);
-            System.out.println("Rivenditore creato.");
-
-            //utente senza abbonamento
-            Utente abbonato = new Utente("user3", "Mario", "Rossi", "password1", Ruolo.USER, false);
-
-            utentiDao.insert(abbonato);
-
-            LocalDate dataEmissione = LocalDate.now();
-            Tessera tessera = new Tessera(abbonato, dataEmissione);
-            tesseraDao.insert(tessera);
-
-            //l'abbonamento per l'utente
-            LocalDate dataEmissioneAbbonamento = LocalDate.now();
-            LocalDate scadenza = LocalDate.now().plusMonths(1);
-            Abbonamento eb = Abbonamento.builder()
-                    .dataDiEmissione(dataEmissioneAbbonamento)
-                    .durataAbbonamento(DurataAbbonamento.MENSILE)
-                    .scadenzaAbbonamento(scadenza)
-                    .tessera(tessera)
-                    .rivenditore(r)
-                    .build();
-
-            elementoBiglietteriaDAO.insert(eb);
-
-            System.out.println("Utente con abbonamento mensile creato.");
-        }
+        System.out.println("Rivenditori creato.");
+        System.out.println("Utenti con abbonamento mensile creato.");
         em.getTransaction().commit();
-
+        //
         // CREA MEZZI DI TRASPORTO
-        if (mezzoDao.findAll().isEmpty()) {
-            Autobus autobus = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
-            Tram tram = new Tram(null, null, 43, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Autobus autobus = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Autobus autobus1 = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Autobus autobus2 = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Autobus autobus3 = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Autobus autobus4 = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Tram tram = new Tram(null, null, 43, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Tram tram1 = new Tram(null, null, 43, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Tram tram2 = new Tram(null, null, 43, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Tram tram3 = new Tram(null, null, 43, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        mezzoDao.insert(autobus);
+        mezzoDao.insert(autobus1);
+        mezzoDao.insert(autobus2);
+        mezzoDao.insert(autobus3);
+        mezzoDao.insert(autobus4);
+        mezzoDao.insert(tram);
+        mezzoDao.insert(tram1);
+        mezzoDao.insert(tram2);
+        mezzoDao.insert(tram3);
+        System.out.println("Mezzi di trasporto creati.");
 
-            mezzoDao.insert(autobus);
-            mezzoDao.insert(tram);
-            System.out.println("Mezzi di trasporto creati.");
-        }
 
         // CREA TRATTE
-        if (trattaDao.findAll().isEmpty()) {
-            // Crea le tratte
-            Tratta tratta1 = new Tratta(null, "Milano", "Roma", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-            Tratta tratta2 = new Tratta(null, "Sassari", "Cagliari", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
-
-            trattaDao.insert(tratta1);
-            trattaDao.insert(tratta2);
-            System.out.println("Tratte create.");
-
-            // Associa mezzi alle tratte
-            List<Mezzo> mezzi = mezzoDao.findAll();
-            if (mezzi.size() >= 2) {
-                List<Mezzo> mezziTratta1 = new ArrayList<>();
-                mezziTratta1.add(mezzi.get(0));
-                tratta1.setMezzi(mezziTratta1);
-
-                List<Mezzo> mezziTratta2 = new ArrayList<>();
-                mezziTratta2.add(mezzi.get(1));
-                tratta2.setMezzi(mezziTratta2);
-
-                trattaDao.update(tratta1);
-                trattaDao.update(tratta2);
-                System.out.println("Mezzi associati alle tratte.");
-            }
+        Tratta tratta1 = new Tratta(null, "Milano", "Roma", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
+        Tratta tratta2 = new Tratta(null, "Sassari", "Cagliari", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
+        Tratta tratta3 = new Tratta(null, "Roma", "Milano", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
+        Tratta tratta4 = new Tratta(null, "Cagliari", "Sassari", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
+        Tratta tratta5 = new Tratta(null, "Torino", "Milano", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
+        Tratta tratta6 = new Tratta(null, "Milano", "Torino", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
+        Tratta tratta7 = new Tratta(null, "Napoli", "Roma", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
+        Tratta tratta8 = new Tratta(null, "Roma", "Napoli", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
+        Tratta tratta9 = new Tratta(null, "Firenze", "Milano", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
+        Tratta tratta10 = new Tratta(null, "Milano", "Firenze", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
+        trattaDao.insert(tratta1);
+        trattaDao.insert(tratta2);
+        trattaDao.insert(tratta3);
+        trattaDao.insert(tratta4);
+        trattaDao.insert(tratta5);
+        trattaDao.insert(tratta6);
+        trattaDao.insert(tratta7);
+        trattaDao.insert(tratta8);
+        trattaDao.insert(tratta9);
+        trattaDao.insert(tratta10);
+        System.out.println("Tratte create.");
+        // Associa mezzi alle tratte
+        List<Mezzo> mezzi = mezzoDao.findAll();
+        if (mezzi.size() >= 10) {
+            //
+            List<Mezzo> mezziTratta1 = new ArrayList<>();
+            mezziTratta1.add(mezzi.get(0));
+            tratta1.setMezzi(mezziTratta1);
+            //
+            List<Mezzo> mezziTratta2 = new ArrayList<>();
+            mezziTratta2.add(mezzi.get(1));
+            tratta2.setMezzi(mezziTratta2);
+            //
+            List<Mezzo> mezziTratta3 = new ArrayList<>();
+            mezziTratta3.add(mezzi.get(2));
+            tratta3.setMezzi(mezziTratta3);
+            //
+            List<Mezzo> mezziTratta4 = new ArrayList<>();
+            mezziTratta4.add(mezzi.get(3));
+            tratta4.setMezzi(mezziTratta4);
+            //
+            List<Mezzo> mezziTratta5 = new ArrayList<>();
+            mezziTratta5.add(mezzi.get(4));
+            tratta5.setMezzi(mezziTratta5);
+            //
+            List<Mezzo> mezziTratta6 = new ArrayList<>();
+            mezziTratta6.add(mezzi.get(5));
+            tratta6.setMezzi(mezziTratta6);
+            //
+            List<Mezzo> mezziTratta7 = new ArrayList<>();
+            mezziTratta7.add(mezzi.get(6));
+            tratta7.setMezzi(mezziTratta7);
+            //
+            List<Mezzo> mezziTratta8 = new ArrayList<>();
+            mezziTratta8.add(mezzi.get(7));
+            tratta8.setMezzi(mezziTratta8);
+            //
+            List<Mezzo> mezziTratta9 = new ArrayList<>();
+            mezziTratta9.add(mezzi.get(8));
+            tratta9.setMezzi(mezziTratta9);
+            //
+            List<Mezzo> mezziTratta10 = new ArrayList<>();
+            mezziTratta10.add(mezzi.get(9));
+            tratta10.setMezzi(mezziTratta10);
+            //
+            trattaDao.update(tratta1);
+            trattaDao.update(tratta2);
+            trattaDao.update(tratta3);
+            trattaDao.update(tratta4);
+            trattaDao.update(tratta5);
+            trattaDao.update(tratta6);
+            trattaDao.update(tratta7);
+            trattaDao.update(tratta8);
+            trattaDao.update(tratta9);
+            trattaDao.update(tratta10);
+            System.out.println("Mezzi associati alle tratte.");
         }
-
 
         em.close();
         emf.close();
