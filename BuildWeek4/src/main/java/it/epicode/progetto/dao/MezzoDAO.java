@@ -141,6 +141,8 @@ public class MezzoDAO {
 					.getSingleResult();
 
 			System.out.println("Il mezzo " + mezzo.getId() + " ha vidimato " + numeroBiglietti + " biglietti.");
+		} else  {
+			System.out.println("Mezzo non trovato con id " + idMezzo + ".");
 		}
 
 	}
