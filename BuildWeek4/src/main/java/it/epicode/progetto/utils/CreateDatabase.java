@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+
 
 public class CreateDatabase {
     public static void main(String[] args) {
@@ -45,16 +45,16 @@ public class CreateDatabase {
             return;
         }
 
-        utentiDao.insert(new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user4", "Anna", "Neri", "password4", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user5", "Giovanni", "Gialli", "password5", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user6", "Sara", "Azzurri", "password6", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user7", "Marco", "Arancioni", "password7", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, true));
+        utentiDao.insert(new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, true));
+        utentiDao.insert(new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, true));
+        utentiDao.insert(new Utente("user4", "Anna", "Neri", "password4", Ruolo.USER, true));
+        utentiDao.insert(new Utente("user5", "Giovanni", "Gialli", "password5", Ruolo.USER, true));
+        utentiDao.insert(new Utente("user6", "Sara", "Azzurri", "password6", Ruolo.USER, true));
+        utentiDao.insert(new Utente("user7", "Marco", "Arancioni", "password7", Ruolo.USER, true));
         utentiDao.insert(new Utente("user8", "Elena", "Viola", "password8", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user9", "Paolo", "Blu", "password9", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user10", "Laura", "Rosa", "password10", Ruolo.USER, false));
+        utentiDao.insert(new Utente("user9", "Paolo", "Blu", "password9", Ruolo.USER, true));
+        utentiDao.insert(new Utente("user10", "Laura", "Rosa", "password10", Ruolo.USER, true));
         System.out.println("Utenti normali creati.");
 
         em.getTransaction().commit();
@@ -112,12 +112,12 @@ public class CreateDatabase {
         //
         // CREA UTENTI CON ABBONAMENTO (se non ci sono)
         //utente senza abbonamento
-        Utente abbonato = new Utente("userAbbonato0", "Salvatore", "Desole", "password1", Ruolo.USER, false);
-        Utente abbonato1 = new Utente("userAbbonato1", "Giovanni", "Bianchi", "password2", Ruolo.USER, false);
-        Utente abbonato2 = new Utente("userAbbonato2", "Maria", "Verdi", "password3", Ruolo.USER, false);
-        Utente abbonato3 = new Utente("userAbbonato3", "Luigi", "Rossi", "password4", Ruolo.USER, false);
+        Utente abbonato = new Utente("userAbbonato0", "Salvatore", "Desole", "password1", Ruolo.USER, true);
+        Utente abbonato1 = new Utente("userAbbonato1", "Giovanni", "Bianchi", "password2", Ruolo.USER, true);
+        Utente abbonato2 = new Utente("userAbbonato2", "Maria", "Verdi", "password3", Ruolo.USER, true);
+        Utente abbonato3 = new Utente("userAbbonato3", "Luigi", "Rossi", "password4", Ruolo.USER, true);
         Utente abbonato4 = new Utente("userAbbonato4", "Anna", "Neri", "password5", Ruolo.USER, false);
-        Utente abbonato5 = new Utente("userAbbonato5", "Paolo", "Gialli", "password6", Ruolo.USER, false);
+        Utente abbonato5 = new Utente("userAbbonato5", "Paolo", "Gialli", "password6", Ruolo.USER, true);
         utentiDao.insert(abbonato);
         utentiDao.insert(abbonato1);
         utentiDao.insert(abbonato2);
@@ -194,15 +194,15 @@ public class CreateDatabase {
         em.getTransaction().commit();
         //
         // CREA MEZZI DI TRASPORTO
-        Autobus autobus = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
-        Autobus autobus1 = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
-        Autobus autobus2 = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
-        Autobus autobus3 = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
-        Autobus autobus4 = new Autobus(null, null, 10, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
-        Tram tram = new Tram(null, null, 43, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
-        Tram tram1 = new Tram(null, null, 43, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
-        Tram tram2 = new Tram(null, null, 43, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
-        Tram tram3 = new Tram(null, null, 43, 1, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 03));
+        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
+        Autobus autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
+        Autobus autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
+        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
+        Autobus autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 13));
+        Tram tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
+        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
+        Tram tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
+        Tram tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 13));
         mezzoDao.insert(autobus);
         mezzoDao.insert(autobus1);
         mezzoDao.insert(autobus2);
@@ -217,14 +217,14 @@ public class CreateDatabase {
 
         // CREA TRATTE
         Tratta tratta1 = new Tratta(null, "Milano", "Roma", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-        Tratta tratta2 = new Tratta(null, "Sassari", "Cagliari", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
-        Tratta tratta3 = new Tratta(null, "Roma", "Milano", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
-        Tratta tratta4 = new Tratta(null, "Cagliari", "Sassari", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-        Tratta tratta5 = new Tratta(null, "Torino", "Milano", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-        Tratta tratta6 = new Tratta(null, "Milano", "Torino", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
-        Tratta tratta7 = new Tratta(null, "Napoli", "Roma", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
+        Tratta tratta2 = new Tratta(null, "Sassari", "Cagliari", LocalDateTime.now().plusMinutes(400), LocalDateTime.now().plusMinutes(300), 100, null);
+        Tratta tratta3 = new Tratta(null, "Roma", "Milano", LocalDateTime.now().plusMinutes(300), LocalDateTime.now().plusMinutes(280), 20, null);
+        Tratta tratta4 = new Tratta(null, "Cagliari", "Sassari", LocalDateTime.now().plusMinutes(220), LocalDateTime.now().plusMinutes(280), 60, null);
+        Tratta tratta5 = new Tratta(null, "Torino", "Milano", LocalDateTime.now().plusMinutes(420), LocalDateTime.now().plusMinutes(380), 40, null);
+        Tratta tratta6 = new Tratta(null, "Milano", "Torino", LocalDateTime.now().plusMinutes(120), LocalDateTime.now().plusMinutes(200), 80, null);
+        Tratta tratta7 = new Tratta(null, "Napoli", "Roma", LocalDateTime.now().plusMinutes(550), LocalDateTime.now().plusMinutes(480), 70, null);
         Tratta tratta8 = new Tratta(null, "Roma", "Napoli", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
-        Tratta tratta9 = new Tratta(null, "Firenze", "Milano", LocalDateTime.now().plusMinutes(200), LocalDateTime.now().plusMinutes(250), 50, null);
+        Tratta tratta9 = new Tratta(null, "Firenze", "Milano", LocalDateTime.now().plusMinutes(180), LocalDateTime.now().plusMinutes(250), 70, null);
         Tratta tratta10 = new Tratta(null, "Milano", "Firenze", LocalDateTime.now().plusMinutes(250), LocalDateTime.now().plusMinutes(200), 50, null);
         trattaDao.insert(tratta1);
         trattaDao.insert(tratta2);
