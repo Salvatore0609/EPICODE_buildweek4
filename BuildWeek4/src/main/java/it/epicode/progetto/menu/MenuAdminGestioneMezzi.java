@@ -96,16 +96,22 @@ public class MenuAdminGestioneMezzi {
 					System.out.println("*************************");
 					System.out.println();
 					List<Mezzo> tuttiIMezziiRiparare = mezzoDAO.findAll();
-					// lista numerata di tutti i mezzi
-					for (int i = 0; i < tuttiIMezziiRiparare.size(); i++) {
-						System.out.println(i + 1 + ". " + tuttiIMezziiRiparare.get(i));
+					int index = 1;
+					for (Mezzo mezzoScelto : tuttiIMezziiRiparare) {
+
+						System.out.println(index + ". " + mezzoScelto);
+						index++;
 					}
-					Long idMezzoModifica = scanner.nextLong();
-					Mezzo mezzoRipara = mezzoDAO.findById(idMezzoModifica);
+					int scelta = scanner.nextInt();
+					scanner.nextLine();
+					Mezzo mezzoScelto = tuttiIMezziiRiparare.get(scelta -1);
+					Mezzo mezzoRipara = mezzoDAO.findById(mezzoScelto.getId());
 					try {
+						mezzoRipara.setInizioAttività(LocalDateTime.now());
+						mezzoRipara.setFineAttività(LocalDateTime.now().plusDays(7));
 						mezzoRipara.setStatoEnum(Stato.IN_MANUTENZIONE);
 						mezzoDAO.update(mezzoRipara);
-						System.out.println("Hai riparato correttamente il mezzo! Buon lavoro!");
+						System.out.println("Hai mandato correttamente il mezzo in riparazione!");
 					} catch (Exception e) {
 						System.out.println("Hai scelto di riparare un mezzo che non esiste.");
 					}
@@ -148,8 +154,7 @@ public class MenuAdminGestioneMezzi {
 							if (mezzoDaModificare.getStatoEnum() == Stato.IN_MANUTENZIONE
 									|| mezzoDaModificare.getStatoEnum() == Stato.FERMO) {
 								System.out.println("Hai scelto di mettere il mezzo in servizio.");
-								System.out.println("Devi scegliere una tratta da assegnare al mezzo.");
-								if (trattaDAO.findAll().isEmpty()) {
+								 if (trattaDAO.findAll().isEmpty()) {
 									System.out.println("Non ci sono tratte disponibili, devi crearne una.");
 									System.out.println("Inserisci la zona di partenza della tratta:");
 									String partenza = scanner.next();
@@ -169,7 +174,26 @@ public class MenuAdminGestioneMezzi {
 									mezzoDAO.update(mezzoDaModificare);
 									System.out.println("Hai messo correttamente in servizio il mezzo!");
 									System.out.println(mezzoDaModificare);
-								}
+								} else {
+									 System.out.println("Devi scegliere una tratta da assegnare al mezzo.");
+									 List<Tratta> tutteLeTratte = trattaDAO.findAll();
+									 int index2 = 1;
+									 for (Tratta destinazione : tutteLeTratte) {
+
+										 System.out.println(index2 + ". " + destinazione);
+										 index2++;
+									 }
+									 int scelta2 = scanner.nextInt();
+									 scanner.nextLine();
+									 Tratta trattaScelta = tutteLeTratte.get(scelta2 -1);
+									 mezzoDaModificare.setTratta(trattaScelta);
+									 mezzoDaModificare.setStatoEnum(Stato.IN_SERVIZIO);
+									 mezzoDAO.update(mezzoDaModificare);
+									 System.out.println("Hai mandato correttamente il mezzo in servizio!");
+								 }
+
+
+
 
 							} else if (mezzoDaModificare.getStatoEnum() == Stato.IN_SERVIZIO) {
 								System.out.println("Il mezzo è già in servizio! Vuoi cambiare la sua tratta?");
@@ -179,10 +203,16 @@ public class MenuAdminGestioneMezzi {
 								if (sceltaCambioTratta == 1) {
 									System.out.println("Quale tratta vuoi assegnare al mezzo?");
 									List<Tratta> tutteLeTratte = trattaDAO.findAll();
-									tutteLeTratte.forEach(System.out::println);
-									Long idTratta = scanner.nextLong();
-									Tratta tratta = trattaDAO.findById(idTratta);
-									mezzoDaModificare.setTratta(tratta);
+									int index3 = 1;
+									for (Tratta destinazione : tutteLeTratte) {
+
+										System.out.println(index3 + ". " + destinazione);
+										index3++;
+									}
+									int scelta3 = scanner.nextInt();
+									scanner.nextLine();
+									Tratta trattaScelta = tutteLeTratte.get(scelta3 -1);
+									mezzoDaModificare.setTratta(trattaScelta);
 									mezzoDAO.update(mezzoDaModificare);
 									System.out.println("Hai cambiato correttamente la tratta del mezzo!");
 								} else if (sceltaCambioTratta == 2) {
@@ -232,8 +262,5 @@ public class MenuAdminGestioneMezzi {
 				default :
 					System.out.println("Scelta non valida.");
 			}
-		} while (sceltaPresa != 0);
-		em.close();
-		emf.close();
-	}
-}
+		}while(sceltaPresa!=0);em.close();emf.close();
+}}

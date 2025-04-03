@@ -2,7 +2,8 @@ package it.epicode.progetto.entities;
 import it.epicode.progetto.enums.Stato;
 import jakarta.persistence.Entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Autobus extends Mezzo {
@@ -11,7 +12,7 @@ public class Autobus extends Mezzo {
 	}
 
 	public Autobus(Long id, Tratta tratta, int numeroBigliettiVidimati, int volteTrattaPercorsa, int capienza,
-			Stato stato, LocalDate inizioAttività, LocalDate fineAttività) {
+			Stato stato, LocalDateTime inizioAttività, LocalDateTime fineAttività) {
 		super(id, tratta, numeroBigliettiVidimati, volteTrattaPercorsa, capienza, stato, inizioAttività, fineAttività);
 	}
 
@@ -23,8 +24,8 @@ public class Autobus extends Mezzo {
 			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString()
 					+ " in attesa di ricevere una tratta da percorrere.";
 		} else if (getStatoEnum() == Stato.IN_MANUTENZIONE) {
-			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ") + " dal " + getInizioAttività()
-					+ " al " + getFineAttività();
+			return "Autobus linea " + getId() + " attualmente " + getStatoEnum().toString().replace("_", " ") + " dal " + getInizioAttività().format(DateTimeFormatter.ofPattern("dd/MM/yy"))
+					+ " al " + getFineAttività().format(DateTimeFormatter.ofPattern("dd/MM/yy"));
 		} else {
 			return "Errore con l'autobus linea " + getId();
 		}
