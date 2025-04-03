@@ -101,6 +101,20 @@ public class ElementoBiglietteriaDAO {
     }
 
 
+    //controllo se il biglietto è già stato vidimato
+    public boolean isVidimato(Long idBiglietto) {
+        try {
+            Biglietto result = em.createQuery(
+                            "SELECT b FROM Biglietto b WHERE b.id = :idBiglietto", Biglietto.class)
+                    .setParameter("idBiglietto", idBiglietto)
+                    .getSingleResult();
+
+            return result.isVidimato();
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
+
     //faccio update di vidimato true su biglietto in base a id biglietto
     public void updateVidimato(Long idBiglietto) {
         try {
