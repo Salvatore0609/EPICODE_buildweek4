@@ -261,41 +261,7 @@ public class CreateDatabase {
 
         System.out.println("Tratte aggiunte ai mezzi");
 
-        Biglietto b = Biglietto.builder()
-                .dataDiEmissione(LocalDate.now())
-                .rivenditore(r)
-                .utente(abbonato)
-                .dataVidimato(LocalDate.of(2025, 3, 2))
-                .mezzo(autobus)
-                .build();
-        Biglietto b2 = Biglietto.builder()
-                .dataDiEmissione(LocalDate.now())
-                .rivenditore(r)
-                .utente(abbonato)
-                .dataVidimato(LocalDate.of(2025, 3, 3))
-                .mezzo(autobus)
-                .build();
-        Biglietto b3 = Biglietto.builder()
-                .dataDiEmissione(LocalDate.now())
-                .rivenditore(r)
-                .utente(abbonato)
-                .dataVidimato(LocalDate.of(2025, 3, 10))
-                .mezzo(autobus1)
-                .build();
-        Biglietto b4 = Biglietto.builder()
-                .dataDiEmissione(LocalDate.now())
-                .rivenditore(r)
-                .utente(abbonato)
-                .dataVidimato(LocalDate.of(2025, 3, 11))
-                .mezzo(autobus1)
-                .build();
-        em.getTransaction().begin();
-        elementoBiglietteriaDAO.insert(b);
-        elementoBiglietteriaDAO.insert(b2);
-        elementoBiglietteriaDAO.insert(b3);
-        elementoBiglietteriaDAO.insert(b4);
-        System.out.println("Biglietti creati.");
-        em.getTransaction().commit();
+
 
         em.close();
         emf.close();

@@ -118,7 +118,7 @@ public class MezzoDAO {
 		}
 	}
 
-	public void findAllBigliettiVidimati(LocalDate dataInizio, LocalDate dataFine) { // STAMPA TUTTI I BIGLIETTI VIDIMATI NEL CORSO DEL TEMPO
+	public void findAllBigliettiVidimati(LocalDate dataInizio, LocalDate dataFine) { // STAMPA TUTTI I BIGLIETTI VIDIMATI IN UN PERIODO DI TEMPO
 		List<Mezzo> mezzi = findAll();
 		int bigliettiVidimati = 0;
 		for (Mezzo mezzo : mezzi) {
@@ -132,6 +132,7 @@ public class MezzoDAO {
 		System.out.println("Biglietti vidimati tra " + dataInizio + " e " + dataFine + " : " + bigliettiVidimati);
 	}
 
+	// 	Stampa tutti i biglietti vidimati per mezzo
 	public void ottieniBigliettiVidimatiPerUnMezzo(long idMezzo) {
 		Mezzo mezzo = findById(idMezzo);
 		if (mezzo != null) {
