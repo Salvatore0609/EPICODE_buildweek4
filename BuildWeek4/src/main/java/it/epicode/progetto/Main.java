@@ -74,6 +74,7 @@ public class Main {
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
+                ClearTerminal.clearConsole();
             } catch (Exception e) {
                 System.err.println("Errore: " + e.getMessage());
                 e.printStackTrace();
