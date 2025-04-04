@@ -3,6 +3,7 @@ import it.epicode.progetto.enums.Stato;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "mezzi")
@@ -14,7 +15,6 @@ public abstract class Mezzo {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "mezzo_id")
 	private Tratta tratta;
 
 	private int numeroBigliettiVidimati;
@@ -28,10 +28,10 @@ public abstract class Mezzo {
 	private Stato stato;
 
 	@Column(nullable = true)
-	private LocalDate inizioAttività;
+	private LocalDateTime inizioAttività;
 
 	@Column(nullable = true)
-	private LocalDate fineAttività;
+	private LocalDateTime fineAttività;
 
 	public Stato getStatoEnum() {
 		return Stato.valueOf(String.valueOf(stato));
@@ -45,7 +45,7 @@ public abstract class Mezzo {
 	}
 
 	public Mezzo(Long id, Tratta tratta, int numeroBigliettiVidimati, int volteTrattaPercorsa, int capienza,
-			Stato stato, LocalDate inizioAttività, LocalDate fineAttività) {
+			Stato stato, LocalDateTime inizioAttività, LocalDateTime fineAttività) {
 		this.id = id;
 		this.tratta = tratta;
 		this.numeroBigliettiVidimati = numeroBigliettiVidimati;
@@ -104,19 +104,19 @@ public abstract class Mezzo {
 		this.stato = stato;
 	}
 
-	public LocalDate getInizioAttività() {
+	public LocalDateTime getInizioAttività() {
 		return inizioAttività;
 	}
 
-	public void setInizioAttività(LocalDate inizioAttività) {
+	public void setInizioAttività(LocalDateTime inizioAttività) {
 		this.inizioAttività = inizioAttività;
 	}
 
-	public LocalDate getFineAttività() {
+	public LocalDateTime getFineAttività() {
 		return fineAttività;
 	}
 
-	public void setFineAttività(LocalDate fineAttività) {
+	public void setFineAttività(LocalDateTime fineAttività) {
 		this.fineAttività = fineAttività;
 	}
 
