@@ -1,5 +1,4 @@
 package it.epicode.progetto;
-
 import it.epicode.progetto.dao.UtentiDao;
 import it.epicode.progetto.entities.GestioneElementoBiglietteria;
 import it.epicode.progetto.entities.Utente;
@@ -18,6 +17,8 @@ import static it.epicode.progetto.utils.Input.scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		final String reset = "\u001B[0m";
+		final String azzurro = "\u001B[36m";
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
 		EntityManager em = emf.createEntityManager();
 
@@ -67,7 +68,7 @@ public class Main {
 					}
 					case 0 -> {
 						ClearTerminal.clearConsole();
-						System.out.println("Arrivederci!");
+						System.out.println("Arrivederci da " + azzurro + "ATEB" + reset + "!");
 						System.exit(0);
 					}
 					default -> System.err.println("Scelta non valida. Riprova.");

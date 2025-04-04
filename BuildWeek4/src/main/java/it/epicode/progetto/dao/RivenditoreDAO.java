@@ -78,7 +78,7 @@ public class RivenditoreDAO {
 	}
 
 	public void aggiornaBigliettiAbbonamentiEmessi() {
-		em.getTransaction().begin();
+
 		List<Rivenditore> rivenditori = em.createQuery("select r from Rivenditore r", Rivenditore.class)
 				.getResultList();
 
@@ -107,7 +107,7 @@ public class RivenditoreDAO {
 						.setParameter("idRivenditore", rivenditore.getIdRivenditore()).executeUpdate();
 			}
 		}
-		em.getTransaction().commit();
+
 	}
 
 	public void ottieniBigliettiAbbonamentiEmessi(long idRivenditore, LocalDate dataInizio, LocalDate dataFine) {
