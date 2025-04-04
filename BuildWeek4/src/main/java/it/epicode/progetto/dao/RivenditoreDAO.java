@@ -70,7 +70,15 @@ public class RivenditoreDAO {
 				Rivenditore.class).setParameter("attivo", StatoDistributori.ATTIVO).getResultList();
 	}
 
+	public List<Rivenditore> findDistributoriFuoriServizio() {
+		return em.createQuery(
+				"select r from Rivenditore r where type(r) = DistributoriAutomatici and r.stato = :fuoriServizio", Rivenditore.class)
+				.setParameter("fuoriServizio", StatoDistributori.FUORI_SERVIZIO)
+				.getResultList();
+	}
+
 	public void aggiornaBigliettiAbbonamentiEmessi() {
+		em.getTransaction().begin();
 		List<Rivenditore> rivenditori = em.createQuery("select r from Rivenditore r", Rivenditore.class)
 				.getResultList();
 
@@ -99,21 +107,22 @@ public class RivenditoreDAO {
 						.setParameter("idRivenditore", rivenditore.getIdRivenditore()).executeUpdate();
 			}
 		}
+		em.getTransaction().commit();
 	}
 
-	public void ottieniBigliettiAbbonamentiEmessi(String nomeRivenditore, LocalDate dataInizio, LocalDate dataFine) {
+	public void ottieniBigliettiAbbonamentiEmessi(long idRivenditore, LocalDate dataInizio, LocalDate dataFine) {
 
-		Rivenditore rivenditore = em.createQuery("select r from Rivenditore r where r.nome = :nome", Rivenditore.class)
-				.setParameter("nome", nomeRivenditore).getSingleResult();
+		Rivenditore rivenditore = em.createQuery("select r from Rivenditore r where r.idRivenditore = :idRivenditore", Rivenditore.class)
+				.setParameter("idRivenditore", idRivenditore).getSingleResult();
 
 		long numeroBiglietti = em.createQuery(
-				"select count(b) from Biglietto b where b.rivenditore.nome = :nomeRivenditore and b.dataDiEmissione between :dataInizio and :dataFine",
-				Long.class).setParameter("nomeRivenditore", nomeRivenditore).setParameter("dataInizio", dataInizio)
+				"select count(b) from Biglietto b where b.rivenditore.idRivenditore = :idRivenditore and b.dataDiEmissione between :dataInizio and :dataFine",
+				Long.class).setParameter("idRivenditore", idRivenditore).setParameter("dataInizio", dataInizio)
 				.setParameter("dataFine", dataFine).getSingleResult();
 
 		long numeroAbbonamenti = em.createQuery(
-				"select count(b) from Abbonamento b where b.rivenditore.nome = :nomeRivenditore and b.dataDiEmissione between :dataInizio and :dataFine",
-				Long.class).setParameter("nomeRivenditore", nomeRivenditore).setParameter("dataInizio", dataInizio)
+				"select count(b) from Abbonamento b where b.rivenditore.idRivenditore = :idRivenditore and b.dataDiEmissione between :dataInizio and :dataFine",
+				Long.class).setParameter("idRivenditore", idRivenditore).setParameter("dataInizio", dataInizio)
 				.setParameter("dataFine", dataFine).getSingleResult();
 
 		if (rivenditore instanceof RivenditoriAutorizzati) {
