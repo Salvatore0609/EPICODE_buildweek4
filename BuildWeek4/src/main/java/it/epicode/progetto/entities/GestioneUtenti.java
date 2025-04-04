@@ -3,10 +3,12 @@ package it.epicode.progetto.entities;
 import it.epicode.progetto.dao.UtentiDao;
 import it.epicode.progetto.enums.Ruolo;
 import it.epicode.progetto.dao.TessereDao;
+import it.epicode.progetto.utils.ClearTerminal;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.Scanner;
 import static it.epicode.progetto.utils.Input.scanner;
@@ -339,6 +341,35 @@ public class GestioneUtenti {
 			uDao.findAllInattivi();
 		} catch (Exception e) {
 			throw new RuntimeException("Errore nella visualizzazione degli utenti", e);
+		} finally {
+			if (em != null)
+				em.close();
+			if (emf != null)
+				emf.close();
+		}
+	}
+
+	public static <Int> void controllaValiditaAbbonamento() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
+		EntityManager em = emf.createEntityManager();
+		UtentiDao uDao = new UtentiDao(em);
+		TessereDao tDao = new TessereDao(em);
+
+		System.out.println("Inserisci il numero di tessera");
+		Long numeroTessera = scanner.nextLong();
+		try {
+			String abbonamento = tDao.findAbbonamentoByTessera(numeroTessera);
+			System.out.println(abbonamento);
+			try {
+				System.out.println();
+				System.out.print("Premi invio per continuare...");
+				System.in.read();
+				ClearTerminal.clearConsole();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			throw new RuntimeException("Errore nella verifica dell'abbonamento", e);
 		} finally {
 			if (em != null)
 				em.close();

@@ -33,6 +33,7 @@ public class MenuAdminVisualizzaTutto {
 			System.out.println("2. Visualizza tutte le tratte");
 			System.out.println("3. Visualizza tutti i mezzi con dei posti liberi");
 			System.out.println("4. Visualizza tutti i biglietti vidimati nel corso del tempo");
+			System.out.println("5. Visualizza tempo medio di percorrenza di una tratta");
 			System.out.println("0. Esci");
 			System.out.println();
 			System.out.print("Scelta: ");

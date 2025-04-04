@@ -19,6 +19,7 @@ public class MenuGestioneUtenti {
 			System.out.println("4. Crea una tessera");
 			System.out.println("5. Visualizza tutti gli utenti attivi");
 			System.out.println("6. Visualizza tutti gli utenti inattivi");
+			System.out.println("7. Controlla validità abbonamento");
 			System.out.println("0. Esci");
 			System.out.println();
 			System.out.print("Scelta: ");
@@ -72,6 +73,22 @@ public class MenuGestioneUtenti {
 				GestioneUtenti.visualizzaUtentiInattivi();
 				try {
 					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				ClearTerminal.clearConsole();
+			} else if (scelta == 7) {
+				GestioneUtenti.controllaValiditaAbbonamento();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				ClearTerminal.clearConsole();
+			} else {
+				System.err.println("Scelta non valida. Riprova.");
+				try {
+					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
