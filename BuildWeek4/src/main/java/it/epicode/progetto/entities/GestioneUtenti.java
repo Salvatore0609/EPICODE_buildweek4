@@ -315,4 +315,34 @@ public class GestioneUtenti {
 				emf.close();
 		}
 	}
+	public static void visualizzaUtentiAttivi() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
+		EntityManager em = emf.createEntityManager();
+		UtentiDao uDao = new UtentiDao(em);
+		try {
+			uDao.findAllAttivi();
+		} catch (Exception e) {
+			throw new RuntimeException("Errore nella visualizzazione degli utenti", e);
+		} finally {
+			if (em != null)
+				em.close();
+			if (emf != null)
+				emf.close();
+		}
+	}
+	public static void visualizzaUtentiInattivi() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("epicode");
+		EntityManager em = emf.createEntityManager();
+		UtentiDao uDao = new UtentiDao(em);
+		try {
+			uDao.findAllInattivi();
+		} catch (Exception e) {
+			throw new RuntimeException("Errore nella visualizzazione degli utenti", e);
+		} finally {
+			if (em != null)
+				em.close();
+			if (emf != null)
+				emf.close();
+		}
+	}
 }

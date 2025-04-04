@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "mezzi")
@@ -16,7 +15,6 @@ public abstract class Mezzo {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "mezzo_id")
 	private Tratta tratta;
 
 	private int numeroBigliettiVidimati;
@@ -34,9 +32,6 @@ public abstract class Mezzo {
 
 	@Column(nullable = true)
 	private LocalDateTime fineAttività;
-
-	@OneToMany(mappedBy = "mezzo")
-	private List<Biglietto> biglietti;
 
 	public Stato getStatoEnum() {
 		return Stato.valueOf(String.valueOf(stato));

@@ -48,4 +48,12 @@ public class Utente {
 		this.ruolo = ruolo;
 		this.attivo = attivo;
 	}
+	@Override
+	public String toString() {
+		return  "👨‍💼 Id Utente: " + idUtente +
+				", username='" + username + '\'' +
+				", nome='" + nome + '\'' +
+				", cognome='" + cognome + '\'' +
+				", ruolo=" + ruolo;
+	}
 }

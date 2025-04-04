@@ -5,6 +5,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.AllArgsConstructor;
 
+import static it.epicode.progetto.utils.Input.scanner;
+
 @AllArgsConstructor
 public class UtentiDao {
 	private EntityManager em;
@@ -53,5 +55,20 @@ public class UtentiDao {
 			return null;
 		}
 	}
-
+	//metodo per visualizzare tutti gli utenti attivi
+	public Utente findAllAttivi() {
+		em.createQuery("SELECT u FROM Utente u WHERE u.attivo = true", Utente.class).getResultList().forEach(u -> System.out.println(u));
+		System.out.println();
+		System.out.println("Premi INVIO per tornare al menu di gestione utenti");
+		scanner.nextLine();
+		return null;
+	}
+	//metodo per visualizzare tutti gli utenti inattivi
+	public Utente findAllInattivi() {
+		em.createQuery("SELECT u FROM Utente u WHERE u.attivo = false", Utente.class).getResultList().forEach(u -> System.out.println(u));
+		System.out.println();
+		System.out.println("Premi INVIO per tornare al menu di gestione utenti");
+		scanner.nextLine();
+		return null;
+	}
 }
