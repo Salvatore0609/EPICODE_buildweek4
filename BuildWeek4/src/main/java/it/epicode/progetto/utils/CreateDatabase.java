@@ -261,6 +261,20 @@ public class CreateDatabase {
         tram1.setTratta(tratta7);
         tram2.setTratta(tratta8);
         tram3.setTratta(tratta9);
+        tram4.setTratta(tratta10);
+
+
+        autobus.setStatoEnum(Stato.IN_SERVIZIO);
+        autobus1.setStatoEnum(Stato.IN_SERVIZIO);
+        autobus2.setStatoEnum(Stato.IN_SERVIZIO);
+        autobus3.setStatoEnum(Stato.IN_SERVIZIO);
+        autobus4.setStatoEnum(Stato.IN_SERVIZIO);
+        tram.setStatoEnum(Stato.IN_SERVIZIO);
+        tram1.setStatoEnum(Stato.IN_SERVIZIO);
+        tram2.setStatoEnum(Stato.IN_SERVIZIO);
+        tram3.setStatoEnum(Stato.IN_SERVIZIO);
+        tram4.setStatoEnum(Stato.IN_SERVIZIO);
+
 
         mezzoDao.update(autobus);
         mezzoDao.update(autobus1);
@@ -361,6 +375,17 @@ public class CreateDatabase {
         em.getTransaction().commit();
         rivenditoreDAO.aggiornaBigliettiAbbonamentiEmessi();
         System.out.println("Biglietti creati.");
+
+        autobus.setStatoEnum(Stato.IN_SERVIZIO);
+        autobus1.setStatoEnum(Stato.IN_SERVIZIO);
+        autobus2.setStatoEnum(Stato.IN_SERVIZIO);
+        autobus3.setStatoEnum(Stato.IN_SERVIZIO);
+        autobus4.setStatoEnum(Stato.IN_SERVIZIO);
+        tram.setStatoEnum(Stato.IN_SERVIZIO);
+        tram1.setStatoEnum(Stato.IN_SERVIZIO);
+        tram2.setStatoEnum(Stato.IN_SERVIZIO);
+        tram3.setStatoEnum(Stato.IN_SERVIZIO);
+        tram4.setStatoEnum(Stato.IN_SERVIZIO);
 
         em.close();
         emf.close();

@@ -74,6 +74,7 @@ public abstract class Mezzo {
 
 	public void setTratta(Tratta tratta) {
 		this.tratta = tratta;
+
 	}
 
 	public int getNumeroBigliettiVidimati() {
