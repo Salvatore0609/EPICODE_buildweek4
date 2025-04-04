@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static it.epicode.progetto.utils.Input.scanner;
@@ -154,6 +155,10 @@ public class MenuAdminGestioneTratte {
 					System.out.println("Quale tratta vuoi eliminare?");
 					try {
 						List<Tratta> tutteLeTratte = trattaDAO.findAll();
+						if (tutteLeTratte == null || tutteLeTratte.isEmpty()) {
+							System.out.println("Non ci sono tratte disponibili per l'eliminazione.");
+							break;
+						}
 						int index = 1;
 						for (Tratta trattaScelta : tutteLeTratte) {
 
@@ -163,7 +168,8 @@ public class MenuAdminGestioneTratte {
 						int scelta = scanner.nextInt();
 						scanner.nextLine();
 						Tratta trattaScelta = tutteLeTratte.get(scelta - 1);
-						if (!trattaScelta.getMezzi().isEmpty()) {
+
+						if (trattaScelta.getMezzi() != null && !trattaScelta.getMezzi().isEmpty()) {
 							System.out.println(
 									"Ci sono ancora dei mezzi che stanno percorrendo questa tratta. Vuoi farli prima rientrare?");
 							System.out

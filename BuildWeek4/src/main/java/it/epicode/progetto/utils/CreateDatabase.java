@@ -45,16 +45,26 @@ public class CreateDatabase {
             return;
         }
 
-        utentiDao.insert(new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user4", "Anna", "Neri", "password4", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user5", "Giovanni", "Gialli", "password5", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user6", "Sara", "Azzurri", "password6", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user7", "Marco", "Arancioni", "password7", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user8", "Elena", "Viola", "password8", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user9", "Paolo", "Blu", "password9", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user10", "Laura", "Rosa", "password10", Ruolo.USER, true));
+        Utente utente1 = new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, true);
+        utentiDao.insert(utente1);
+        Utente utente2 = new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, true);
+        utentiDao.insert(utente2);
+        Utente utente3 = new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, false);
+        utentiDao.insert(utente3);
+        Utente utente4 = new Utente("user4", "Anna", "Neri", "password4", Ruolo.USER, true);
+        utentiDao.insert(utente4);
+        Utente utente5 = new Utente("user5", "Giovanni", "Gialli", "password5", Ruolo.USER, true);
+        utentiDao.insert(utente5);
+        Utente utente6 = new Utente("user6", "Sara", "Azzurri", "password6", Ruolo.USER, true);
+        utentiDao.insert(utente6);
+        Utente utente7 = new Utente("user7", "Marco", "Arancioni", "password7", Ruolo.USER, true);
+        utentiDao.insert(utente7);
+        Utente utente8 =  new Utente("user8", "Elena", "Viola", "password8", Ruolo.USER, false);
+        utentiDao.insert(utente8);
+        Utente utente9 = new Utente("user9", "Paolo", "Blu", "password9", Ruolo.USER, true);
+        utentiDao.insert(utente9);
+        Utente utente10 = new Utente("user10", "Laura", "Rosa", "password10", Ruolo.USER, true);
+        utentiDao.insert(utente10);
         System.out.println("Utenti normali creati.");
 
         em.getTransaction().commit();
@@ -194,15 +204,15 @@ public class CreateDatabase {
         em.getTransaction().commit();
         //
         // CREA MEZZI DI TRASPORTO
-        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
-        Autobus autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
-        Autobus autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
-        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
-        Autobus autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 13));
-        Tram tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
-        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
-        Tram tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
-        Tram tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 13));
+        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Tram tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Tram tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Tram tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
         mezzoDao.insert(autobus);
         mezzoDao.insert(autobus1);
         mezzoDao.insert(autobus2);
@@ -260,6 +270,85 @@ public class CreateDatabase {
         mezzoDao.update(tram3);
 
         System.out.println("Tratte aggiunte ai mezzi");
+
+        // CREA BIGLIETTO
+        Biglietto b = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r)
+                .utente(utente1)
+                .mezzo(autobus)
+                .dataVidimato(LocalDate.of(2025, 03,15))
+                .build();
+        Biglietto b1 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r2)
+                .utente(utente2)
+                .mezzo(autobus1)
+                .dataVidimato(LocalDate.of(2025, 03, 01))
+                .build();
+        Biglietto b2 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r3)
+                .utente(utente3)
+                .mezzo(autobus2)
+                .dataVidimato(LocalDate.of(2025, 03, 20))
+                .build();
+        Biglietto b3 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r4)
+                .utente(utente4)
+                .mezzo(autobus3)
+                .dataVidimato(LocalDate.of(2025, 03, 11))
+                .build();
+        Biglietto b4 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r5)
+                .utente(utente5)
+                .mezzo(autobus4)
+                .dataVidimato(LocalDate.of(2025, 03, 31))
+                .build();
+        Biglietto b5 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r)
+                .utente(utente1)
+                .mezzo(tram)
+                .dataVidimato(LocalDate.of(2025, 03, 06))
+                .build();
+        Biglietto b6 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r2)
+                .utente(utente2)
+                .mezzo(tram1)
+                .dataVidimato(LocalDate.of(2025, 03, 27))
+                .build();
+        Biglietto b7 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r3)
+                .utente(utente3)
+                .mezzo(tram2)
+                .dataVidimato(LocalDate.of(2025, 03, 17))
+                .build();
+        Biglietto b8 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r4)
+                .utente(utente4)
+                .mezzo(tram3)
+                .dataVidimato(LocalDate.of(2025, 03, 02))
+                .build();
+        Biglietto b9 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r5)
+                .utente(utente5)
+                .mezzo(autobus)
+                .dataVidimato(LocalDate.of(2025, 03, 10))
+                .build();
+        Biglietto b10 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r)
+                .utente(utente1)
+                .mezzo(autobus1)
+                .dataVidimato(LocalDate.of(2025, 03, 19))
+                .build();
 
         em.close();
         emf.close();
