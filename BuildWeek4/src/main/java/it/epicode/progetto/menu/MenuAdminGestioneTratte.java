@@ -178,7 +178,8 @@ public class MenuAdminGestioneTratte {
 											mezzo.setTratta(null);
 											mezzo.setStatoEnum(Stato.FERMO);
 											mezzoDAO.update(mezzo);
-											System.out.println("Tutti i mezzi associati a quella tratta sono stati rimandati al deposito!");
+											System.out.println(
+													"Tutti i mezzi associati a quella tratta sono stati rimandati al deposito!");
 										}
 									}
 
