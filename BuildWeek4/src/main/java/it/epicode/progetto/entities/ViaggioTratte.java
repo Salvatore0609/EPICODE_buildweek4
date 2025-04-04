@@ -31,14 +31,14 @@ public class ViaggioTratte {
 
     private int numeroDiVoltePercorso;
 
-    public ViaggioTratte(Long id, Tratta tratta, LocalDateTime tempoPrevistoDiPercorrenza, LocalDateTime tempoEffettivoDiPercorrenza, Long differenzaTempo, int numeroDiVoltePercorso) {
+    public ViaggioTratte(Long id, Tratta tratta, LocalDateTime tempoPrevistoDiPercorrenza, LocalDateTime tempoEffettivoDiPercorrenza, Long differenzaTempo, int numeroDiVoltePercorso, Long tempoEffettivoDiPercorrenzaLong) {
         this.id = id;
         this.tratta = tratta;
         this.tempoPrevistoDiPercorrenza = tempoPrevistoDiPercorrenza;
         this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
         this.differenzaTempo = differenzaTempo;
         this.numeroDiVoltePercorso = numeroDiVoltePercorso;
-        this.tempoEffettivoDiPercorrenzaLong = tempoPrevistoDiPercorrenza.atZone(ZoneId.systemDefault()).toEpochSecond();
+        this.tempoEffettivoDiPercorrenzaLong = tempoEffettivoDiPercorrenzaLong;
     }
 
     @Override

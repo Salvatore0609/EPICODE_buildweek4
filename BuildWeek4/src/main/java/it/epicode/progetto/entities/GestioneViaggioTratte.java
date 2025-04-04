@@ -61,11 +61,13 @@ public class GestioneViaggioTratte {
 		} else {
 			System.out.println("Inserisci il tempo previsto di percorrenza della tratta:");
 			int tempoPrevisto = scanner.nextInt();
+			Long tempoPrevistoLong =  (long) tempoPrevisto;
 			scanner.nextLine();
 
 			System.out.println("Inserisci il tempo effettivo di percorrenza della tratta:");
 			int tempoEffettivo = scanner.nextInt();
 			scanner.nextLine();
+			Long tempoEffettivoLong =  (long) tempoEffettivo;
 
 			LocalDateTime tempoPrevistoOr = LocalDateTime.now().plusMinutes(tempoPrevisto);
 			LocalDateTime tempoEffettivoOr = LocalDateTime.now().plusMinutes(tempoEffettivo);
@@ -77,7 +79,7 @@ public class GestioneViaggioTratte {
 			int numeroViaggioTratte = viaggioTrattaDAO.ritornaUltimoViaggio();
 
 			ViaggioTratte viaggioTratte = new ViaggioTratte(null, numeroTrattaScanner,  tempoPrevistoOr, tempoEffettivoOr,
-					differenzaTempo, numeroViaggioTratte + 1);
+					differenzaTempo, numeroViaggioTratte + 1, tempoPrevistoLong);
 
 			List<Mezzo> mezziPresenti2 = mezzoDAO.findMezzoByTratta(numeroTrattaScanner);
 			int indexMezzi2 = 1;

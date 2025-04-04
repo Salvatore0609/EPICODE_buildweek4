@@ -182,13 +182,13 @@ public class MenuAdminVisualizzaTutto {
 							ViaggioTrattaDao viaggioTrattaDao = new ViaggioTrattaDao(em);
 							Long totaleTempo = viaggioTrattaDao.totaleTempoEffettivoViaggiByTratta(trattaScelta.getId());
 							Long totaleTempoMedio = totaleTempo / numeroGiri;
-							System.out.println("🚌 " + azzurro + "ATEB" + reset + " linea " + mezzo.getId() + " ha un tempo medio di percorrenza con " + (totaleTempoMedio / 60) + " minuti sulla tratta" );
+							System.out.println("🚌 " + azzurro + "ATEB" + reset + " linea " + mezzo.getId() + " ha un tempo medio di percorrenza con " + (totaleTempoMedio) + " minuti sulla tratta" );
 						} else if (mezzo instanceof it.epicode.progetto.entities.Tram) {
 							int numeroGiri = mezzo.getVolteTrattaPercorsa();
 							ViaggioTrattaDao viaggioTrattaDao = new ViaggioTrattaDao(em);
 							Long totaleTempo = viaggioTrattaDao.totaleTempoEffettivoViaggiByTratta(trattaScelta.getId());
 							Long totaleTempoMedio = totaleTempo / numeroGiri;
-							System.out.println("🚋 " + azzurro + "ATEB" + reset + " linea " + mezzo.getId() + " ha un tempo medio di percorrenza con " + (totaleTempoMedio / 60) + " minuti sulla tratta" );
+							System.out.println("🚋 " + azzurro + "ATEB" + reset + " linea " + mezzo.getId() + " ha un tempo medio di percorrenza con " + (totaleTempoMedio) + " minuti sulla tratta" );
 						}
 					}
 					try {

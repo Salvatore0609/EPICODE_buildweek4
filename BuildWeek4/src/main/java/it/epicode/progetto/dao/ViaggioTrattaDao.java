@@ -20,7 +20,7 @@ public class ViaggioTrattaDao {
 
     public Long totaleTempoEffettivoViaggiByTratta(Long id) {
        //Somma tempo effettivo totale in base alla tratta passata come parametro ID considerando che tempoeffettivo è un localdatetime in database
-        String jpql = "SELECT SUM(v.tempoEffettivolong) FROM ViaggioTratte v WHERE v.tratta.id = :id";
+        String jpql = "SELECT SUM(v.tempoEffettivoDiPercorrenzaLong) FROM ViaggioTratte v WHERE v.tratta.id = :id";
         try {
             Long tempoTotale = em.createQuery(jpql, Long.class)
                     .setParameter("id", id)
