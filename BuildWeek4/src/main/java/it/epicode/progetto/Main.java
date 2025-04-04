@@ -46,14 +46,17 @@ public class Main {
 
 				switch (scelta) {
 					case 1 -> {
+						ClearTerminal.clearConsole();
 						Login login = new Login();
 						login.login();
 					}
 					case 2 -> {
+						ClearTerminal.clearConsole();
 						boolean isAdmin = false;
 						GestioneUtenti.crea(isAdmin);
 					}
 					case 3 -> {
+						ClearTerminal.clearConsole();
 						Long myUser = null;
 						GestioneElementoBiglietteria.creaBiglietto(myUser);
 					}
@@ -63,6 +66,7 @@ public class Main {
 						Viaggio.selezionaViaggio(myUser);
 					}
 					case 0 -> {
+						ClearTerminal.clearConsole();
 						System.out.println("Arrivederci!");
 						System.exit(0);
 					}

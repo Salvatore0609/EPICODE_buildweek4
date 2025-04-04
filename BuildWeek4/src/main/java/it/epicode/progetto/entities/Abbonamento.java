@@ -30,11 +30,23 @@ public class Abbonamento extends ElementoBiglietteria {
 
     @Override
     public String toString() {
-        return "Abbonamento " +
-                "[Durata: " + durataAbbonamento.toString().toLowerCase() +
-                ", Scadenza: " + scadenzaAbbonamento.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
-                ", Tessera ID: " + (tessera != null ? tessera.getIdTessera() : "N/D") +
-                "]";
-    }
+        final String reset = "\u001B[0m";
+        final String rosso = "\u001B[31m";
+        final String verde = "\u001B[32m";
 
+        if (scadenzaAbbonamento.isBefore(LocalDate.now())) {
+            return"Abbonamento " +
+                    "[Durata: " + durataAbbonamento.toString().toLowerCase() +
+                    ", " + rosso + "Scaduto il: " + scadenzaAbbonamento.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) + reset +
+                    ", Tessera ID: " + (tessera != null ? tessera.getIdTessera() : "N/D") +
+                    "]";
+        } else {
+            return "Abbonamento " +
+                    "[Durata: " + durataAbbonamento.toString().toLowerCase() +
+                    ", " + verde + "Scadenza: " + scadenzaAbbonamento.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) + reset +
+                    ", Tessera ID: " + (tessera != null ? tessera.getIdTessera() : "N/D") +
+                    "]";
+        } }
 }
+
+

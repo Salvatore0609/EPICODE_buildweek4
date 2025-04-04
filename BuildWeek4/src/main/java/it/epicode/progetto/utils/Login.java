@@ -21,6 +21,10 @@ public class Login {
 		emf = jakarta.persistence.Persistence.createEntityManagerFactory("epicode");
 		em = emf.createEntityManager();
 
+		System.out.println("******************");
+		System.out.println("***** LOG IN *****");
+		System.out.println("******************");
+		System.out.println();
 		System.out.println("Username: ");
 		String username = scanner.nextLine();
 		System.out.println("Password: ");

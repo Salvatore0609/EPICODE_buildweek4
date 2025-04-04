@@ -36,7 +36,17 @@ public class Biglietto extends ElementoBiglietteria {
 
     @Override
     public String toString() {
-        return "Biglietto con identificativo: " + this.getIdBiglietto() +
-                ", vidimato: " + this.isVidimato();
+        final String reset = "\u001B[0m";
+        final String rosso = "\u001B[31m";
+        final String verde = "\u001B[32m";
+
+        if (this.isVidimato()) {
+            return "Biglietto con identificativo: " + this.getIdBiglietto() +
+                    ", vidimato: " + verde + this.isVidimato() + reset;
+        } else {
+            return "Biglietto con identificativo: " + this.getIdBiglietto() +
+                    ", vidimato: " + rosso + this.isVidimato() + reset;
+        }
+
     }
 }

@@ -63,7 +63,9 @@ public class MenuAdminGestioneMezzi {
 			System.out.println("2. Ripara un mezzo");
 			System.out.println("3. Elimina un mezzo");
 			System.out.println("4. Modifica un mezzo");
-			System.out.println("0. Esci dal menu della gestione dei mezzi");
+			System.out.println("0. Esci");
+			System.out.println();
+			System.out.print("Scelta: ");
 
 			sceltaPresa = scanner.nextInt();
 

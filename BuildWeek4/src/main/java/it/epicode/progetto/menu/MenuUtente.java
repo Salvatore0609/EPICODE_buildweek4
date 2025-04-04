@@ -15,7 +15,6 @@ public class MenuUtente {
 	public static void menuUtente(Long myUser) {
 		while (true) {
 			try {
-
 				System.out.println("*************************");
 				System.out.println("****** MENU UTENTE ******");
 				System.out.println("*************************");

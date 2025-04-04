@@ -34,6 +34,7 @@ public class MenuUtenteVisualizza {
 			System.out.println();
 			System.out.print("Premi invio per continuare...");
 			System.in.read();
+			ClearTerminal.clearConsole();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,6 +62,7 @@ public class MenuUtenteVisualizza {
 			System.out.println();
 			System.out.print("Premi invio per continuare...");
 			System.in.read();
+			ClearTerminal.clearConsole();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

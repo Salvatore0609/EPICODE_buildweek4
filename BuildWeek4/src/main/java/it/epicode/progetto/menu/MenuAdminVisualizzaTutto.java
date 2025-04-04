@@ -31,9 +31,9 @@ public class MenuAdminVisualizzaTutto {
 			System.out.println("1. Visualizza tutti i mezzi");
 			System.out.println("2. Visualizza tutte le tratte");
 			System.out.println("3. Visualizza tutti i mezzi con dei posti liberi");
-			System.out.println("0. Esci dal menu della visualizzazione");
+			System.out.println("0. Esci");
 			System.out.println();
-			System.out.print("Scegli: ");
+			System.out.print("Scelta: ");
 
 			sceltaPresa = scanner.nextInt();
 			switch (sceltaPresa) {

@@ -35,7 +35,9 @@ public class MenuAdminGestioneTratte {
 			System.out.println("2. Modifica una tratta");
 			System.out.println("3. Assegna una tratta a un mezzo");
 			System.out.println("4. Elimina una tratta");
-			System.out.println("0. Esci dal menu della gestione delle tratte");
+			System.out.println("0. Esci");
+			System.out.println();
+			System.out.print("Scelta: ");
 
 			sceltaPresa = scanner.nextInt();
 
