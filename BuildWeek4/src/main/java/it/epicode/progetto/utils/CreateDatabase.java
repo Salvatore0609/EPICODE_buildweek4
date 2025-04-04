@@ -358,9 +358,8 @@ public class CreateDatabase {
         elementoBiglietteriaDAO.insert(b7);
         elementoBiglietteriaDAO.insert(b8);
         elementoBiglietteriaDAO.insert(b9);
-        rivenditoreDAO.aggiornaBigliettiAbbonamentiEmessi();
-
         em.getTransaction().commit();
+        rivenditoreDAO.aggiornaBigliettiAbbonamentiEmessi();
         System.out.println("Biglietti creati.");
 
         em.close();

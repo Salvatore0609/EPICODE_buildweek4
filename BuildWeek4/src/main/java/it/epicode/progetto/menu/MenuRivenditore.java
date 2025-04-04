@@ -12,6 +12,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 import static it.epicode.progetto.utils.Input.scanner;
@@ -34,8 +35,8 @@ public class MenuRivenditore {
 			System.out.println("2. Elimina un rivenditore");
 			System.out.println("3. Modifica un rivenditore");
 			System.out.println("4. Visualizza tutti i rivenditori");
-			System.out
-					.println("5. Visualizza i biglietti e abbonamenti emessi da un rivenditore in un periodo di tempo");
+			System.out.println("5. Visualizza i distributori automatici fuori servizio");
+			System.out.println("6. Visualizza i biglietti e abbonamenti emessi da un rivenditore in un periodo di tempo");
 			System.out.println("0. Esci");
 			System.out.println();
 			System.out.print("Scelta: ");
@@ -72,9 +73,30 @@ public class MenuRivenditore {
 						System.out.println("Distributore automatico inserito con successo!");
 					}
 					em.getTransaction().commit();
+					try {
+						System.out.println();
+						System.out.print("Premi invio per continuare...");
+						System.in.read();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ClearTerminal.clearConsole();
 					break;
 				case 2 :
 					ClearTerminal.clearConsole();
+					List<Rivenditore> rivenditori5 = rivenditoreDAO.findAll();
+					List<Rivenditore> rivenditori6 = rivenditoreDAO.findDistributoriFuoriServizio();
+					System.out.println("Elenco dei rivenditori:");
+					for (Rivenditore r : rivenditori6) {
+						System.out.println(r.getNome() + ", " + " Stato Distributore: " + ((DistributoriAutomatici) r).getStato() + ", id: " + r.getIdRivenditore());
+					}
+					for (Rivenditore r : rivenditori5) {
+						if (r instanceof RivenditoriAutorizzati) {
+							System.out.println(r.getNome()  + ", id: " + r.getIdRivenditore());
+						} else if (r instanceof DistributoriAutomatici) {
+							System.out.println(r.getNome() + ", " + " Stato Distributore: " + ((DistributoriAutomatici) r).getStato() + ", id: " + r.getIdRivenditore());
+						}
+					}
 					System.out.println("Inserisci l'ID del rivenditore da eliminare:");
 					Long idRivenditore = scanner.nextLong();
 					scanner.nextLine();
@@ -84,9 +106,32 @@ public class MenuRivenditore {
 					em.getTransaction().commit();
 
 					System.out.println("Il rivenditore è stato eliminato con successo");
+
+					try {
+						System.out.println();
+						System.out.print("Premi invio per continuare...");
+						System.in.read();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ClearTerminal.clearConsole();
 					break;
 				case 3 :
 					ClearTerminal.clearConsole();
+					List<Rivenditore> rivenditori = rivenditoreDAO.findAll();
+					List<Rivenditore> rivenditori4 = rivenditoreDAO.findDistributoriFuoriServizio();
+					System.out.println("Elenco dei rivenditori:");
+					for (Rivenditore r : rivenditori4) {
+						System.out.println(r.getNome() + ", " + " Stato Distributore: " + ((DistributoriAutomatici) r).getStato() + ", id: " + r.getIdRivenditore());
+					}
+					for (Rivenditore r : rivenditori) {
+						if (r instanceof RivenditoriAutorizzati) {
+							System.out.println(r.getNome() + ", id: " + r.getIdRivenditore());
+						} else if (r instanceof DistributoriAutomatici) {
+							System.out.println(r.getNome() + ", "
+									+ " Stato Distributore: " + ((DistributoriAutomatici) r).getStato() + ", id: " + r.getIdRivenditore());
+						}
+					}
 					System.out.println("Inserisci l'ID del rivenditore da modificare:");
 					Long idRivenditore2 = scanner.nextLong();
 					scanner.nextLine();
@@ -118,7 +163,7 @@ public class MenuRivenditore {
 							String risposta2 = scanner.nextLine();
 							if (risposta2.equalsIgnoreCase("S")) {
 								System.out.println(
-										"Inserisci il nuovo stato del distributore (1 per attivo, 2 per fuori servizio:");
+										"Inserisci il nuovo stato del distributore (1 per attivo, 2 per fuori servizio):");
 								int sceltaStato;
 								try {
 									sceltaStato = Integer.parseInt(scanner.nextLine());
@@ -151,6 +196,14 @@ public class MenuRivenditore {
 					} else {
 						System.out.println("Rivenditore non trovato con l'ID specificato");
 					}
+					try {
+						System.out.println();
+						System.out.print("Premi invio per continuare...");
+						System.in.read();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ClearTerminal.clearConsole();
 					break;
 				case 4 :
 					ClearTerminal.clearConsole();
@@ -158,10 +211,10 @@ public class MenuRivenditore {
 					for (Rivenditore r : rivenditoreDAO.findAll()) {
 
 						if (r instanceof RivenditoriAutorizzati) {
-							System.out.println("Rivenditore Autorizzato" + "{ Nome: " + r.getNome() + "}");
+							System.out.println(r.getNome());
 						} else if (r instanceof DistributoriAutomatici) {
-							System.out.println("Distributore Automatico" + "{ Nome: " + r.getNome()
-									+ " StatoDistributori: " + ((DistributoriAutomatici) r).getStato() + "}");
+							System.out.println(r.getNome() + ", "
+									+ " Stato Distributore: " + ((DistributoriAutomatici) r).getStato());
 						}
 					}
 					try {
@@ -175,13 +228,44 @@ public class MenuRivenditore {
 					break;
 				case 5 :
 					ClearTerminal.clearConsole();
-					System.out.println("Inserisci il nome del rivenditore:");
-					String nomeRivenditore2 = scanner.nextLine();
+					System.out.println("Elenco dei distributori fuori servizio:");
+					List<Rivenditore> rivenditori1 = rivenditoreDAO.findDistributoriFuoriServizio();
+					for (Rivenditore r : rivenditori1) {
+								System.out.println(r.getNome() + ", " + " Stato Distributore: " + ((DistributoriAutomatici) r).getStato());
+							}
+					try {
+						System.out.println();
+						System.out.print("Premi invio per continuare...");
+						System.in.read();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ClearTerminal.clearConsole();
+					break;
+				case 6 :
+					ClearTerminal.clearConsole();
+					List<Rivenditore> rivenditori2 = rivenditoreDAO.findAll();
+					List<Rivenditore> rivenditori3 = rivenditoreDAO.findDistributoriFuoriServizio();
+					System.out.println("Elenco dei rivenditori:");
+					for (Rivenditore r : rivenditori3) {
+						System.out.println(r.getNome() + ", " + " Stato Distributore: " + ((DistributoriAutomatici) r).getStato()  + ", id: " + r.getIdRivenditore());
+					}
+					for (Rivenditore r : rivenditori2) {
+						if (r instanceof RivenditoriAutorizzati) {
+							System.out.println(r.getNome()  + ", id: " + r.getIdRivenditore());
+						} else if (r instanceof DistributoriAutomatici) {
+							System.out.println(r.getNome() + ", "
+									+ " Stato Distributore: " + ((DistributoriAutomatici) r).getStato()  + ", id: " + r.getIdRivenditore());
+						}
+					}
+					System.out.println("Inserisci l'id del rivenditore:");
+					long idRivenditore3 = scanner.nextLong();
+					scanner.nextLine();
 					System.out.println("Inserisci la data di inizio:");
 					LocalDate dataInizio = LocalDate.parse(scanner.nextLine());
 					System.out.println("Inserisci la data di fine:");
 					LocalDate dataFine = LocalDate.parse(scanner.nextLine());
-					rivenditoreDAO.ottieniBigliettiAbbonamentiEmessi(nomeRivenditore2, dataInizio, dataFine);
+					rivenditoreDAO.ottieniBigliettiAbbonamentiEmessi(idRivenditore3, dataInizio, dataFine);
 					break;
 				case 0 :
 					ClearTerminal.clearConsole();
