@@ -23,7 +23,7 @@ public class MenuAdmin {
 				System.out.println("4. Gestione Rivenditori Autorizzati e Distributori Automatici");
 				System.out.println("5. Report");
 				System.out.println("6. Gestione Autisti");
-				System.out.println("7. Esegui il viaggio di tutti i mezzi");
+				System.out.println("7. Fai partire il viaggio su una tratta");
 				System.out.println("0. Esci");
 				System.out.println();
 				System.out.print("Scelta: ");
