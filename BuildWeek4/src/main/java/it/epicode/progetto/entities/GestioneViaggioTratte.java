@@ -38,6 +38,7 @@ public class GestioneViaggioTratte {
 
 		Long differenzaTempo = (Duration.between(tempoPrevistoOr, tempoEffettivoOr)).toMinutes();
 
+
 		int numeroViaggioTratte = viaggioTrattaDAO.ritornaUltimoViaggio();
 
 		ViaggioTratte viaggioTratte = new ViaggioTratte(null, numeroTrattaScanner, tempoPrevistoOr, tempoEffettivoOr,
