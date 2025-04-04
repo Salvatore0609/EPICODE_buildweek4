@@ -1,6 +1,8 @@
 package it.epicode.progetto.menu;
 
 import it.epicode.progetto.Main;
+import it.epicode.progetto.entities.GestioneViaggioTratte;
+import it.epicode.progetto.entities.ViaggioTratte;
 import it.epicode.progetto.utils.ClearTerminal;
 
 import java.util.InputMismatchException;
@@ -27,38 +29,40 @@ public class MenuAdmin {
 				System.out.print("Scelta: ");
 				int scelta = scanner.nextInt();
 				switch (scelta) {
-					case 0:
+					case 0 :
 						ClearTerminal.clearConsole();
 						Main.main(null);
 						return;
-					case 1:
+					case 1 :
 						ClearTerminal.clearConsole();
 						MenuGestioneUtenti.menuUtenti();
 						break;
-					case 2:
+					case 2 :
 						ClearTerminal.clearConsole();
 						MenuAdminGestioneMezzi.main(null);
 						break;
-					case 3:
+					case 3 :
 						ClearTerminal.clearConsole();
 						MenuAdminGestioneTratte.main(null);
 						break;
-					case 4:
+					case 4 :
 						ClearTerminal.clearConsole();
 						MenuRivenditore.main(null);
 						break;
-					case 5:
+					case 5 :
 						ClearTerminal.clearConsole();
 						MenuAdminVisualizzaTutto.main(null);
 						break;
-					case 6:
+					case 6 :
 						ClearTerminal.clearConsole();
 						MenuAutisti.menuAutisti();
 						break;
-						case 7:
+					case 7 :
 						ClearTerminal.clearConsole();
+						GestioneViaggioTratte.eseguiViaggioTratta();
+						break;
 
-					default:
+					default :
 						System.err.println("Scelta non valida. Riprova.");
 						try {
 							Thread.sleep(2000);

@@ -38,4 +38,5 @@ public class TrattaDAO {
 	public List<Tratta> findAll() { // STAMPA TUTTE LE TRATTE
 		return em.createQuery("SELECT t FROM Tratta t", Tratta.class).getResultList();
 	}
+
 }
