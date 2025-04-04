@@ -194,24 +194,24 @@ public class CreateDatabase {
         em.getTransaction().commit();
         //
         // CREA MEZZI DI TRASPORTO
-        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Autobus autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Autobus autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Autobus autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Tram tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Tram tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Tram tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        mezzoDao.insert(autobus);
-        mezzoDao.insert(autobus1);
-        mezzoDao.insert(autobus2);
-        mezzoDao.insert(autobus3);
-        mezzoDao.insert(autobus4);
-        mezzoDao.insert(tram);
-        mezzoDao.insert(tram1);
-        mezzoDao.insert(tram2);
-        mezzoDao.insert(tram3);
+//        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
+//        Autobus autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
+//        Autobus autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
+//        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
+//        Autobus autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 13));
+//        Tram tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
+//        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 05, 03));
+//        Tram tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 06, 03));
+//        Tram tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDate.of(2025, 04, 03), LocalDate.of(2025, 04, 13));
+//        mezzoDao.insert(autobus);
+//        mezzoDao.insert(autobus1);
+//        mezzoDao.insert(autobus2);
+//        mezzoDao.insert(autobus3);
+//        mezzoDao.insert(autobus4);
+//        mezzoDao.insert(tram);
+//        mezzoDao.insert(tram1);
+//        mezzoDao.insert(tram2);
+//        mezzoDao.insert(tram3);
         System.out.println("Mezzi di trasporto creati.");
 
 
@@ -239,25 +239,25 @@ public class CreateDatabase {
         System.out.println("Tratte create.");
 
         // Associa mezzi alle tratte
-        autobus.setTratta(tratta1);
-        autobus1.setTratta(tratta2);
-        autobus2.setTratta(tratta3);
-        autobus3.setTratta(tratta4);
-        autobus4.setTratta(tratta5);
-        tram.setTratta(tratta6);
-        tram1.setTratta(tratta7);
-        tram2.setTratta(tratta8);
-        tram3.setTratta(tratta9);
-
-        mezzoDao.update(autobus);
-        mezzoDao.update(autobus1);
-        mezzoDao.update(autobus2);
-        mezzoDao.update(autobus3);
-        mezzoDao.update(autobus4);
-        mezzoDao.update(tram);
-        mezzoDao.update(tram1);
-        mezzoDao.update(tram2);
-        mezzoDao.update(tram3);
+//        autobus.setTratta(tratta1);
+//        autobus1.setTratta(tratta2);
+//        autobus2.setTratta(tratta3);
+//        autobus3.setTratta(tratta4);
+//        autobus4.setTratta(tratta5);
+//        tram.setTratta(tratta6);
+//        tram1.setTratta(tratta7);
+//        tram2.setTratta(tratta8);
+//        tram3.setTratta(tratta9);
+//
+//        mezzoDao.update(autobus);
+//        mezzoDao.update(autobus1);
+//        mezzoDao.update(autobus2);
+//        mezzoDao.update(autobus3);
+//        mezzoDao.update(autobus4);
+//        mezzoDao.update(tram);
+//        mezzoDao.update(tram1);
+//        mezzoDao.update(tram2);
+//        mezzoDao.update(tram3);
 
         System.out.println("Tratte aggiunte ai mezzi");
 
