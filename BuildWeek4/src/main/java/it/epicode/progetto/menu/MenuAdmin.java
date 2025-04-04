@@ -58,6 +58,7 @@ public class MenuAdmin {
 						case 7:
 						ClearTerminal.clearConsole();
 
+
 					default:
 						System.err.println("Scelta non valida. Riprova.");
 						try {
