@@ -31,13 +31,21 @@ public class Viaggio {
 				System.out.println(index + ". " + destinazione);
 				index++;
 			}
+			System.out.println("0. Esci");
 			System.out.println();
 			System.out.print("Seleziona la tratta desiderata:");
+			System.out.println();
+			System.out.print("Scelta: ");
 			int scelta = scanner.nextInt();
 			scanner.nextLine();
+			if (scelta == 0) {
+				ClearTerminal.clearConsole();
+				return;
+			}
 			Tratta trattaScelta = tutteLeTratte.get(scelta - 1);
 
 			MezzoDAO mezzoDAO = new MezzoDAO(em);
+			System.out.println();
 			System.out.println("Elenco dei mezzi disponibili:");
 			System.out.println();
 			// stampo tutti i mezzi disponibili in base alla tratta scelta
@@ -58,7 +66,10 @@ public class Viaggio {
 				System.out.println(indexMezzi + ". " + mezzo);
 				indexMezzi++;
 			}
+			System.out.println();
 			System.out.println("Seleziona il mezzo desiderato:");
+			System.out.println();
+			System.out.print("Scelta: ");
 			int sceltaMezzo = scanner.nextInt();
 			scanner.nextLine();
 			Mezzo mezzoScelto = mezziDisponibili.get(sceltaMezzo - 1);
