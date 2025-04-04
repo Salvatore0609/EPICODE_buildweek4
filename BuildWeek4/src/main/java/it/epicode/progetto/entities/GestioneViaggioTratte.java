@@ -72,7 +72,9 @@ public class GestioneViaggioTratte {
 			LocalDateTime tempoPrevistoOr = LocalDateTime.now().plusMinutes(tempoPrevisto);
 			LocalDateTime tempoEffettivoOr = LocalDateTime.now().plusMinutes(tempoEffettivo);
 
-			Long differenzaTempo = (Duration.between(tempoEffettivoOr, tempoPrevistoOr)).toMinutes();
+				Duration duration = Duration.between(tempoEffettivoOr, tempoPrevistoOr);
+				long roundedSeconds = (long) Math.ceil(duration.toMillis() / 1000.0);
+            long differenzaTempo = roundedSeconds / 60;
 
 			int numeroViaggioTratte = viaggioTrattaDAO.ritornaUltimoViaggio();
 
