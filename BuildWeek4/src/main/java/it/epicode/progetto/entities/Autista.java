@@ -38,16 +38,30 @@ public class Autista {
     @JoinColumn(name = "mezzo_id")
     private Mezzo mezzoAttuale;
 
-    public Autista(String nome, String cognome, LocalDate dataNascita, String patenteCategoria) {
+    @Column
+    private boolean attivo = true;
+
+    public Autista(String nome, String cognome, LocalDate dataNascita, String patenteCategoria, boolean attivo) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataNascita = dataNascita;
         this.patenteCategoria = patenteCategoria;
+        this.attivo = attivo;
     }
 
     public boolean isDisponibile(LocalDate data) {
         if (turni == null) return true;
         return turni.stream().noneMatch(turno -> turno.getData().isEqual(data.atStartOfDay()));
+    }
+
+    @Override
+    public String toString() {
+        return "👨‍✈️ " +
+                "Id: " + id +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", dataNascita=" + dataNascita +
+                ", patenteCategoria='" + patenteCategoria;
     }
 }
 

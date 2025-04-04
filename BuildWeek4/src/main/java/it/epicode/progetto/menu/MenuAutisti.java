@@ -29,10 +29,16 @@ public class MenuAutisti {
                 case 2:
                     break;
                 case 3:
+                    ClearTerminal.clearConsole();
+                    GestioneAutisti.licenziaAutista();
                     break;
                 case 4:
+                    ClearTerminal.clearConsole();
+                    GestioneAutisti.visualizzaAutistiAttivi();
                     break;
                 case 5:
+                    ClearTerminal.clearConsole();
+                    GestioneAutisti.visualizzaAutistiLicenziati();
                     break;
                 case 0:
                     ClearTerminal.clearConsole();
