@@ -22,6 +22,11 @@ public class GestioneUtenti {
 			emf = Persistence.createEntityManagerFactory("epicode");
 			em = emf.createEntityManager();
 
+			System.out.println("************************");
+			System.out.println("***** CREA UTENTE ******");
+			System.out.println("************************");
+			System.out.println();
+
 			System.out.println("Inserisci il nome dell'utente:");
 			String nomeUtente = scanner.nextLine();
 

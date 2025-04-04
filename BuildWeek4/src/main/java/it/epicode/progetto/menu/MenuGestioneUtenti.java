@@ -9,9 +9,9 @@ import static it.epicode.progetto.utils.Input.scanner;
 public class MenuGestioneUtenti {
 	public static void menuUtenti() {
 		while (true) {
-			System.out.println("*************************");
-			System.out.println("****** MENU UTENTI ******");
-			System.out.println("*************************");
+			System.out.println("*****************************");
+			System.out.println("****** GESTIONE UTENTI ******");
+			System.out.println("*****************************");
 			System.out.println();
 			System.out.println("1. Crea un nuovo utente");
 			System.out.println("2. Aggiorna un utente");
@@ -19,6 +19,7 @@ public class MenuGestioneUtenti {
 			System.out.println("4. Crea una tessera");
 			System.out.println("0. Esci");
 			System.out.println();
+			System.out.print("Scelta: ");
 			int scelta = scanner.nextInt();
 			scanner.nextLine();
 			if (scelta == 0) {

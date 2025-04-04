@@ -18,6 +18,10 @@ public class Viaggio {
 			emf = Persistence.createEntityManagerFactory("epicode");
 			em = emf.createEntityManager();
 			TrattaDAO trattaDAO = new TrattaDAO(em);
+			System.out.println("***************************");
+			System.out.println("***** MONITOR VIAGGI ******");
+			System.out.println("***************************");
+			System.out.println();
 			System.out.println("Elenco delle tratte disponibili:");
 			System.out.println();
 			List<Tratta> tutteLeTratte = trattaDAO.findAll();

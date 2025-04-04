@@ -26,11 +26,10 @@ public class MenuRivenditore {
 
 		int scelta;
 		do {
+			System.out.println("*********************************");
+			System.out.println("***** GESTIONE RIVENDITORI ******");
+			System.out.println("*********************************");
 			System.out.println();
-			System.out.println("**************************");
-			System.out.println("Benvenuto nel sistema di gestione dei rivenditori!");
-			System.out.println("**************************");
-			System.out.println("Seleziona una delle seguenti opzioni:");
 			System.out.println("1. Inserisci un nuovo rivenditore");
 			System.out.println("2. Elimina un rivenditore");
 			System.out.println("3. Modifica un rivenditore");
@@ -38,6 +37,8 @@ public class MenuRivenditore {
 			System.out
 					.println("5. Visualizza i biglietti e abbonamenti emessi da un rivenditore in un periodo di tempo");
 			System.out.println("0. Esci");
+			System.out.println();
+			System.out.print("Scelta: ");
 
 			scelta = scanner.nextInt();
 			scanner.nextLine();
