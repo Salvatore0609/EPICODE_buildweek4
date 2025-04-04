@@ -72,6 +72,12 @@ public class MezzoDAO {
 
 	}
 
+//	public Mezzo findMezzoViaggioByTratta(Tratta tratta) {
+//		String query = "SELECT m FROM Mezzo m WHERE m.tratta = :tratta AND m.id = :id";
+//		return em.createQuery(query, Mezzo.class).setParameter("tratta", tratta).setParameter("id", id)
+//				.getSingleResult();
+//	}
+
 	// update di stato
 
 	public void updateStato(Long id, Stato stato) { // CAMBIA LO STATO DEL MEZZO TRAMITE IL SUO ID

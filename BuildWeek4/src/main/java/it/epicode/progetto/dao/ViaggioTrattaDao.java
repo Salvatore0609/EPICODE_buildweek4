@@ -10,7 +10,6 @@ public class ViaggioTrattaDao {
     private EntityManager em;
 
 
-
     public void insert(ViaggioTratte v) {
         em.getTransaction().begin();
         em.persist(v);
@@ -25,10 +24,15 @@ public class ViaggioTrattaDao {
 
         // Esempio di query per recuperare l'ultimo viaggio
         String jpql = "SELECT v FROM ViaggioTratte v ORDER BY v.id DESC";
-        int ultimoViaggio = em.createQuery(jpql, ViaggioTratte.class)
-                .setMaxResults(1)
-                .getSingleResult().getNumeroDiVoltePercorso();
+        try {
+            int ultimoViaggio = em.createQuery(jpql, ViaggioTratte.class)
+                    .setMaxResults(1)
+                    .getSingleResult().getNumeroDiVoltePercorso();
 
             return ultimoViaggio;
-        } }
-
+        } catch (Exception e) {
+            System.out.println("Nessun viaggio trovato.");
+            return 0; // Restituisci 0 se non ci sono viaggi
+        }
+    }
+}
