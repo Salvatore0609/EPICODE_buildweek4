@@ -45,16 +45,26 @@ public class CreateDatabase {
             return;
         }
 
-        utentiDao.insert(new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user4", "Anna", "Neri", "password4", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user5", "Giovanni", "Gialli", "password5", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user6", "Sara", "Azzurri", "password6", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user7", "Marco", "Arancioni", "password7", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user8", "Elena", "Viola", "password8", Ruolo.USER, false));
-        utentiDao.insert(new Utente("user9", "Paolo", "Blu", "password9", Ruolo.USER, true));
-        utentiDao.insert(new Utente("user10", "Laura", "Rosa", "password10", Ruolo.USER, true));
+        Utente utente1 = new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, true);
+        utentiDao.insert(utente1);
+        Utente utente2 = new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, true);
+        utentiDao.insert(utente2);
+        Utente utente3 = new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, true);
+        utentiDao.insert(utente3);
+        Utente utente4 = new Utente("user4", "Anna", "Neri", "password4", Ruolo.USER, true);
+        utentiDao.insert(utente4);
+        Utente utente5 = new Utente("user5", "Giovanni", "Gialli", "password5", Ruolo.USER, true);
+        utentiDao.insert(utente5);
+        Utente utente6 = new Utente("user6", "Sara", "Blu", "password6", Ruolo.USER, true);
+        utentiDao.insert(utente6);
+        Utente utente7 = new Utente("user7", "Marco", "Arancioni", "password7", Ruolo.USER, true);
+        utentiDao.insert(utente7);
+        Utente utente8 = new Utente("user8", "Elena", "Viola", "password8", Ruolo.USER, true);
+        utentiDao.insert(utente8);
+        Utente utente9 = new Utente("user9", "Roberto", "Marroni", "password9", Ruolo.USER, true);
+        utentiDao.insert(utente9);
+        Utente utente10 = new Utente("user10", "Laura", "Rosso", "password10", Ruolo.USER, true);
+        utentiDao.insert(utente10);
         System.out.println("Utenti normali creati.");
 
         em.getTransaction().commit();
@@ -194,15 +204,15 @@ public class CreateDatabase {
         em.getTransaction().commit();
         //
         // CREA MEZZI DI TRASPORTO
-        Mezzo autobus = new Autobus(null, null, 15, 2, 20, null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(60));
-        Mezzo autobus1 = new Autobus(null, null, 18, 4, 20, null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(60));
-        Mezzo autobus2 = new Autobus(null, null, 20, 3, 20, null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(60));
-        Mezzo autobus3 = new Autobus(null, null, 11, 2, 20, null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(60));
-        Mezzo autobus4 = new Autobus(null, null, 18, 1, 20,null , LocalDateTime.now(), LocalDateTime.now().plusMinutes(60));
-        Mezzo tram = new Tram(null, null, 43, 1, 50,null , LocalDateTime.now(), LocalDateTime.now().plusMinutes(60));
-        Mezzo tram1 = new Tram(null, null, 20, 1, 50,null , LocalDateTime.now(), LocalDateTime.now().plusMinutes(60));
-        Mezzo tram2 = new Tram(null, null, 30, 1, 50,null , LocalDateTime.now(), LocalDateTime.now().plusMinutes(60));
-        Mezzo tram3 = new Tram(null, null, 12, 1, 50, null, LocalDateTime.now(), LocalDateTime.now().plusMinutes(60));
+        Mezzo autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDateTime.now(), null);
+        Mezzo autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDateTime.now(), null);
+        Mezzo autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDateTime.now(), null);
+        Mezzo tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
         mezzoDao.insert(autobus);
         mezzoDao.insert(autobus1);
         mezzoDao.insert(autobus2);
@@ -258,8 +268,97 @@ public class CreateDatabase {
         mezzoDao.update(tram1);
         mezzoDao.update(tram2);
         mezzoDao.update(tram3);
-
         System.out.println("Tratte aggiunte ai mezzi");
+
+        em.getTransaction().begin();
+        //CREA BIGLIETTI
+        Biglietto b = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r)
+                .vidimato(true)
+                .dataVidimato(LocalDate.of(2023, 12, 15))
+                .utente(utente1)
+                .mezzo(autobus1)
+                .build();
+        Biglietto b1 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r2)
+                .vidimato(true)
+                .dataVidimato(LocalDate.of(2024, 1, 12))
+                .utente(utente2)
+                .mezzo(autobus2)
+                .build();
+        Biglietto b2 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r3)
+                .vidimato(true)
+                .dataVidimato(LocalDate.of(2024, 6, 8))
+                .utente(utente3)
+                .mezzo(autobus3)
+                .build();
+        Biglietto b3 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r4)
+                .vidimato(false)
+                .utente(utente4)
+                .mezzo(autobus4)
+                .build();
+        Biglietto b4 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r5)
+                .vidimato(false)
+                .utente(utente5)
+                .mezzo(tram1)
+                .build();
+        Biglietto b5 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r)
+                .vidimato(false)
+                .utente(utente6)
+                .mezzo(tram2)
+                .build();
+        Biglietto b6 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r2)
+                .vidimato(false)
+                .utente(utente7)
+                .mezzo(tram3)
+                .build();
+        Biglietto b7 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r3)
+                .vidimato(false)
+                .utente(utente8)
+                .mezzo(tram)
+                .build();
+        Biglietto b8 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r4)
+                .vidimato(false)
+                .utente(utente9)
+                .mezzo(tram1)
+                .build();
+        Biglietto b9 = Biglietto.builder()
+                .dataDiEmissione(LocalDate.now())
+                .rivenditore(r5)
+                .vidimato(false)
+                .utente(utente10)
+                .mezzo(tram2)
+                .build();
+        elementoBiglietteriaDAO.insert(b);
+        elementoBiglietteriaDAO.insert(b1);
+        elementoBiglietteriaDAO.insert(b2);
+        elementoBiglietteriaDAO.insert(b3);
+        elementoBiglietteriaDAO.insert(b4);
+        elementoBiglietteriaDAO.insert(b5);
+        elementoBiglietteriaDAO.insert(b6);
+        elementoBiglietteriaDAO.insert(b7);
+        elementoBiglietteriaDAO.insert(b8);
+        elementoBiglietteriaDAO.insert(b9);
+        rivenditoreDAO.aggiornaBigliettiAbbonamentiEmessi();
+
+        em.getTransaction().commit();
+        System.out.println("Biglietti creati.");
 
         em.close();
         emf.close();

@@ -1,6 +1,8 @@
 package it.epicode.progetto.entities;
 import it.epicode.progetto.utils.Randomizers;
 import jakarta.persistence.*;
+
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,11 +24,15 @@ public class Tratta {
 	/* @Column(nullable = false) */
 	private LocalDateTime tempoEffettivoDiPercorrenza;
 	/* @Column(nullable = true) */
-	private Integer differenzaTempo;
+	private Long differenzaTempo;
 
 	@OneToMany
 	@Column(name = "mezzi")
 	private List<Mezzo> mezzi;
+
+	@ManyToOne
+	@JoinColumn(name = "autistaid")
+	private Autista autista;
 
 	public Tratta() {
 	}
@@ -38,9 +44,8 @@ public class Tratta {
 		this.capolinea = capolinea;
 		this.tempoPrevistoDiPercorrenza = tempoPrevistoDiPercorrenza;
 		this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
-		this.differenzaTempo = (this.tempoPrevistoDiPercorrenza.getMinute()
-				- this.tempoEffettivoDiPercorrenza.getMinute());
-		this.mezzi = mezzi;
+		this.differenzaTempo = (Duration.between(this.tempoEffettivoDiPercorrenza, this.tempoPrevistoDiPercorrenza)).toMinutes();
+
 	}
 
 	public Long getId() {
@@ -83,11 +88,11 @@ public class Tratta {
 		this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
 	}
 
-	public Integer getDifferenzaTempo() {
+	public Long getDifferenzaTempo() {
 		return differenzaTempo;
 	}
 
-	public void setDifferenzaTempo(Integer differenzaTempo) {
+	public void setDifferenzaTempo(Long differenzaTempo) {
 		this.differenzaTempo = differenzaTempo;
 	}
 

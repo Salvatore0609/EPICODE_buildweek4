@@ -127,5 +127,12 @@ public class RivenditoreDAO {
 			System.out.println("Il numero di abbonamenti emessi per " + rivenditore.getNome() + " nel periodo "
 					+ dataInizio + " e " + dataFine + " è: " + numeroAbbonamenti);
 		}
+		try {
+			System.out.println();
+			System.out.print("Premi invio per continuare...");
+			System.in.read();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

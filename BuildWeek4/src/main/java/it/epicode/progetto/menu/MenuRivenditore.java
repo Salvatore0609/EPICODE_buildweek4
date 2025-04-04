@@ -164,6 +164,14 @@ public class MenuRivenditore {
 									+ " StatoDistributori: " + ((DistributoriAutomatici) r).getStato() + "}");
 						}
 					}
+					try {
+						System.out.println();
+						System.out.print("Premi invio per continuare...");
+						System.in.read();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					ClearTerminal.clearConsole();
 					break;
 				case 5 :
 					ClearTerminal.clearConsole();

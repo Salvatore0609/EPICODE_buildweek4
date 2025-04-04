@@ -7,7 +7,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import lombok.AllArgsConstructor;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -35,20 +34,30 @@ public class TessereDao {
 		}
 	}
 
-	public void findAbbonamentoByTessera(Long idTessera) {
+	public String findAbbonamentoByTessera(Long idTessera) {
 		try {
-
 			Abbonamento result = em
 					.createQuery("SELECT a FROM Abbonamento a WHERE a.tessera.id = :idTessera", Abbonamento.class)
 					.setParameter("idTessera", idTessera).getSingleResult();
-			System.out.println( verde + "Il tuo abbonamento è valido con durata "
-					+ result.getDurataAbbonamento().toString().toLowerCase() + " e scade il "
-					+ result.getScadenzaAbbonamento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-					+ ", abbinato alla tessera con identificativo: " + result.getTessera().getIdTessera() + "."+ reset) ;
+
+			if (result.getScadenzaAbbonamento().isBefore(LocalDate.now())) {
+				return"Abbonamento " +
+						"[Durata: " + result.getDurataAbbonamento().toString().toLowerCase() +
+						", " + rosso + "Scaduto il: " + result.getScadenzaAbbonamento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) + reset +
+						", Tessera ID: " + (result.getTessera() != null ? result.getTessera().getIdTessera() : "N/D") +
+						"]";
+			} else {
+				return "Abbonamento " +
+						"[Durata: " + result.getDurataAbbonamento().toString().toLowerCase() +
+						", " + verde + "Scadenza: " + result.getScadenzaAbbonamento().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")) + reset +
+						", Tessera ID: " + (result.getTessera() != null ? result.getTessera().getIdTessera() : "N/D") +
+						"]";
+			}
 		} catch (NoResultException e) {
 			System.out.println("Non esiste un abbonamento valido per la tessera con identificativo " + idTessera + ".");
 		}
-	}
+        return "";
+    }
 
 	public boolean isAbbonamentoByTessera(Long idTessera) {
 

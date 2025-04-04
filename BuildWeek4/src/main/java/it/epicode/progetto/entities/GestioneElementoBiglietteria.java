@@ -180,7 +180,8 @@ public class GestioneElementoBiglietteria {
 			System.out.println("***** CONTROLLA ABBONAMENTO ******");
 			System.out.println("**********************************");
 			System.out.println();
-			tDao.findAbbonamentoByTessera(tesseraEsistente.getIdTessera());
+			String abbonamento = tDao.findAbbonamentoByTessera(tesseraEsistente.getIdTessera());
+			System.out.println(abbonamento);
 			try {
 				System.out.println();
 				System.out.print("Premi invio per continuare...");
