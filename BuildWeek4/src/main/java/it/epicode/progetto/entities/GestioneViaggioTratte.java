@@ -74,7 +74,7 @@ public class GestioneViaggioTratte {
 			System.out.println("Scegli il mezzo da far partire sulla tratta");
 			int sceltaMezzo = scanner.nextInt();
 			Long mezzoScelto = mezziPresenti.get(sceltaMezzo - 1).getId();
-			mezzoDAO.updateVolteTrattaPercorsa(mezzoScelto, numeroViaggioTratte);
+			mezzoDAO.updateVolteTrattaPercorsa(mezzoScelto, numeroViaggioTratte + 1);
 
 
 
