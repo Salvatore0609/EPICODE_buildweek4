@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
-
+import java.time.ZoneId;
 
 
 @Entity
@@ -25,6 +25,8 @@ public class ViaggioTratte {
 
     private LocalDateTime tempoEffettivoDiPercorrenza;
 
+    private Long tempoEffettivoDiPercorrenzaLong;
+
     private Long differenzaTempo;
 
     private int numeroDiVoltePercorso;
@@ -36,6 +38,7 @@ public class ViaggioTratte {
         this.tempoEffettivoDiPercorrenza = tempoEffettivoDiPercorrenza;
         this.differenzaTempo = differenzaTempo;
         this.numeroDiVoltePercorso = numeroDiVoltePercorso;
+        this.tempoEffettivoDiPercorrenzaLong = tempoPrevistoDiPercorrenza.atZone(ZoneId.systemDefault()).toEpochSecond();
     }
 
     @Override

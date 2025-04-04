@@ -1,5 +1,4 @@
 package it.epicode.progetto.entities;
-
 import it.epicode.progetto.dao.MezzoDAO;
 import it.epicode.progetto.dao.TrattaDAO;
 import it.epicode.progetto.dao.ViaggioTrattaDao;
@@ -10,7 +9,6 @@ import it.epicode.progetto.menu.MenuAdminGestioneTratte;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -72,9 +70,9 @@ public class GestioneViaggioTratte {
 			LocalDateTime tempoPrevistoOr = LocalDateTime.now().plusMinutes(tempoPrevisto);
 			LocalDateTime tempoEffettivoOr = LocalDateTime.now().plusMinutes(tempoEffettivo);
 
-				Duration duration = Duration.between(tempoEffettivoOr, tempoPrevistoOr);
-				long roundedSeconds = (long) Math.ceil(duration.toMillis() / 1000.0);
-            long differenzaTempo = roundedSeconds / 60;
+			Duration duration = Duration.between(tempoEffettivoOr, tempoPrevistoOr);
+			long roundedSeconds = (long) Math.ceil(duration.toMillis() / 1000.0);
+			long differenzaTempo = roundedSeconds / 60;
 
 			int numeroViaggioTratte = viaggioTrattaDAO.ritornaUltimoViaggio();
 
@@ -118,4 +116,3 @@ public class GestioneViaggioTratte {
 
 	}
 }
-

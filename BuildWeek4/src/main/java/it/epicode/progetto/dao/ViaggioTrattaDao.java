@@ -4,6 +4,8 @@ import it.epicode.progetto.entities.ViaggioTratte;
 import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 
+import java.time.LocalDateTime;
+
 
 @AllArgsConstructor
 public class ViaggioTrattaDao {
@@ -14,6 +16,23 @@ public class ViaggioTrattaDao {
         em.getTransaction().begin();
         em.persist(v);
         em.getTransaction().commit();
+    }
+
+    public Long totaleTempoEffettivoViaggiByTratta(Long id) {
+       //Somma tempo effettivo totale in base alla tratta passata come parametro ID considerando che tempoeffettivo è un localdatetime in database
+        String jpql = "SELECT SUM(v.tempoEffettivolong) FROM ViaggioTratte v WHERE v.tratta.id = :id";
+        try {
+            Long tempoTotale = em.createQuery(jpql, Long.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
+
+            return tempoTotale;
+        } catch (Exception e) {
+            System.out.println("Nessun viaggio trovato.");
+            return null; // Restituisci null se non ci sono viaggi
+        }
+
+
     }
 
     public int ritornaUltimoViaggio() {
