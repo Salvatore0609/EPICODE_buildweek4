@@ -45,6 +45,7 @@ public class CreateDatabase {
             return;
         }
 
+        Utente utente1 = new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, true, )
         utentiDao.insert(new Utente("user1", "Mario", "Rossi", "password1", Ruolo.USER, true));
         utentiDao.insert(new Utente("user2", "Giulia", "Bianchi", "password2", Ruolo.USER, true));
         utentiDao.insert(new Utente("user3", "Luca", "Verdi", "password3", Ruolo.USER, true));
