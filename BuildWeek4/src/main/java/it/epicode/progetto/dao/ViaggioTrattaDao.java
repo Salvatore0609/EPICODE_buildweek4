@@ -11,6 +11,12 @@ public class ViaggioTrattaDao {
 
 
 
+    public void insert(ViaggioTratte v) {
+        em.getTransaction().begin();
+        em.persist(v);
+        em.getTransaction().commit();
+    }
+
     public int ritornaUltimoViaggio() {
         // Implementa la logica per recuperare l'ultimo viaggio dal database
         // Utilizza l'EntityManager per eseguire la query
