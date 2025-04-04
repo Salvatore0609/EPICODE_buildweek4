@@ -204,15 +204,15 @@ public class CreateDatabase {
         em.getTransaction().commit();
         //
         // CREA MEZZI DI TRASPORTO
-        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDateTime.now(), null);
-        Autobus autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Autobus autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDateTime.now(), null);
-        Autobus autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Tram tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDateTime.now(), null);
-        Tram tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Tram tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDateTime.now(), null);
+        Mezzo autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDateTime.now(), null);
+        Mezzo autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDateTime.now(), null);
+        Mezzo tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Mezzo tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
         mezzoDao.insert(autobus);
         mezzoDao.insert(autobus1);
         mezzoDao.insert(autobus2);
@@ -275,21 +275,24 @@ public class CreateDatabase {
         Biglietto b = Biglietto.builder()
                 .dataDiEmissione(LocalDate.now())
                 .rivenditore(r)
-                .vidimato(false)
+                .vidimato(true)
+                .dataVidimato(LocalDate.of(2023, 12, 15))
                 .utente(utente1)
                 .mezzo(autobus1)
                 .build();
         Biglietto b1 = Biglietto.builder()
                 .dataDiEmissione(LocalDate.now())
                 .rivenditore(r2)
-                .vidimato(false)
+                .vidimato(true)
+                .dataVidimato(LocalDate.of(2024, 1, 12))
                 .utente(utente2)
                 .mezzo(autobus2)
                 .build();
         Biglietto b2 = Biglietto.builder()
                 .dataDiEmissione(LocalDate.now())
                 .rivenditore(r3)
-                .vidimato(false)
+                .vidimato(true)
+                .dataVidimato(LocalDate.of(2024, 6, 8))
                 .utente(utente3)
                 .mezzo(autobus3)
                 .build();

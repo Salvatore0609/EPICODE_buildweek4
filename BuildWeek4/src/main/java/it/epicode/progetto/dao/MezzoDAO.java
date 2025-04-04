@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
-
 @AllArgsConstructor
 public class MezzoDAO {
 	private EntityManager em;
@@ -128,6 +127,13 @@ public class MezzoDAO {
 			bigliettiVidimati += (int) bigliettiVidimatiPerMezzo;
 		}
 		System.out.println("Biglietti vidimati tra " + dataInizio + " e " + dataFine + " : " + bigliettiVidimati);
+		try {
+			System.out.println();
+			System.out.print("Premi invio per continuare...");
+			System.in.read();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// 	Stampa tutti i biglietti vidimati per mezzo
@@ -141,6 +147,13 @@ public class MezzoDAO {
 			System.out.println("Il mezzo " + mezzo.getId() + " ha vidimato " + numeroBiglietti + " biglietti.");
 		} else  {
 			System.out.println("Mezzo non trovato con id " + idMezzo + ".");
+		}
+		try {
+			System.out.println();
+			System.out.print("Premi invio per continuare...");
+			System.in.read();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}

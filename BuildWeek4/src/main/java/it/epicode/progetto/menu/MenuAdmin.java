@@ -11,7 +11,6 @@ public class MenuAdmin {
 	public static void menuAdmin() {
 		while (true) {
 			try {
-				ClearTerminal.clearConsole();
 				System.out.println("***********************");
 				System.out.println("***** MENU ADMIN ******");
 				System.out.println("***********************");
