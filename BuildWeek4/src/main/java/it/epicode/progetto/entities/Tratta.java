@@ -28,6 +28,10 @@ public class Tratta {
 	@Column(name = "mezzi")
 	private List<Mezzo> mezzi;
 
+	@ManyToOne
+	@JoinColumn(name = "autistaid")
+	private Autista autista;
+
 	public Tratta() {
 	}
 
