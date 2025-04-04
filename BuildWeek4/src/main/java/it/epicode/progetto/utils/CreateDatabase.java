@@ -204,13 +204,13 @@ public class CreateDatabase {
         em.getTransaction().commit();
         //
         // CREA MEZZI DI TRASPORTO
-        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus = new Autobus(null, null, 15, 2, 20, Stato.FERMO, LocalDateTime.now(), null);
         Autobus autobus1 = new Autobus(null, null, 18, 4, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
         Autobus autobus2 = new Autobus(null, null, 20, 3, 20, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Autobus autobus3 = new Autobus(null, null, 11, 2, 20, Stato.FERMO, LocalDateTime.now(), null);
         Autobus autobus4 = new Autobus(null, null, 18, 1, 20, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
         Tram tram = new Tram(null, null, 43, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
-        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        Tram tram1 = new Tram(null, null, 20, 1, 50, Stato.FERMO, LocalDateTime.now(), null);
         Tram tram2 = new Tram(null, null, 30, 1, 50, Stato.IN_SERVIZIO, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
         Tram tram3 = new Tram(null, null, 12, 1, 50, Stato.IN_MANUTENZIONE, LocalDateTime.now(), LocalDateTime.now().plusDays(7));
         mezzoDao.insert(autobus);
@@ -268,7 +268,9 @@ public class CreateDatabase {
         mezzoDao.update(tram1);
         mezzoDao.update(tram2);
         mezzoDao.update(tram3);
+        System.out.println("Tratte aggiunte ai mezzi");
 
+        em.getTransaction().begin();
         //CREA BIGLIETTI
         Biglietto b = Biglietto.builder()
                 .dataDiEmissione(LocalDate.now())
@@ -350,8 +352,10 @@ public class CreateDatabase {
         elementoBiglietteriaDAO.insert(b7);
         elementoBiglietteriaDAO.insert(b8);
         elementoBiglietteriaDAO.insert(b9);
+        rivenditoreDAO.aggiornaBigliettiAbbonamentiEmessi();
 
-        System.out.println("Tratte aggiunte ai mezzi");
+        em.getTransaction().commit();
+        System.out.println("Biglietti creati.");
 
         em.close();
         emf.close();
